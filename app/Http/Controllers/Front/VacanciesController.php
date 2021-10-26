@@ -18,7 +18,6 @@ class VacanciesController extends Controller
     public function index()
     {
         $vacancies = Vacancies::getVacanciesByUser();
-        dd($vacancies );
         return response($vacancies);
     }
 
@@ -45,16 +44,16 @@ class VacanciesController extends Controller
 
 		if (User::getUserRoleID() == 2){
 			
-				$order_by = 'users.created_at'; 
-				$ordering = 'ASC';
-			dd(User::getStudents($order_by,$ordering));
-				return view('front.search_for_employer')->with([
-					'additional_info'=>User::getAdittionalInfo(),
-					'students'=>User::getStudents($order_by,$ordering)
-				]);
+			$order_by = 'users.created_at'; 
+			$ordering = 'ASC';
+			/*dd(User::getStudents($order_by,$ordering));
+			return view('front.search_for_employer')->with([
+				'additional_info'=>User::getAdittionalInfo(),
+				'students'=>User::getStudents($order_by,$ordering)
+			]);*/ 
 		}
 		
-		$get = User::whereRaw("additional_info->\"$.activities\" LIKE '%1%'")->get();
+		$get = User::whereRaw("additional_info->\"$.activities\" LIKE '%2%'")->whereTypeAccount(2)->get();
 		dd($get);
     } 
 
@@ -110,9 +109,9 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Vacancies $vacancies)
     {
-        //
+		
     }
 
     /**

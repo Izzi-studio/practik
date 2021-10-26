@@ -31,12 +31,14 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
 
+//vacancies need refactor (use binding model)
 Route::get('/my-vacancies','Front\VacanciesController@index')->name('my-vacancies')->middleware('EmployerMiddleware');
 Route::get('/create-vacancy','Front\VacanciesController@create')->name('create-vacancy')->middleware('EmployerMiddleware');
 Route::post('/create-vacancy','Front\VacanciesController@store')->name('store-vacancy')->middleware('EmployerMiddleware');
-Route::put('/update-vacancy/{vacancy_id}','Front\VacanciesController@update')->name('update-vacancy')->middleware('EmployerMiddleware');
-Route::get('/edit-vacancy/{vacancy_id}','Front\VacanciesController@edit')->name('edit-vacancy')->middleware('EmployerMiddleware');
-Route::get('/view-vacancy/{vacancy_id}','Front\VacanciesController@show')->name('view-vacancy');
+Route::put('/update-vacancy/{vacancies}','Front\VacanciesController@update')->name('update-vacancy')->middleware('EmployerMiddleware');
+Route::get('/edit-vacancy/{vacancies}','Front\VacanciesController@edit')->name('edit-vacancy')->middleware('EmployerMiddleware');
+Route::get('/view-vacancy/{vacancies}','Front\VacanciesController@show')->name('view-vacancy');
+//end 
 
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacanciesController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 
