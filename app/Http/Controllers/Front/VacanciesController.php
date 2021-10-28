@@ -61,7 +61,7 @@ class VacanciesController extends Controller
     {
 
 		Vacancies::changeStatusVacancy($vacancy_id, $status);
-        return redirect(route('my-vacancies'));
+        return back();
     }
 
 	/**
@@ -109,9 +109,9 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacancies $vacancies)
+    public function edit(Vacancies $vacancy)
     {
-		
+		return response($vacancy);
     }
 
     /**
@@ -121,9 +121,9 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Vacancies $vacancy)
     {
-
+			//to do update vacancy
     }
 
     /**

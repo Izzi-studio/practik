@@ -19,11 +19,9 @@ class ProfileController extends Controller
         if (User::getUserRoleID() == 1){
             return view('front.profile_student')->with(['additional_info'=>User::getAdittionalInfo()]);
         }
-
         if (User::getUserRoleID() == 2){
-            return view('front.profile_employer')->with(['additional_info'=>User::getAdittionalInfo()]);;
+            return view('front.profile_employer')->with(['additional_info'=>User::getAdittionalInfo()]);
         }
-
     }
 
     /**
@@ -78,7 +76,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-
         if ($request->file('photo')) {
             $file = $request->file('photo');
             $storage = $file->store(env('STORAGE_USERIMAGE_PATH'));
@@ -87,7 +84,6 @@ class ProfileController extends Controller
             $request->request->add(['avatar'=>$image]);
         }
 
-      //  dd($request->all());
         User::updateUser($request, Auth::ID());
         return redirect(route('profile_view'));
     }

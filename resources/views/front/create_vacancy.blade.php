@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form action="{{route('store-vacancy')}}" method="POST">
+    <form action="{{route('vacancies.store')}}" method="POST">
         @csrf
         <input type="text" name="name"/>
         <input type="text" name="country_id"/>
