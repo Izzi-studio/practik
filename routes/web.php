@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Front\VacanciesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,11 @@ Route::put('/update-vacancy/{vacancies}','Front\VacanciesController@update')->na
 Route::get('/edit-vacancy/{vacancies}','Front\VacanciesController@edit')->name('edit-vacancy')->middleware('EmployerMiddleware');
 Route::get('/view-vacancy/{vacancies}','Front\VacanciesController@show')->name('view-vacancy');
 //end 
+
+Route::group(['middleware' => 'EmployerMiddleware', ], function(){
+    Route::resource('vacancies', '\App\Http\Controllers\Front\VacanciesController')->except(['destroy', 'show']);
+});
+Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
 
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacanciesController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 
