@@ -24,6 +24,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a class="#" href="{{route('my_vacancies')}}">
+                                    <span><img src="/images/person.svg"></span>
+                                    Позиции
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#">
                                     <span><img src="/images/messages.svg"></span>
                                     Мои заявки

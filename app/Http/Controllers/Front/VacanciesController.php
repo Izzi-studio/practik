@@ -18,7 +18,8 @@ class VacanciesController extends Controller
     public function index()
     {
         $vacancies = Vacancies::getVacanciesByUser();
-        return response($vacancies);
+        //return response($vacancies);
+        return view('front.my-vacancies');
     }
 
     /**
