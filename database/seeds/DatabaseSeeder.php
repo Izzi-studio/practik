@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('countries')->insert([
+            'name' => Str::random(5),
+        ]);
+
+        DB::table('states')->insert([
+            'name' => Str::random(5),
+        ]);
         // $this->call(UsersTableSeeder::class);
     }
 }
