@@ -50,20 +50,26 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 
 Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
 //employers routes end
-
-
-/* vacancies need refactor (use binding model)
-
+//Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
+//Route::post('/get-cities','Front\LocationController@getCitiesByStateId')->name('get-cities');
+/* //vacancies need refactor (use binding model)
 Route::get('/my-vacancies','Front\VacanciesController@index')->name('my-vacancies')->middleware('EmployerMiddleware');
 Route::get('/create-vacancy','Front\VacanciesController@create')->name('create-vacancy')->middleware('EmployerMiddleware');
 Route::post('/create-vacancy','Front\VacanciesController@store')->name('store-vacancy')->middleware('EmployerMiddleware');
 Route::put('/update-vacancy/{vacancies}','Front\VacanciesController@update')->name('update-vacancy')->middleware('EmployerMiddleware');
 Route::get('/edit-vacancy/{vacancies}','Front\VacanciesController@edit')->name('edit-vacancy')->middleware('EmployerMiddleware');
 Route::get('/view-vacancy/{vacancies}','Front\VacanciesController@show')->name('view-vacancy');
+//end  */
+
+Route::group(['middleware' => 'EmployerMiddleware', ], function(){
+    Route::resource('vacancies', '\App\Http\Controllers\Front\VacanciesController')->except(['destroy', 'show']);
+});
+Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacanciesController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
-
 Route::get('/feedback','Front\VacanciesController@feedback')->name('feedback')->middleware('EmployerMiddleware');
-
 Route::get('/search','Front\VacanciesController@search')->middleware('EmployerMiddleware');
+
+
+
 
 end  */
