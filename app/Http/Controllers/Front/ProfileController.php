@@ -53,7 +53,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -97,5 +97,11 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function myVacancies()
+    {
+        return view('front.my-vacancies');
     }
 }

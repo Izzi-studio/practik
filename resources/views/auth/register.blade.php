@@ -313,6 +313,8 @@
                         </div>
                     </form>
                 </div>
+
+
                 <div class="employer">
                     <form enctype="multipart/form-data" method="POST" action="{{ route('register',['type'=>'employer']) }}">
                         @csrf
@@ -415,24 +417,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="section">
-                            <div class="section_name offset-lg-1">
-                                Направления работы -
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-9 offset-lg-1">
-                                    <label for="activities_main"
-                                           class="col-form-label">{{ __('Activities Main') }}</label>
-                                    <select data-placeholder=" " multiple id="activities_main"
-                                            class="form-control chosen" name="additional_info[activities][]"
-                                            value="@if($type == 'employer'){{old('additional_info')['activities']}}@endif">
-                                        @foreach(json_decode(env('CATEGORIES')) as $key => $category)
-                                            <option value="{{$key}}">{{$category}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="section">
                             <div class="section_name offset-lg-1">
                                 Ссылки на социальные сети -
@@ -468,6 +453,8 @@
                             </div>
                         </div>
 
+
+                        
                         <div class="form-group row d-none">
                             <label for="password_e"
                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -505,6 +492,8 @@
                         </div>
                     </form>
                 </div>
+                
+
             </div>
         </div>
     </section>

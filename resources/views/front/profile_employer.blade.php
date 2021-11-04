@@ -24,8 +24,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="#" href="{{route('my_vacancies')}}">
-                                    <span><img src="/images/person.svg"></span>
+                                <a href="{{route('my-vacancies')}}">
+                                    <span><img src="/images/lien.svg"></span>
                                     Позиции
                                 </a>
                             </li>
@@ -162,24 +162,6 @@
                                                 <input id="fax" type="text" class="form-control"
                                                        name="additional_info[fax]"
                                                        value="{{$additional_info['fax']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="section">
-                                        <div class="section_name offset-lg-1">
-                                            Направления работы -
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-9 offset-lg-1">
-                                                <label for="activities_main"
-                                                       class="col-form-label">{{ __('Activities Main') }}</label>
-                                                <select data-placeholder=" " multiple id="activities_main"
-                                                        class="form-control chosen" name="additional_info[activities][]">
-                                                    @foreach(json_decode(env('CATEGORIES')) as $key => $category)
-                                                        <option @if(in_array($key,$additional_info['activities'])) selected @endif value="{{$key}}">{{$category}}</option>
-                                                    @endforeach
-                                                </select>
-
                                             </div>
                                         </div>
                                     </div>
