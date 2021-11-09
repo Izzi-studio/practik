@@ -3,6 +3,7 @@
 namespace App\Http\Models\Front;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Auth;
 use DB;
 use User;
@@ -47,6 +48,21 @@ class Vacancies extends Model
 		}else{
 			dd('you are cheaters');
 		}
+    }
+
+    public function candidatesToVacancy(){
+        return $this->hasMany('App\Http\Models\Front');
+        //$candidatesToVacancy = Vacancies::find(1)->candidatesToVacancy;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeArchive($query)
+    {
+        return $query->where('status', 2)->orwhere('status', 3);
     }
 
 }

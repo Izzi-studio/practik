@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //Auth::routes(['verify' => true]);
 Auth::routes();
 Route::post('/check-email','Auth\RegisterController@existsEmail')->name('check-email'); //check email in db
@@ -48,6 +47,10 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 	Route::get('/search','Front\VacanciesController@search')->name('search'); //to do
 });
 
+Route::group(['middleware' => 'EmployerMiddleware', ], function(){
+    Route::resource('posts', 'PostController');
+});
+
 Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
 //employers routes end
 //Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
@@ -68,8 +71,3 @@ Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->n
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacanciesController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 Route::get('/feedback','Front\VacanciesController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacanciesController@search')->middleware('EmployerMiddleware');
-
-
-
-
-end  */

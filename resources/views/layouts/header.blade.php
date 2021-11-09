@@ -20,9 +20,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://kit.fontawesome.com/e9b6921b84.js" crossorigin="anonymous"></script>
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/chosen.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/chosen.min.css') }}" rel="stylesheet"> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>

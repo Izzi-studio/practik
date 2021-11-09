@@ -24,8 +24,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('my-vacancies')}}">
-                                    <span><img src="/images/lien.svg"></span>
+                                <a href="{{route('posts.index')}}">
+                                    <span><img src="/images/document.svg"></span>
                                     Позиции
                                 </a>
                             </li>
