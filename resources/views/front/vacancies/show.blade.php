@@ -22,43 +22,43 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Title:</strong>
-                                        {{ $post->title }}
+                                        {{ $vacancy->title }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>City:</strong>
-                                        {{ $post->city }}
+                                        {{ $vacancy->city }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Duration:</strong>
-                                        {{ $post->duration }}
+                                        {{ $vacancy->duration }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Type :</strong>
-                                        {{ $post->type_of_employment }}
+                                        {{ $vacancy->type_of_employment }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Form :</strong>
-                                        {{ $post->form_of_employment }}
+                                        {{ $vacancy->form_of_employment }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Description:</strong>
-                                        {{ $post->description }}
+                                        {{ $vacancy->description }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-0">
                                 <div class="col-md-5 offset-lg-8">
-                                <a class="btn btn-orange" href="{{ route('posts.index') }}"> {{ __('назад') }}</a>
+                                <a class="btn btn-orange" href="{{ route('vacancies.index') }}"> {{ __('назад') }}</a>
                                 </div>
                             </div>
 

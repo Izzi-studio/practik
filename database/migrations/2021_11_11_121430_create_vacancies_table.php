@@ -15,6 +15,13 @@ class CreateVacanciesTable extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('form_of_employment');
+            $table->string('type_of_employment');
+            $table->string('city');
+            $table->text('description');
+            $table->string('duration');
+            $table->enum('status', ['1', '2', '3'])->default('1');
             $table->timestamps();
         });
     }

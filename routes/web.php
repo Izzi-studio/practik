@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\VacanciesController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,7 @@ use App\Http\Controllers\Front\VacanciesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,19 +38,14 @@ Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
 Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancies')->name('my-vacancies');
 
-
 //profile end
 
 //employers routes
 Route::group(['middleware' => 'EmployerMiddleware', ], function(){
-    Route::resource('vacancies', '\App\Http\Controllers\Front\VacanciesController')->except(['destroy', 'show']);
+    Route::resource('vacancies', '\App\Http\Controllers\Front\VacanciesController');
 	Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacanciesController@changeStatusVacancy')->name('change-status-vacancy');//to do
 	Route::get('/feedback','Front\VacanciesController@feedback')->name('feedback');//to do
 	Route::get('/search','Front\VacanciesController@search')->name('search'); //to do
-});
-
-Route::group(['middleware' => 'EmployerMiddleware', ], function(){
-    Route::resource('posts', 'PostController');
 });
 
 Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
