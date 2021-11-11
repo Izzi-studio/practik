@@ -21,4 +21,8 @@ class Cities extends Model
     public static function getCityById($id){
         return Cities::find($id);
     }
+
+    public function countries(){
+        return $this->belongsTo('App\Http\Models\Front', 'country_id');
+    }
 }

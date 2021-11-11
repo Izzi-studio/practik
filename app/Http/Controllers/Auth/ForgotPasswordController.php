@@ -25,6 +25,28 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
+    public function sendResetLinkEmail(){
+        
+
+    }
+
+    /**
+     * Show the reset email form
+     *
+     * @return void
+     */
+    public function showLinkRequestForm(){
+        return view('auth.passwords.email',[
+            'title' => 'Reset Password',
+            'passwordEmailRoute' => 'password.email'
+         ]);
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');

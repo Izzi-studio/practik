@@ -2,16 +2,21 @@
 
 namespace App\Http\Models\Front;
 
+use DB;
+use Auth;
+use User;
+use App\Http\Models\Front\Vacancies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Auth;
-use DB;
-use User;
+
 class Vacancies extends Model
 {
     protected $table = 'vacancies';
     public $timestamps = false;
     protected $guarded = [];
+    protected $fillable = [
+        'title','description', 'duration', 'type_of_employment', 'form_of_employment', 'city', 'status',
+    ];
 
     public static function getVacanciesByUser (){
         return Vacancies::where('vacancies.user_id',Auth::ID())
@@ -51,18 +56,32 @@ class Vacancies extends Model
     }
 
     public function candidatesToVacancy(){
-        return $this->hasMany('App\Http\Models\Front');
+        return $this->hasMany('App\Http\Models\Front', 'candidatesToVacancy_id');
         //$candidatesToVacancy = Vacancies::find(1)->candidatesToVacancy;
     }
 
     public function scopeActive($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', '1');
     }
 
     public function scopeArchive($query)
     {
-        return $query->where('status', 2)->orwhere('status', 3);
+        return $query->where('status', '2')->orwhere('status', '3');
     }
+
+    public static function archiveVacancy(Vacacancies $vacancy){
+        $vacancy = DB::table('vacancies')
+        ->where('vacancies.id', $vacancy->id)
+        ->update(['status' => '2']); 
+    }
+
+    
+    public static function deleteVacancy(Vacancies $vacancy){
+        $vacancy = DB::table('vacancies')
+        ->where('vacancies.id', $vacancy->id)
+        ->update(['status' => '3']);
+    }
+
 
 }

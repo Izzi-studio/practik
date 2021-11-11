@@ -2,8 +2,9 @@
 
 namespace App\Http\Models\Front;
 
-use Illuminate\Database\Eloquent\Model;
 use Auth;
+use App\Http\Models\Front\Vacancies;
+use Illuminate\Database\Eloquent\Model;
 
 class CandidateToVacancy extends Model
 {
@@ -11,5 +12,8 @@ class CandidateToVacancy extends Model
     public $timestamps = false;
     protected $guarded = [];
 
+    public function vacancies(){
+        return $this->belongsTo('App\Http\Models\Front', 'vacancy_id');
+    }
 
 }

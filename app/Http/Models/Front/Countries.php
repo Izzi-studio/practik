@@ -17,4 +17,8 @@ class Countries extends Model
     public static function getCountryById($id){
         return Countries::find($id);
     }
+
+    public function cities(){
+        return $this->hasMany('App\Http\Models\Front', 'city_id');
+    }
 }

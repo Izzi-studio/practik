@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use DB;
 use App\Http\Models\Front\Vacancies;
 use App\User;
 
@@ -17,9 +18,12 @@ class VacanciesController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancies::getVacanciesByUser();
-        //return response($vacancies);
-        return view('front.my-vacancies');
+        /* $vacancies = Vacancies::getVacanciesByUser();
+        return response($vacancies); */
+
+        $vacancies = Vacancies::active()->get();
+        $archvacancies = Vacancies::archive()->get();
+        return view('front.vacancies.index', ['vacancies' => $vacancies, 'archvacancies' => $archvacancies]);
     }
 
     /**
@@ -29,7 +33,7 @@ class VacanciesController extends Controller
      */
     public function create()
     {
-        return view('front.create_vacancy');
+        return view('front.vacancies.create');
     } 
 
 	/**
@@ -85,12 +89,27 @@ class VacanciesController extends Controller
      */
     public function store(Request $request)
     {
-        if(User::getUserRoleID() == 2) {
+        /* if(User::getUserRoleID() == 2) {
             Vacancies::storeVacancy($request);
             return redirect(route('my-vacancies'));
         }
-        abort(404, 'Page not found');
+        abort(404, 'Page not found'); */
 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'duration' => 'required',
+            'city' => 'required',
+            'type_of_employment' => 'required',
+            'form_of_employment' => 'required',
+
+        ]);        
+
+        Vacancies::create($request->all());
+
+        return redirect()->route('vacancies.index')
+        ->with('success','Vacancy created successfully.');
+        
     }
 
     /**
@@ -99,9 +118,9 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vacancies $vacancy)
     {
-        //
+        return view('front.vacancies.show',compact('vacancy'));
     }
 
     /**
@@ -112,7 +131,8 @@ class VacanciesController extends Controller
      */
     public function edit(Vacancies $vacancy)
     {
-		return response($vacancy);
+		//return response($vacancy);
+        return view('front.vacancies.edit',compact('vacancy'));
     }
 
     /**
@@ -124,7 +144,19 @@ class VacanciesController extends Controller
      */
     public function update(Request $request, Vacancies $vacancy)
     {
-			//to do update vacancy
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'duration' => 'required',
+            'city' => 'required',
+            'type_of_employment' => 'required',
+            'form_of_employment' => 'required',
+        ]);
+
+        $vacancy->update($request->all());
+  
+        return redirect()->route('vacancies.index')
+                        ->with('success','Vacancy updated successfully');
     }
 
     /**
@@ -133,8 +165,18 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vacancies $vacancy)
     {
-        //
+        $vacancy = Vacancies::deleteVacancy($vacancy);
+        
+        return redirect()->route('vacancies.index')
+                        ->with('success','Vacancy delete successfully');
+    }
+
+    public function archive(Vacancies $vacancy)
+    {
+        $vacancy = Vacancies::archiveVacancy();
+        return redirect()->route('vacancies.index')
+        ->with('success','Vacancy archive successfully');
     }
 }

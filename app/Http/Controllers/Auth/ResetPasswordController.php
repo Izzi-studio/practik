@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -26,6 +27,32 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+
+        /**
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    public function reset(){
+        
+    }
+
+ /**
+     * Show the reset password form.
+     * 
+     * @param  \Illuminate\Http\Request $request
+     * @param  string|null  $token
+     * @return \Illuminate\Http\Response
+     */
+    public function showResetForm(Request $request, $token = null){
+        return view('auth.passwords.reset',[
+            'title' => 'Reset Password',
+            'passwordUpdateRoute' => 'password.update',
+            'token' => $token,
+        ]);
+    }
+
 
     /**
      * Create a new controller instance.
