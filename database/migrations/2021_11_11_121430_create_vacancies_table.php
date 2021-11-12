@@ -22,6 +22,7 @@ class CreateVacanciesTable extends Migration
             $table->text('description');
             $table->string('duration');
             $table->enum('status', ['1', '2', '3'])->default('1');
+            $table->integer('vacancy_responses');
             $table->timestamps();
         });
     }

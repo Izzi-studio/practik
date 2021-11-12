@@ -21,7 +21,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="active" href="{{route('my-vacancies')}}">
+                                <a class="active" href="{{route('vacancies.create')}}">
                                     <span><img src="/images/document.svg"></span>
                                     Позиции
                                 </a>

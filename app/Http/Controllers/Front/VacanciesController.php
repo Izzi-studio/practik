@@ -78,7 +78,7 @@ class VacanciesController extends Controller
     {
 
 		dd(Vacancies::getVacanciesByUserToResponded());
-        return redirect(route('my-vacancies'));
+        return redirect(route('vacancies.index'));
     }
 
     /**
@@ -91,7 +91,7 @@ class VacanciesController extends Controller
     {
         /* if(User::getUserRoleID() == 2) {
             Vacancies::storeVacancy($request);
-            return redirect(route('my-vacancies'));
+            return redirect(route('vacancies.create'));
         }
         abort(404, 'Page not found'); */
 

@@ -803,65 +803,6 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     display: none;
 }
 
-.actions_vacancies{
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.actions_vacancies .section .section_name{
-    padding: 20px 0 10px 0;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 28px;
-    color: #121045;
-}
-
-/* .myVacsforms .section .card input[type='image']{
-    width: 26px;
-    height: 26px;
-    display: inline-flex;
-    margin-right: 15px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    background: #FF5656;
-    float:right;
-}
- */
-.actions_vacancies .section .card{
-    margin: 0 30px 0 30px;
-}
-
-.actions_vacancies .section .card th, tr{
-    word-break: normal; 
-}
-
-.actions_vacancies .section .card table{
-    table-layout: fixed;
-    text-align: center;
-}
-
-.actions_vacancies .section .card .btn{
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    margin-right: 15px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    background: #FF5656;
-    float:right;
-    border-color:#FF5656 ;
-}
-
-.form_createVacancy h1{
-    padding-top: 50px;
-}
-
-.actions_vacancies{
-    padding: 30px;
-}
-
 #activities_main_chosen{
     width: 100%!important;
 }
@@ -962,4 +903,76 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     font-weight: bold;
 }
 
+/* Css Eva*/
+.form_createVacancy h1{
+    padding-top: 50px;
+}
 
+.actions_vacancies{
+    padding: 30px;
+}
+
+#accordeon .card .btn-orange{
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    margin-right: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border:none;
+    background: #FF5656;
+    float:right;
+    text-decoration:none;
+    box-shadow: none;
+}
+
+#accordeon .card th, tr{
+    word-break: normal; 
+}
+
+#accordeon .card table{
+    table-layout: fixed;
+    text-align: center;
+}
+
+#accordeon .section_name{
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 28px;
+    color: #121045;
+}
+
+#accordeon .archiveName{
+    font-weight: bold;
+    color: green;
+}
+
+#accordeon .deleteName{
+    color: red;
+    font-weight: bold;
+}
+
+#accordeon .titre{
+    font-weight: bold;
+}
+
+#accordeon .card .table .candidats{
+    display: block;
+}
+
+#accordeon .cross{
+    float: right;
+    color: red;
+    padding-right: 30px;
+}
+
+#accordeon .check{
+    float: right;
+    color: green;
+    padding-right: 30px;
+}
+
+
+/* End css Eva */

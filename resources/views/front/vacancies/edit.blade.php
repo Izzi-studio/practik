@@ -7,13 +7,9 @@
   <div class="actions_vacancies">
     <div class="shown">
       <div class="section">
-      <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Vacancy</h2>
-            </div>
+        <div class="col-lg-7 offset-lg-1">
+          <h2>Edit Vacancy</h2>
         </div>
-    </div>
 
     @if ($errors->any())
             <div class="alert alert-danger">

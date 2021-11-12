@@ -9,14 +9,9 @@
                     <div class="shown">
                         <input type="hidden" value="PUT" name="_method" />
                         <div class="section">
-
-                        <div class="row"> 
-                                <div class="col-lg-12 margin-tb">
-                                    <div class="pull-left">
-                                        <h2>Details Of The Vacancy</h2>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-7 offset-lg-1">
+                            <h2>Details Vacancy</h2>
+                        </div>
 
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
