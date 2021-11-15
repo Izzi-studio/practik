@@ -29,22 +29,50 @@
         <label for="topic">Title</label>
         <input type="text" class="form-control" value="{{ $vacancy->title }}" placeholder="Enter Title" name ="title">
       </div>
-      <div class="form-group">
-        <label for="type_of_employment">Type</label>
-        <input type="text" class="form-control" value="{{ $vacancy->type_of_employment }}" placeholder="Enter Type" name ="type_of_employment">
-      </div>
-      <div class="form-group">
-        <label for="form_of_employment">Duration</label>
-        <input type="text" class="form-control" value="{{ $vacancy->form_of_employment }}" placeholder="Enter Form" name ="form_of_employment">
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" value="{{ $vacancy->city }}" placeholder="Enter City" name ="city">
-      </div>
-      <div class="form-group">
-        <label for="duration">Duration</label>
-        <input type="text" class="form-control" value="{{ $vacancy->duration }}" placeholder="Enter Duration" name ="duration">
-      </div>
+
+
+        <div class="form-group">
+            <label for="type_of_employment">Type of employment</label>
+            <select type="text" name="type_of_employment_id" class="form-control">
+                @foreach((array)json_decode(env('TYPE_OF_PRAKTIC')) as $id=>$name)
+                    <option value="{{$id}}" @if($vacancy->type_of_employment == $id) selected @endif>{{$name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="form_of_employment">Form of employment</label>
+            <select type="text" name="form_of_employment_id" class="form-control">
+                @foreach((array)json_decode(env('FORM_OF_EMPLOYMENT')) as $id=>$name)
+                    <option value="{{$id}}" @if($vacancy->form_of_employment == $id) selected @endif>{{$name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="form_of_employment">Form of cooperation</label>
+            <select type="text" name="form_of_cooperation_id" class="form-control">
+                @foreach((array)json_decode(env('FORM_OF_COOPERATION')) as $id=>$name)
+                    <option value="{{$id}}" @if($vacancy->form_of_cooperation == $id) selected @endif>{{$name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <select type="text" name="city_id" class="form-control">
+                @foreach($cities as $city)
+                    <option value="{{$city->id}}" @if($vacancy->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="duration">Duration</label>
+            <select type="text" name="duration_id" class="form-control">
+                @foreach((array)json_decode(env('DURATION')) as $id=>$name)
+                    <option value="{{$id}}" @if($vacancy->duration == $id)  selected @endif>{{$name}}</option>
+                @endforeach
+            </select>
+        </div>
+
       <div class="form-group">
         <label for="description">Description</label>
         <textarea class="form-control" rows="3" name="description">{{ $vacancy->description }}</textarea>

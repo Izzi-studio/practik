@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Http\Models\Front\Cities;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -18,13 +19,13 @@ class VacanciesController extends Controller
      */
     public function index()
     {
-        /* $vacancies = Vacancies::getVacanciesByUser();
-        return response($vacancies); */
+        $vacancies = auth()->user()->vacancies()->active()->get();
+        $archiveVacancies = auth()->user()->vacancies()->archive()->get();
 
-        $vacancies = Vacancies::active()->get();
-        $archvacancies = Vacancies::archive()->get();
-        //$likevacancies = Vacancies::candidatesToVacancy()->count();
-        return view('front.vacancies.index', ['vacancies' => $vacancies, 'archvacancies' => $archvacancies]);
+        return view('front.vacancies.index', [
+            'vacancies' => $vacancies,
+            'archiveVacancies' => $archiveVacancies
+        ]);
     }
 
     /**
@@ -34,8 +35,9 @@ class VacanciesController extends Controller
      */
     public function create()
     {
-        return view('front.vacancies.create');
-    } 
+        $cities = Cities::get();
+        return view('front.vacancies.create',compact('cities'));
+    }
 
 	/**
      * Show the form for creating a new resource.
@@ -43,25 +45,25 @@ class VacanciesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
-    { 
+    {
 		if (User::getUserRoleID() == 1){
 
 		}
 
 		if (User::getUserRoleID() == 2){
-			
-			$order_by = 'users.created_at'; 
+
+			$order_by = 'users.created_at';
 			$ordering = 'ASC';
 			/*dd(User::getStudents($order_by,$ordering));
 			return view('front.search_for_employer')->with([
 				'additional_info'=>User::getAdittionalInfo(),
 				'students'=>User::getStudents($order_by,$ordering)
-			]);*/ 
+			]);*/
 		}
-		
+
 		$get = User::whereRaw("additional_info->\"$.activities\" LIKE '%2%'")->whereTypeAccount(2)->get();
 		dd($get);
-    } 
+    }
 
 	public function changeStatusVacancy($vacancy_id,$status)
     {
@@ -90,27 +92,21 @@ class VacanciesController extends Controller
      */
     public function store(Request $request)
     {
-        /* if(User::getUserRoleID() == 2) {
-            Vacancies::storeVacancy($request);
-            return redirect(route('vacancies.create'));
-        }
-        abort(404, 'Page not found'); */
-
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'duration' => 'required',
-            'city' => 'required',
-            'type_of_employment' => 'required',
-            'form_of_employment' => 'required',
-
-        ]);        
+            'duration_id' => 'required|integer',
+            'city_id' => 'required|integer',
+            'type_of_employment_id' => 'required|integer',
+            'form_of_employment_id' => 'required|integer',
+            'form_of_cooperation_id' => 'required|integer'
+        ]);
 
         Vacancies::create($request->all());
 
         return redirect()->route('vacancies.index')
         ->with('success','Vacancy created successfully.');
-        
+
     }
 
     /**
@@ -132,8 +128,8 @@ class VacanciesController extends Controller
      */
     public function edit(Vacancies $vacancy)
     {
-		//return response($vacancy);
-        return view('front.vacancies.edit',compact('vacancy'));
+        $cities = Cities::get();
+        return view('front.vacancies.edit',compact('vacancy','cities'));
     }
 
     /**
@@ -148,14 +144,15 @@ class VacanciesController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'duration' => 'required',
-            'city' => 'required',
-            'type_of_employment' => 'required',
-            'form_of_employment' => 'required',
+            'duration_id' => 'required|integer',
+            'city_id' => 'required|integer',
+            'type_of_employment_id' => 'required|integer',
+            'form_of_employment_id' => 'required|integer',
+            'form_of_cooperation_id' => 'required|integer'
         ]);
 
         $vacancy->update($request->all());
-  
+
         return redirect()->route('vacancies.index')
                         ->with('success','Vacancy updated successfully');
     }
@@ -169,7 +166,7 @@ class VacanciesController extends Controller
     public function destroy(Vacancies $vacancy)
     {
         $vacancy = Vacancies::deleteVacancy($vacancy);
-        
+
         return redirect()->route('vacancies.index')
                         ->with('success','Vacancy delete successfully');
     }

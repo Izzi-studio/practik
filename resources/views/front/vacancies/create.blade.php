@@ -33,19 +33,44 @@
           </div>
           <div class="form-group">
             <label for="type_of_employment">Type of employment</label>
-            <input type="text" class="form-control"  placeholder="Enter Type" name ="type_of_employment">
+              <select type="text" name="type_of_employment_id" class="form-control">
+                  @foreach((array)json_decode(env('TYPE_OF_PRAKTIC')) as $id=>$name)
+                      <option value="{{$id}}">{{$name}}</option>
+                  @endforeach
+              </select>
           </div>
           <div class="form-group">
             <label for="form_of_employment">Form of employment</label>
-            <input type="text" class="form-control"  placeholder="Enter Form" name ="form_of_employment">
+              <select type="text" name="form_of_employment_id" class="form-control">
+                  @foreach((array)json_decode(env('FORM_OF_EMPLOYMENT')) as $id=>$name)
+                      <option value="{{$id}}">{{$name}}</option>
+                  @endforeach
+              </select>
+          </div>
+
+            <div class="form-group">
+            <label for="form_of_employment">Form of cooperation</label>
+              <select type="text" name="form_of_cooperation_id" class="form-control">
+                  @foreach((array)json_decode(env('FORM_OF_COOPERATION')) as $id=>$name)
+                      <option value="{{$id}}">{{$name}}</option>
+                  @endforeach
+              </select>
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" class="form-control"  placeholder="Enter City" name ="city">
+              <select type="text" name="city_id" class="form-control">
+              @foreach($cities as $city)
+                  <option value="{{$city->id}}">{{$city->name}}</option>
+              @endforeach
+              </select>
           </div>
           <div class="form-group">
             <label for="duration">Duration</label>
-            <input type="text" class="form-control"  placeholder="Enter Date" name ="duration">
+              <select type="text" name="duration_id" class="form-control">
+                  @foreach((array)json_decode(env('DURATION')) as $id=>$name)
+                      <option value="{{$id}}">{{$name}}</option>
+                  @endforeach
+              </select>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
@@ -58,7 +83,7 @@
         </form>
 </div>
 
-       
+
     </div>
   </div>
 </div>

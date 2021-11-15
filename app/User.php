@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
+use App\Http\Models\Front\Vacancies;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,10 +66,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
         User::find($user_id)->update($data);
     }
-	
+
 	 public static function getStudents($order_by = 'users.created_at', $ordering = 'ASC'){
-		 
+
 		 $users = User::where('type_account',1)->orderBy($order_by, $ordering)->paginate(10);
 		 return $users;
 	 }
+
+	 public function vacancies(){
+         return $this->hasMany(Vacancies::class);
+     }
 }

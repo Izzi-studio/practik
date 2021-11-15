@@ -15,9 +15,14 @@ class CreateCandidatesToVacancyTable extends Migration
     {
         Schema::create('candidates_to_vacancy', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user.id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vacancies_id');
             $table->timestamps();
-            $table->foreignId('vacancies_id')->references('id')->on('vacancies');
+        });
+
+		Schema::table('candidates_to_vacancy', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('vacancies_id')->references('id')->on('vacancies')->onDelete('cascade');
         });
     }
 

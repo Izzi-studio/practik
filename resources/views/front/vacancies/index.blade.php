@@ -3,7 +3,7 @@
   <div class="heading">
   Позиции
   </div>
-  
+
   <div class="actions_vacancies">
     <div class="shown">
       <input type="hidden" value="PUT" name="_method" />
@@ -13,9 +13,9 @@
             <a class="btn btn-orange" href="{{ route('vacancies.create') }}">{{ __('Добавить позицию') }}</a>
           </div>
         </div>
-        
+
       </div>
-      
+
       <div id="accordeon">
         <div href="#item1" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Активные позиции</div>
         <div class="collapse show" id="item1">
@@ -33,7 +33,7 @@
                       <td>{{ $vacancy->description }}</td>
                       <td>
                         <button type="button" class="btn btn-light">Contact</button>
-                        <p>{{ $vacancy->vacancy_responses}} responses</p>
+                        <p>{{ $vacancy->candidates->count()}} responses</p>
                       </td>
                       <td>
                         <form action="{{ route('vacancies.destroy',$vacancy->id) }}" method="POST">
@@ -53,7 +53,7 @@
           <div href="#item2" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Архив</div>
         <div class="collapse" id="item2">
           <div class="card-body">
-            @foreach ($archvacancies as $vacancy)
+            @foreach ($archiveVacancies as $vacancy)
               <div class="card test">
                 <table class="table">
                   <tr>
@@ -66,7 +66,7 @@
                         <div class="archiveName">Найден</div>
                         @csrf
                       @else
-                        
+
                         <div class="fa-2x fas fa-times cross"></div>
                         <div class="deleteName" >Удалена</div>
                         @csrf
