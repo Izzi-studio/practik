@@ -8,6 +8,7 @@ use User;
 use App\Http\Models\Front\Vacancies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Models\Front\CandidateToVacancy;
 
 class Vacancies extends Model
 {
@@ -55,10 +56,11 @@ class Vacancies extends Model
 		}
     }
 
-    public function candidatesToVacancy(){
-        return $this->hasMany('App\Http\Models\Front', 'candidatesToVacancy_id');
+    public static function candidatesToVacancy(){
+        return $this->hasMany(CandidateToVacancy::class);
         //$candidatesToVacancy = Vacancies::find(1)->candidatesToVacancy;
     }
+
 
     public function scopeActive($query)
     {

@@ -33,8 +33,7 @@
                       <td>{{ $vacancy->description }}</td>
                       <td>
                         <button type="button" class="btn btn-light">Contact</button>
-                        <p>{{ $vacancy->vacancy_responses }} responses</p>
-
+                        <p>{{ $vacancy->vacancy_responses}} responses</p>
                       </td>
                       <td>
                         <form action="{{ route('vacancies.destroy',$vacancy->id) }}" method="POST">

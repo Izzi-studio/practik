@@ -12,8 +12,8 @@ class CandidateToVacancy extends Model
     public $timestamps = false;
     protected $guarded = [];
 
-    public function vacancies(){
-        return $this->belongsTo('App\Http\Models\Front', 'vacancy_id');
+    public static function vacancies(){
+        return $this->belongsTo(Vacancies::class);
     }
 
 }

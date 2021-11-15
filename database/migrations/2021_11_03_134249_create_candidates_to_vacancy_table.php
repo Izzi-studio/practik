@@ -17,6 +17,7 @@ class CreateCandidatesToVacancyTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user.id');
             $table->timestamps();
+            $table->foreignId('vacancies_id')->references('id')->on('vacancies');
         });
     }
 

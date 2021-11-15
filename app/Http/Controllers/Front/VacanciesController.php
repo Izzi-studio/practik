@@ -23,6 +23,7 @@ class VacanciesController extends Controller
 
         $vacancies = Vacancies::active()->get();
         $archvacancies = Vacancies::archive()->get();
+        //$likevacancies = Vacancies::candidatesToVacancy()->count();
         return view('front.vacancies.index', ['vacancies' => $vacancies, 'archvacancies' => $archvacancies]);
     }
 
