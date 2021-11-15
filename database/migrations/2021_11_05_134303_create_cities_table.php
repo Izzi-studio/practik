@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use App\Http\Models\Front\Cities;
 class CreateCitiesTable extends Migration
 {
     /**
@@ -19,10 +19,12 @@ class CreateCitiesTable extends Migration
 			$table->unsignedBigInteger('country_id');
             $table->timestamps();
         });
-		
+
 		Schema::table('cities', function (Blueprint $table) {
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
+
+        Cities::insert(['name'=>'kiev','country_id'=>1]);
     }
 
     /**
