@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Models\Front\Cities;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Auth;
 use DB;
-use App\Http\Models\Front\Vacancies;
+use Auth;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Models\Front\Cities;
+use App\Http\Controllers\Controller;
+use App\Http\Models\Front\Vacancies;
+use App\Http\Requests\VacancyRequest;
 
 class VacanciesController extends Controller
 {
@@ -90,18 +91,9 @@ class VacanciesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VacancyRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'duration_id' => 'required|integer',
-            'city_id' => 'required|integer',
-            'type_of_employment_id' => 'required|integer',
-            'form_of_employment_id' => 'required|integer',
-            'form_of_cooperation_id' => 'required|integer'
-        ]);
-
+        //$validatedData = $request->validated();
         Vacancies::create($request->all());
 
         return redirect()->route('vacancies.index')
@@ -139,18 +131,9 @@ class VacanciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacancies $vacancy)
+    public function update(VacancyRequest $request, Vacancies $vacancy)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'duration_id' => 'required|integer',
-            'city_id' => 'required|integer',
-            'type_of_employment_id' => 'required|integer',
-            'form_of_employment_id' => 'required|integer',
-            'form_of_cooperation_id' => 'required|integer'
-        ]);
-
+        //$validatedData = $request->validated();
         $vacancy->update($request->all());
 
         return redirect()->route('vacancies.index')
