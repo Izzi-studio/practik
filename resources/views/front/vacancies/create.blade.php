@@ -29,13 +29,13 @@
         @csrf
           <div class="form-group">
             <label for="title">Vacancy title</label>
-            <input type="text" class="form-control"  placeholder="Enter Title" name ="title">
+            <input type="text" class="form-control"  placeholder="Enter Title" name ="title" value="{{old('title')}}">
           </div>
           <div class="form-group">
             <label for="type_of_employment">Type of employment</label>
               <select type="text" name="type_of_employment_id" class="form-control">
               @foreach($type_of_employments as $type_of_employment)
-                  <option value="{{$type_of_employment->id}}">{{$type_of_employment->name}}</option>
+                  <option value="{{ $type_of_employment->id, old('type_of_employments') ? 'selected' : ''}}">{{$type_of_employment->name}}</option>
               @endforeach
               </select>
           </div>
@@ -43,7 +43,7 @@
             <label for="form_of_cooperation">Form of cooperation</label>
               <select type="text" name="form_of_cooperation_id" class="form-control">
               @foreach($form_of_cooperations as $form_of_cooperation)
-                  <option value="{{$form_of_cooperation->id}}">{{$form_of_cooperation->name}}</option>
+                  <option value="{{ $form_of_cooperation->id, old('form_of_cooperations') ? 'selected' : ''}}">{{$form_of_cooperation->name}}</option>
               @endforeach
               </select>
           </div>
@@ -52,7 +52,7 @@
             <label for="form_of_employment">Form of employment</label>
               <select type="text" name="form_of_employment_id" class="form-control">
               @foreach($form_of_employments as $form_of_employment)
-                  <option value="{{$form_of_employment->id}}">{{$form_of_employment->name}}</option>
+                  <option value="{{ $form_of_employment->id, old('form_of_employments') ? 'selected' : ''}}">{{$form_of_employment->name}}</option>
               @endforeach
               </select>
           </div>
@@ -60,7 +60,7 @@
             <label for="city">City</label>
               <select type="text" name="city_id" class="form-control">
               @foreach($cities as $city)
-                  <option value="{{$city->id}}">{{$city->name}}</option>
+                  <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
               @endforeach
               </select>
           </div>
@@ -68,7 +68,7 @@
             <label for="duration">Duration</label>
               <select type="text" name="duration_id" class="form-control">
               @foreach($durations as $duration)
-                  <option value="{{$duration->id}}">{{$duration->name}}</option>
+                  <option value="{{ $duration->id, old('durations') ? 'selected' : ''}}">{{$duration->name}}</option>
               @endforeach
               </select>
           </div>
