@@ -24,7 +24,10 @@ class CreateCitiesTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
 
-        Cities::insert(['name'=>'kiev','country_id'=>1]);
+        Cities::insert(['name'=>'Nice','country_id'=>1]);
+        Cities::insert(['name' => 'Nice', 'country_id' =>2]);
+        Cities::insert(['name' => 'Paris', 'country_id' =>2]);
+        Cities::insert(['name' => 'Rome', 'country_id' =>3]);
     }
 
     /**

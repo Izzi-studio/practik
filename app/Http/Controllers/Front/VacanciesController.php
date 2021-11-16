@@ -7,9 +7,13 @@ use Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
+use App\Http\Models\Front\Duration;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancies;
 use App\Http\Requests\VacancyRequest;
+use App\Http\Models\Front\FormOfEmployment;
+use App\Http\Models\Front\TypeOfEmployment;
+use App\Http\Models\Front\FormOfCooperation;
 
 class VacanciesController extends Controller
 {
@@ -37,7 +41,11 @@ class VacanciesController extends Controller
     public function create()
     {
         $cities = Cities::get();
-        return view('front.vacancies.create',compact('cities'));
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        return view('front.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
     }
 
 	/**
@@ -121,7 +129,11 @@ class VacanciesController extends Controller
     public function edit(Vacancies $vacancy)
     {
         $cities = Cities::get();
-        return view('front.vacancies.edit',compact('vacancy','cities'));
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
     }
 
     /**

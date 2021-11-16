@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeOfCooperationsTable extends Migration
+class CreateTypeOfEmploymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypeOfCooperationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_of_cooperations', function (Blueprint $table) {
+        Schema::create('type_of_employments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();

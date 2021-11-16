@@ -34,26 +34,26 @@
           <div class="form-group">
             <label for="type_of_employment">Type of employment</label>
               <select type="text" name="type_of_employment_id" class="form-control">
-                  @foreach((array)json_decode(env('TYPE_OF_PRAKTIC')) as $id=>$name)
-                      <option value="{{$id}}">{{$name}}</option>
-                  @endforeach
+              @foreach($type_of_employments as $type_of_employment)
+                  <option value="{{$type_of_employment->id}}">{{$type_of_employment->name}}</option>
+              @endforeach
               </select>
           </div>
           <div class="form-group">
-            <label for="form_of_employment">Form of employment</label>
-              <select type="text" name="form_of_employment_id" class="form-control">
-                  @foreach((array)json_decode(env('FORM_OF_EMPLOYMENT')) as $id=>$name)
-                      <option value="{{$id}}">{{$name}}</option>
-                  @endforeach
+            <label for="form_of_cooperation">Form of cooperation</label>
+              <select type="text" name="form_of_cooperation_id" class="form-control">
+              @foreach($form_of_cooperations as $form_of_cooperation)
+                  <option value="{{$form_of_cooperation->id}}">{{$form_of_cooperation->name}}</option>
+              @endforeach
               </select>
           </div>
 
             <div class="form-group">
-            <label for="form_of_employment">Form of cooperation</label>
-              <select type="text" name="form_of_cooperation_id" class="form-control">
-                  @foreach((array)json_decode(env('FORM_OF_COOPERATION')) as $id=>$name)
-                      <option value="{{$id}}">{{$name}}</option>
-                  @endforeach
+            <label for="form_of_employment">Form of employment</label>
+              <select type="text" name="form_of_employment_id" class="form-control">
+              @foreach($form_of_employments as $form_of_employment)
+                  <option value="{{$form_of_employment->id}}">{{$form_of_employment->name}}</option>
+              @endforeach
               </select>
           </div>
           <div class="form-group">
@@ -67,9 +67,9 @@
           <div class="form-group">
             <label for="duration">Duration</label>
               <select type="text" name="duration_id" class="form-control">
-                  @foreach((array)json_decode(env('DURATION')) as $id=>$name)
-                      <option value="{{$id}}">{{$name}}</option>
-                  @endforeach
+              @foreach($durations as $duration)
+                  <option value="{{$duration->id}}">{{$duration->name}}</option>
+              @endforeach
               </select>
           </div>
           <div class="form-group">

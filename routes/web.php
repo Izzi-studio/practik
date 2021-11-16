@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 Auth::routes();
 Route::post('/check-email','Auth\RegisterController@existsEmail')->name('check-email'); //check email in db
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -50,6 +50,7 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 
 Route::get('/view-vacancy/{vacancies}', [VacanciesController::class, 'show'])->name('view-vacancy');
 //employers routes end
+
 //Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
 //Route::post('/get-cities','Front\LocationController@getCitiesByStateId')->name('get-cities');
 /* //vacancies need refactor (use binding model)

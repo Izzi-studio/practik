@@ -34,25 +34,25 @@
         <div class="form-group">
             <label for="type_of_employment">Type of employment</label>
             <select type="text" name="type_of_employment_id" class="form-control">
-                @foreach((array)json_decode(env('TYPE_OF_PRAKTIC')) as $id=>$name)
-                    <option value="{{$id}}" @if($vacancy->type_of_employment == $id) selected @endif>{{$name}}</option>
+                @foreach($type_of_employments as $type_of_employment)
+                    <option value="{{$type_of_employment->id}}" @if($vacancy->type_of_employment_id == $type_of_employment->id) selected @endif>{{$type_of_employment->name}}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="form_of_employment">Form of employment</label>
             <select type="text" name="form_of_employment_id" class="form-control">
-                @foreach((array)json_decode(env('FORM_OF_EMPLOYMENT')) as $id=>$name)
-                    <option value="{{$id}}" @if($vacancy->form_of_employment == $id) selected @endif>{{$name}}</option>
+                @foreach($form_of_employments as $form_of_employment)
+                    <option value="{{$form_of_employment->id}}" @if($vacancy->form_of_employment_id == $form_of_employment->id) selected @endif>{{$form_of_employment->name}}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
-            <label for="form_of_employment">Form of cooperation</label>
+            <label for="form_of_cooperation">Form of cooperation</label>
             <select type="text" name="form_of_cooperation_id" class="form-control">
-                @foreach((array)json_decode(env('FORM_OF_COOPERATION')) as $id=>$name)
-                    <option value="{{$id}}" @if($vacancy->form_of_cooperation == $id) selected @endif>{{$name}}</option>
+                @foreach($form_of_cooperations as $form_of_cooperation)
+                    <option value="{{$form_of_cooperation->id}}" @if($vacancy->form_of_cooperation_id == $form_of_cooperation->id) selected @endif>{{$form_of_cooperation->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -67,8 +67,8 @@
         <div class="form-group">
             <label for="duration">Duration</label>
             <select type="text" name="duration_id" class="form-control">
-                @foreach((array)json_decode(env('DURATION')) as $id=>$name)
-                    <option value="{{$id}}" @if($vacancy->duration == $id)  selected @endif>{{$name}}</option>
+                @foreach($durations as $duration)
+                    <option value="{{$duration->id}}" @if($vacancy->duration_id == $duration->id) selected @endif>{{$duration->name}}</option>
                 @endforeach
             </select>
         </div>

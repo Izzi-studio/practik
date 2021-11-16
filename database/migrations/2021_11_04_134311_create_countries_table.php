@@ -19,7 +19,9 @@ class CreateCountriesTable extends Migration
             $table->timestamps();
         });
 
-        Countries::insert(['name'=>'ukraine']);
+        Countries::insert(['name'=>'Ukraine']);
+        Countries::insert(['name'=>'France']);
+        Countries::insert(['name'=>'Italie']);
     }
 
     /**
