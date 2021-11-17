@@ -117,7 +117,12 @@ class VacanciesController extends Controller
      */
     public function show(Vacancies $vacancy)
     {
-        return view('front.vacancies.show',compact('vacancy'));
+        $cities = Cities::get();
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        return view('front.vacancies.show',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
     }
 
     /**
@@ -132,7 +137,7 @@ class VacanciesController extends Controller
         $durations = Duration::get();
         $form_of_cooperations = FormOfCooperation::get();
         $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();        
         return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
     }
 

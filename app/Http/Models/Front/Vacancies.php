@@ -5,9 +5,13 @@ namespace App\Http\Models\Front;
 use DB;
 use Auth;
 use User;
+use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Vacancies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Models\Front\FormOfEmployment;
+use App\Http\Models\Front\TypeOfEmployment;
+use App\Http\Models\Front\FormOfCooperation;
 use App\Http\Models\Front\CandidateToVacancy;
 
 class Vacancies extends Model
@@ -45,6 +49,26 @@ class Vacancies extends Model
 
     public function candidates(){
         return $this->hasMany(CandidateToVacancy::class);
+    }
+
+    public function cities(){
+        return $this->belongsTo(Cities::class, 'city_id');
+    }
+
+    public function durations(){
+        return $this->belongsTo(Duration::class, 'duration_id');
+    }
+
+    public function formOfCooperations(){
+        return $this->belongsTo(FormOfCooperation::class, 'form_of_cooperation_id');
+    }
+
+    public function typeOfEmployments(){
+        return $this->belongsTo(TypeOfEmployment::class, 'type_of_employment_id');
+    }
+
+    public function formOfEmployments(){
+        return $this->belongsTo(FormOfEmployment::class, 'form_of_employment_id');
     }
 
     public function scopeActive($query)

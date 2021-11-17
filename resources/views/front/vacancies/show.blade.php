@@ -16,37 +16,43 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Title:</strong>
+                                        <strong>Title :</strong>
                                         {{ $vacancy->title }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>City:</strong>
-                                        {{ $vacancy->city }}
+                                    <div class="form-group"> 
+                                        <strong>City :</strong>
+                                        {{$vacancy->cities['name']}}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Duration:</strong>
-                                        {{ $vacancy->duration }}
+                                        <strong>Duration :</strong>
+                                        {{ $vacancy->durations['name'] }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Type :</strong>
-                                        {{ $vacancy->type_of_employment }}
+                                        <strong>Type of employment :</strong>
+                                        {{ $vacancy->typeOfEmployments['name'] }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Form :</strong>
-                                        {{ $vacancy->form_of_employment }}
+                                        <strong>Form of employment:</strong>
+                                        {{ $vacancy->formOfEmployments['name'] }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Description:</strong>
+                                        <strong>Form of cooperation :</strong>
+                                        {{ $vacancy->formOfCooperations['name'] }}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Description :</strong>
                                         {{ $vacancy->description }}
                                     </div>
                                 </div>
