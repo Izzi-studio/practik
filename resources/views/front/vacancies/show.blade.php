@@ -23,37 +23,37 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group"> 
                                         <strong>City :</strong>
-                                        {{$vacancy->cities['name']}}
+                                         <span> {{ $vacancy->city ? $vacancy->city->name : "Field not filled" }} </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Duration :</strong>
-                                        {{ $vacancy->durations['name'] }}
+                                        {{ $vacancy->duration ? $vacancy->duration->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Type of employment :</strong>
-                                        {{ $vacancy->typeOfEmployments['name'] }}
+                                        {{ $vacancy->typeOfEmployment ? $vacancy->typeOfEmployment->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Form of employment:</strong>
-                                        {{ $vacancy->formOfEmployments['name'] }}
+                                        {{ $vacancy->formOfEmployment ? $vacancy->formOfEmployment->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Form of cooperation :</strong>
-                                        {{ $vacancy->formOfCooperations['name'] }}
+                                        {{ $vacancy->formOfCooperation ? $vacancy->formOfCooperation->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Description :</strong>
-                                        {{ $vacancy->description }}
+                                        {{ $vacancy->description ? $vacancy->description : "Field not filled" }}
                                     </div>
                                 </div>
 

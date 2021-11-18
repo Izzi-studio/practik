@@ -51,24 +51,24 @@ class Vacancies extends Model
         return $this->hasMany(CandidateToVacancy::class);
     }
 
-    public function cities(){
-        return $this->belongsTo(Cities::class, 'city_id');
+    public function city(){
+        return $this->belongsTo(Cities::class);
     }
 
-    public function durations(){
-        return $this->belongsTo(Duration::class, 'duration_id');
+    public function duration(){
+        return $this->belongsTo(Duration::class);
     }
 
-    public function formOfCooperations(){
-        return $this->belongsTo(FormOfCooperation::class, 'form_of_cooperation_id');
+    public function formOfCooperation(){
+        return $this->belongsTo(FormOfCooperation::class);
     }
 
-    public function typeOfEmployments(){
-        return $this->belongsTo(TypeOfEmployment::class, 'type_of_employment_id');
+    public function typeOfEmployment(){
+        return $this->belongsTo(TypeOfEmployment::class);
     }
 
-    public function formOfEmployments(){
-        return $this->belongsTo(FormOfEmployment::class, 'form_of_employment_id');
+    public function formOfEmployment(){
+        return $this->belongsTo(FormOfEmployment::class);
     }
 
     public function scopeActive($query)
