@@ -73,6 +73,14 @@
               </select>
           </div>
           <div class="form-group">
+            <label for="category">Category</label>
+              <select type="text" name="category_id" class="form-control">
+              @foreach($categories as $category)
+                  <option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{$category->name}}</option>
+              @endforeach
+              </select>
+          </div>
+          <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" rows="3"placeholer ="Enter description" name="description"></textarea>
           </div>

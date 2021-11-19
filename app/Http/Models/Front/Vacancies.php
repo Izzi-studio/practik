@@ -7,6 +7,7 @@ use Auth;
 use User;
 use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Vacancies;
+use App\Http\Models\Front\Categories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Models\Front\FormOfEmployment;
@@ -17,7 +18,7 @@ use App\Http\Models\Front\CandidateToVacancy;
 class Vacancies extends Model
 {
     protected $table = 'vacancies';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = [];
     protected $fillable = [
         'title',
@@ -26,6 +27,7 @@ class Vacancies extends Model
         'type_of_employment_id',
         'form_of_employment_id',
         'form_of_cooperation_id',
+        'category_id',
         'city_id',
         'status',
         'user_id'
@@ -69,6 +71,10 @@ class Vacancies extends Model
 
     public function formOfEmployment(){
         return $this->belongsTo(FormOfEmployment::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Categories::class);
     }
 
     public function scopeActive($query)

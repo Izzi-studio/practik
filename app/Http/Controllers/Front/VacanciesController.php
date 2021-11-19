@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Front;
 use DB;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Duration;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancies;
+use App\Http\Models\Front\Categories;
 use App\Http\Requests\VacancyRequest;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
@@ -45,7 +47,8 @@ class VacanciesController extends Controller
         $form_of_cooperations = FormOfCooperation::get();
         $form_of_employments = FormOfEmployment::get();
         $type_of_employments = TypeOfEmployment::get();
-        return view('front.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
+        $categories = Categories::get();
+        return view('front.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
     }
 
 	/**
@@ -132,8 +135,9 @@ class VacanciesController extends Controller
         $durations = Duration::get();
         $form_of_cooperations = FormOfCooperation::get();
         $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();        
-        return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'));
+        $type_of_employments = TypeOfEmployment::get();
+        $categories = Categories::get();        
+        return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
     }
 
     /**
@@ -171,5 +175,10 @@ class VacanciesController extends Controller
         $vacancy = Vacancies::archiveVacancy();
         return redirect()->route('vacancies.index')
         ->with('success','Vacancy archive successfully');
+    }
+
+    public function proposals()
+    {
+        return view('front.vacancies.proposals');
     }
 }

@@ -21,6 +21,7 @@ class CreateVacanciesTable extends Migration
             $table->integer('form_of_cooperation_id');
             $table->integer('duration_id');
             $table->integer('city_id');
+            $table->integer('category_id');
             $table->text('description');
             $table->enum('status', ['1', '2', '3'])->default('1');
             $table->unsignedBigInteger('user_id');
