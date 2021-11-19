@@ -17,6 +17,7 @@ class CreateCandidatesToVacancyTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vacancies_id');
+            $table->enum('status', ['1', '2', '3']);
             $table->timestamps();
         });
 

@@ -13,9 +13,7 @@
             <a class="btn btn-orange" href="{{ route('vacancies.create') }}">{{ __('Добавить позицию') }}</a>
           </div>
         </div>
-
       </div>
-
       <div id="accordeon">
         <div href="#item1" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Активные позиции</div>
         <div class="collapse show" id="item1">
@@ -29,8 +27,8 @@
               <div class="card">
                   <table class="table">
                     <tr>
+                      <td>{{ date("d-m-Y", strtotime($vacancy->created_at)) }}</td>
                       <td class="titre">{{ $vacancy->title }}</td>
-                      <td>{{ $vacancy->description }}</td>
                       <td>
                         <button type="button" class="btn btn-light">Contact</button>
                         <p>{{ $vacancy->candidates->count()}} responses</p>
@@ -57,16 +55,15 @@
               <div class="card test">
                 <table class="table">
                   <tr>
+                    <td>{{ date("d-m-Y", strtotime($vacancy->updated_at)) }}</td>
                     <td class="titre">{{ $vacancy->title }}</td>
                     <td>{{ $vacancy->description }}</td>
-                    <td>{{ $vacancy->city }}</td>
                     <td>
                       @if ($vacancy->status === '2')
                         <div class="fa-2x fas fa-check check"></div>
                         <div class="archiveName">Найден</div>
                         @csrf
                       @else
-
                         <div class="fa-2x fas fa-times cross"></div>
                         <div class="deleteName" >Удалена</div>
                         @csrf

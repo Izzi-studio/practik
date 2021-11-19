@@ -10,26 +10,20 @@
                         <input type="hidden" value="PUT" name="_method" />
                         <div class="section">
                         <div class="col-lg-7 offset-lg-1">
-                            <h2>Details Vacancy</h2>
+                            <h2>{{ $vacancy->title }}</h2>
                         </div>
 
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Title :</strong>
-                                        {{ $vacancy->title }}
+                                        <strong>Category :</strong>
+                                        {{ $vacancy->category ? $vacancy->category->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group"> 
                                         <strong>City :</strong>
                                          <span> {{ $vacancy->city ? $vacancy->city->name : "Field not filled" }} </span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Duration :</strong>
-                                        {{ $vacancy->duration ? $vacancy->duration->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -48,6 +42,12 @@
                                     <div class="form-group">
                                         <strong>Form of cooperation :</strong>
                                         {{ $vacancy->formOfCooperation ? $vacancy->formOfCooperation->name : "Field not filled" }}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Duration :</strong>
+                                        {{ $vacancy->duration ? $vacancy->duration->name : "Field not filled" }}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
