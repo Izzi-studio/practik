@@ -31,7 +31,9 @@
                       <td class="titre">{{ $vacancy->title }}</td>
                       <td>
                         <button type="button" class="btn btn-light">Contact</button>
-                        <p>{{ $vacancy->candidates->count()}} responses</p>
+                        <p>
+                            <a href="{{ route('vacancies.proposals', $vacancy->id)}}">{{ $vacancy->candidates->count()}} responses</a>
+                          </p>
                       </td>
                       <td>
                         <form action="{{ route('vacancies.destroy',$vacancy->id) }}" method="POST">

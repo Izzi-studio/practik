@@ -4,10 +4,10 @@ namespace App\Http\Models\Front;
 
 use DB;
 use Auth;
-use User;
+use App\User;
 use App\Http\Models\Front\Cities;
-use App\Http\Models\Front\Vacancies;
-use App\Http\Models\Front\Categories;
+use App\Http\Models\Front\Vacancy;
+use App\Http\Models\Front\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Models\Front\FormOfEmployment;
@@ -15,7 +15,7 @@ use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
 use App\Http\Models\Front\CandidateToVacancy;
 
-class Vacancies extends Model
+class Vacancy extends Model
 {
     protected $table = 'vacancies';
     public $timestamps = true;
@@ -42,8 +42,8 @@ class Vacancies extends Model
     }
 
     public static function changeStatusVacancy ($vacancy_id, $status){
-		if ($status <= 3 && Vacancies::find($vacancy_id)){
-			Vacancies::find($vacancy_id)->where('user_id',Auth::ID())->update(['status'=> $status]);
+		if ($status <= 3 && Vacancy::find($vacancy_id)){
+			Vacancy::find($vacancy_id)->where('user_id',Auth::ID())->update(['status'=> $status]);
 		}else{
 			dd('you are cheaters');
 		}
@@ -51,6 +51,15 @@ class Vacancies extends Model
 
     public function candidates(){
         return $this->hasMany(CandidateToVacancy::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'candidates_to_vacancy', 'vacancy_id', 'user_id');
+    }
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function city(){
@@ -73,16 +82,16 @@ class Vacancies extends Model
         return $this->belongsTo(FormOfEmployment::class);
     }
 
-    public function category(){
-        return $this->belongsTo(Categories::class);
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 
-    public function scopeActive($query)
+    public function scopeVacancyActive($query)
     {
         return $query->where('status', '1');
     }
 
-    public function scopeArchive($query)
+    public function scopeVacancyArchive($query)
     {
         return $query->where('status', '2')->orwhere('status', '3');
     }
@@ -93,7 +102,7 @@ class Vacancies extends Model
         ->update(['status' => '2']);
     }
 
-    public static function deleteVacancy(Vacancies $vacancy){
+    public static function deleteVacancy(Vacancy $vacancy){
         $vacancy = DB::table('vacancies')
         ->where('vacancies.id', $vacancy->id)
         ->update(['status' => '3']);

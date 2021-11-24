@@ -73,8 +73,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
-            <select type="text" name="category_id" class="form-control">
+            <label for="categories">Categories</label>
+            <select class="form-select" multiple="multiple" name="categories[]">
                 @foreach($categories as $category)
                     <option value="{{$category->id}}" @if($vacancy->category_id == $category->id) selected @endif>{{$category->name}}</option>
                 @endforeach

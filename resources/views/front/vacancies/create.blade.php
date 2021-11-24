@@ -1,4 +1,7 @@
 @extends('layouts.app')
+    @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.0/js/select2.min.js"></scrip>
+    @endsection
 @section('content')
 <div class="heading">
           Позиции
@@ -73,12 +76,13 @@
               </select>
           </div>
           <div class="form-group">
-            <label for="category">Category</label>
-              <select type="text" name="category_id" class="form-control">
-              @foreach($categories as $category)
-                  <option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{$category->name}}</option>
-              @endforeach
-              </select>
+            <label for="categories">Categories : </label>
+            <select class="form-select" multiple name="categories[]">
+					@foreach($categories as $category)
+						<option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{ $category->name }}</option>
+					@endforeach
+
+				</select>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
@@ -95,32 +99,13 @@
     </div>
   </div>
 </div>
-@stop
 
-<!--                        <input type="text" name="name"/>
-                        <input type="text" name="country_id"/>
-                        <input type="text" name="city_id"/>
-                        <input type="text" name="region_id"/>
-                        <select type="text" name="form_of_employment">
-                            @foreach((array)json_decode(env('FORM_OF_EMPLOYMENT')) as $id=>$name)
-                                <option value="{{$id}}">{{$name}}</option>
-                            @endforeach
-                        </select>
-                        <select type="text" name="type_of_praktic">
-                            @foreach((array)json_decode(env('TYPE_OF_PRAKTIC')) as $id=>$name)
-                                <option value="{{$id}}">{{$name}}</option>
-                            @endforeach
-                        </select>
 
-                        <select type="text" name="duration_time">
-                            @foreach((array)json_decode(env('DURATION')) as $id=>$name)
-                                <option value="{{$id}}">{{$name}}</option>
-                            @endforeach
-                        </select>
-                        <select type="text" name="form_of_cooperation">
-                            @foreach((array)json_decode(env('FORM_OF_COOPERATION')) as $id=>$name)
-                                <option value="{{$id}}">{{$name}}</option>
-                            @endforeach
-                        </select>
-                        <textarea name="description"></textarea>
-                        <input type="submit"/> -->
+@endsection
+@section('styles')
+    <script>
+    $(document).ready(function() {
+    $('.select2-multi').select2();
+});
+</script>
+@endsection

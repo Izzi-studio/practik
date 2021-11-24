@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVacanciesTable extends Migration
+class CreateVacancyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,6 @@ class CreateVacanciesTable extends Migration
             $table->integer('form_of_cooperation_id');
             $table->integer('duration_id');
             $table->integer('city_id');
-            $table->integer('category_id');
             $table->text('description');
             $table->enum('status', ['1', '2', '3'])->default('1');
             $table->unsignedBigInteger('user_id');

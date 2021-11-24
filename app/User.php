@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Throwable;
+use App\Http\Models\Front\Vacancy;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
+use App\Http\Models\Front\CandidateToVacancy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Auth;
-use Throwable;
-use App\Http\Models\Front\Vacancies;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -74,6 +75,10 @@ class User extends Authenticatable implements MustVerifyEmail
 	 }
 
 	 public function vacancies(){
-         return $this->hasMany(Vacancies::class);
+         return $this->hasMany(Vacancy::class);
      }
+
+     public function candidates(){
+        return $this->hasMany(CandidateToVacancy::class);
+    }
 }

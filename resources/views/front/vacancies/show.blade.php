@@ -17,7 +17,9 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Category :</strong>
-                                        {{ $vacancy->category ? $vacancy->category->name : "Field not filled" }}
+                                        @foreach ($vacancy->categories as $category )
+                                            <span> {{ $category->name}}</span>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
