@@ -105,21 +105,8 @@ class VacancyController extends Controller
     public function store(VacancyRequest $request)
     {
         //$validatedData = $request->validated();
-
-
-        $vacancy = new Vacancy;
-        $vacancy->title = $request->title;
-        $vacancy->description = $request->description;
-        $vacancy->user_id = $request->user_id;
-        $vacancy->form_of_employment_id = $request->form_of_employment_id;
-        $vacancy->form_of_cooperation_id = $request->form_of_cooperation_id;
-        $vacancy->type_of_employment_id = $request->type_of_employment_id;
-        $vacancy->duration_id = $request->duration_id;
-        $vacancy->city_id = $request->city_id;
-
-        $vacancy->save();
+        $vacancy = Vacancy::create($request->all());
         $vacancy->categories()->sync($request->categories, false);
-
 
         return redirect()->route('vacancies.index', $vacancy->id)
         ->with('success','Vacancy created successfully.');
@@ -165,7 +152,6 @@ class VacancyController extends Controller
     {
         //$validatedData = $request->validated();
         $vacancy->update($request->all());
-        $vacancy->save();
         if (isset($request->categories)) {
             $vacancy->categories()->sync($request->categories);
         } else {
