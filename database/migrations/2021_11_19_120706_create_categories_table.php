@@ -18,6 +18,12 @@ class CreateCategoryTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Category::insert(['name' => 'Category A']);
+        Category::insert(['name' => 'Category B']);
+        Category::insert(['name' => 'Category C']);
+        Category::insert(['name' => 'Category D']);
+        Category::insert(['name' => 'Category E']);
     }
 
     /**

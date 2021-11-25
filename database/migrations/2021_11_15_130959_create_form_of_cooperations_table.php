@@ -18,6 +18,12 @@ class CreateFormOfCooperationsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        FormOfCooperation::insert(['name' => 'Compagny']);
+        FormOfCooperation::insert(['name' => 'Laoratory']);
+        FormOfCooperation::insert(['name' => 'Fondation']);
+        FormOfCooperation::insert(['name' => 'Cooperation']);
+
     }
 
     /**

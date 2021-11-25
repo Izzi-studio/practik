@@ -18,6 +18,12 @@ class CreateDurationsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Duration::insert(['name' =>'1 month']);
+        Duration::insert(['name' => '3 months']);
+        Duration::insert(['name' => '6 months']);
+        Duration::insert(['name' => '1 year']);
+        Duration::insert(['name' => '2 years']);
     }
 
     /**

@@ -931,6 +931,11 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     word-break: normal; 
 }
 
+#accordeon .card-body{
+    padding-top : 0;
+}
+
+
 #accordeon .card table{
     table-layout: fixed;
     text-align: center;
@@ -938,6 +943,7 @@ select#activities_main+.chosen-container-multi .chosen-choices{
 
 #accordeon .section_name{
     padding-top: 20px;
+    padding-bottom: 10px;
     font-weight: 600;
     font-size: 15px;
     line-height: 28px;
@@ -956,6 +962,8 @@ select#activities_main+.chosen-container-multi .chosen-choices{
 
 #accordeon .titre{
     font-weight: bold;
+    color: black;
+    text-decoration:none;
 }
 
 #accordeon .card .table .candidats{
@@ -972,6 +980,10 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     float: right;
     color: green;
     padding-right: 30px;
+}
+
+#accordeon .card{
+    border-top: none;
 }
 
 

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-    @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.0/js/select2.min.js"></scrip>
-    @endsection
+
 @section('content')
 <div class="heading">
           Позиции
@@ -77,7 +75,7 @@
           </div>
           <div class="form-group">
             <label for="categories">Categories : </label>
-            <select class="form-select" multiple name="categories[]">
+            <select class="form-control" multiple name="categories[]">
 					@foreach($categories as $category)
 						<option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{ $category->name }}</option>
 					@endforeach
@@ -101,11 +99,4 @@
 </div>
 
 
-@endsection
-@section('styles')
-    <script>
-    $(document).ready(function() {
-    $('.select2-multi').select2();
-});
-</script>
 @endsection

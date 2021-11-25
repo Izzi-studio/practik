@@ -18,6 +18,11 @@ class CreateTypeOfEmploymentsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        TypeOfEmployment::insert(['name' => 'Full-Time Employees']);
+        TypeOfEmployment::insert(['name' => 'Part-Time Employees']);
+        TypeOfEmployment::insert(['name' => 'Seasonal Employees']);
+        TypeOfEmployment::insert(['name' => 'Temporary Employees']);
     }
 
     /**
