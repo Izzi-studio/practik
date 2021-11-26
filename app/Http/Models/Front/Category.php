@@ -13,6 +13,7 @@ class Category extends Model
     protected $guarded = [];
 
     public function vacancies(){
-        return $this->belongsToMany(Vacancy::class(), 'category_vacancy', 'category_id', 'vacancy_id');
+        return $this->belongsToMany(Vacancy::class);
     }
+
 }

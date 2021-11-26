@@ -96,7 +96,7 @@ class Vacancy extends Model
         return $query->where('status', '2')->orwhere('status', '3');
     }
 
-    public static function archiveVacancy(Vacacancies $vacancy){
+    public static function archiveVacancy(Vacacancy $vacancy){
         $vacancy = DB::table('vacancies')
         ->where('vacancies.id', $vacancy->id)
         ->update(['status' => '2']);

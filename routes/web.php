@@ -15,9 +15,7 @@ use App\Http\Controllers\Front\VacancyController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes(['verify' => true]);
 Auth::routes();
@@ -37,7 +35,6 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
 Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancy')->name('my-vacancies');
-
 //profile end
 
 //employers routes
@@ -51,19 +48,13 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 
 //Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
 //Route::post('/get-cities','Front\LocationController@getCitiesByStateId')->name('get-cities');
-/* //vacancies need refactor (use binding model)
-Route::get('/my-vacancies','Front\VacancyController@index')->name('my-vacancies')->middleware('EmployerMiddleware');
-Route::get('/create-vacancy','Front\VacancyController@create')->name('create-vacancy')->middleware('EmployerMiddleware');
-Route::post('/create-vacancy','Front\VacancyController@store')->name('store-vacancy')->middleware('EmployerMiddleware');
-Route::put('/update-vacancy/{vacancies}','Front\VacancyController@update')->name('update-vacancy')->middleware('EmployerMiddleware');
-Route::get('/edit-vacancy/{vacancies}','Front\VacancyController@edit')->name('edit-vacancy')->middleware('EmployerMiddleware');
-Route::get('/view-vacancy/{vacancies}','Front\VacancyController@show')->name('view-vacancy');
-//end  */
 
-Route::group(['middleware' => 'EmployerMiddleware', ], function(){
-    Route::resource('vacancies', '\App\Http\Controllers\Front\VacancyController')->except(['destroy', 'show']);
-});
 Route::get('/view-vacancy/{vacancies}', [VacancyController::class, 'show'])->name('view-vacancy');
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacancyController@search')->middleware('EmployerMiddleware');
+
+
+//students routes 
+Route::get('/categories', 'Front\CategoryController@index')->name('categories');
+//students routes end

@@ -57,9 +57,15 @@
     <section class="vacs">
         <div class="container">
             <h2>Новые вакансии</h2>
-            <div class="sub">Начни карьеру в компании твоей мечты. <a href="#">Подобрать вакансии по категориям.</a></div>
+            <div class="sub">Начни карьеру в компании твоей мечты. <a href="{{ route('categories') }}">Подобрать вакансии по категориям.</a></div>
             <div class="vacancies">
-                <div class="row">
+                <div class="row ">
+                    @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
+                    @foreach ($allVacancies as $vacancy)
                     <div class="col-lg-4 item">
                         <div class="t_panel">
                             <div class="image">
@@ -67,135 +73,30 @@
                             </div>
                             <div class="nt">
                                 <div class="title">
-                                    Philip Morris International
+                                {{ $vacancy->user->name }}
                                 </div>
                                 <div class="time">
-                                    30 минут назад
+                                {{ date("d-m-Y", strtotime($vacancy->created_at)) }}
                                 </div>
                             </div>
                         </div>
                         <div class="name">
-                            Intern (Inkompass Program 2020)
+                        {{ $vacancy->title }}
                         </div>
                         <div class="tags">
                             <span>Практика</span>
-                            <span>Киев</span>
+                            <span>
+                            {{ $vacancy->city ? $vacancy->city->name : "Field not filled" }}
+                            </span>
                         </div>
                         <div class="cat">
                             <a href="#">
                                 Менеджмент
                             </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 item">
-                        <div class="t_panel">
-                            <div class="image">
-                                <img src="/images/companies/p_morris.svg">
-                            </div>
-                            <div class="nt">
-                                <div class="title">
-                                    Philip Morris International
-                                </div>
-                                <div class="time">
-                                    30 минут назад
-                                </div>
-                            </div>
-                        </div>
-                        <div class="name">
-                            Intern (Inkompass Program 2020)
-                        </div>
-                        <div class="tags">
-                            <span>Практика</span>
-                            <span>Киев</span>
-                        </div>
-                        <div class="cat">
-                            <a href="#">
-                                Менеджмент
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 item">
-                        <div class="t_panel">
-                            <div class="image">
-                                <img src="/images/companies/p_morris.svg">
-                            </div>
-                            <div class="nt">
-                                <div class="title">
-                                    Philip Morris International
-                                </div>
-                                <div class="time">
-                                    30 минут назад
-                                </div>
-                            </div>
-                        </div>
-                        <div class="name">
-                            Intern (Inkompass Program 2020)
-                        </div>
-                        <div class="tags">
-                            <span>Практика</span>
-                            <span>Киев</span>
-                        </div>
-                        <div class="cat">
-                            <a href="#">
-                                Менеджмент
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 item">
-                        <div class="t_panel">
-                            <div class="image">
-                                <img src="/images/companies/p_morris.svg">
-                            </div>
-                            <div class="nt">
-                                <div class="title">
-                                    Philip Morris International
-                                </div>
-                                <div class="time">
-                                    30 минут назад
-                                </div>
-                            </div>
-                        </div>
-                        <div class="name">
-                            Intern (Inkompass Program 2020)
-                        </div>
-                        <div class="tags">
-                            <span>Практика</span>
-                            <span>Киев</span>
-                        </div>
-                        <div class="cat">
-                            <a href="#">
-                                Менеджмент
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 item">
-                        <div class="t_panel">
-                            <div class="image">
-                                <img src="/images/companies/p_morris.svg">
-                            </div>
-                            <div class="nt">
-                                <div class="title">
-                                    Philip Morris International
-                                </div>
-                                <div class="time">
-                                    30 минут назад
-                                </div>
-                            </div>
-                        </div>
-                        <div class="name">
-                            Intern (Inkompass Program 2020)
-                        </div>
-                        <div class="tags">
-                            <span>Практика</span>
-                            <span>Киев</span>
-                        </div>
-                        <div class="cat">
-                            <a href="#">
-                                Менеджмент
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 item">
+                    </div>            
+                    @endforeach
+                    <div class="col-lg-9 item">
                         <div class="num_block">
                             <div class="num">
                                 +585
