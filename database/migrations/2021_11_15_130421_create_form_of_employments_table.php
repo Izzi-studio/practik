@@ -18,11 +18,6 @@ class CreateFormOfEmploymentsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        FormOfEmployment::insert(['name' => 'Internship']);
-        FormOfEmployment::insert(['name' => 'CDD']);
-        FormOfEmployment::insert(['name' => 'CDI']);
-        FormOfEmployment::insert(['name' => 'Employment exemple']);
     }
 
     /**
