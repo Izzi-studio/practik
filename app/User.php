@@ -6,7 +6,7 @@ use Throwable;
 use App\Http\Models\Front\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
-use App\Http\Models\Front\UserVacancy;
+use App\Http\Models\Front\Proposal;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -79,6 +79,6 @@ class User extends Authenticatable implements MustVerifyEmail
      }
 
      public function candidates(){
-        return $this->belongsToMany(UserVacancy::class, 'user_vacancy', 'user_id', 'vacancy_id');
+        return $this->belongsToMany(Proposal::class, 'user_vacancy', 'user_id', 'vacancy_id');
     }
 }

@@ -7,9 +7,9 @@ use App\Http\Models\Front\Vacancy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Models\Front\UserVacancy;
+use App\Http\Models\Front\Proposal;
 
-class UserVacancy extends Model
+class Proposal extends Model
 {
     protected $table = 'user_vacancy';
     public $timestamps = true;
@@ -17,7 +17,8 @@ class UserVacancy extends Model
     protected $fillable = [
         'user_id',
         'vacancy_id',
-        'status'
+        'status',
+        'cv'
 
     ];
 
@@ -31,7 +32,7 @@ class UserVacancy extends Model
 
     public function scopeCandidateActive()
     {
-        return $this->where('status', '1');
+          return $this->where('status', '1');          
     }
 
     public function scopeCandidateArchive()
@@ -41,22 +42,22 @@ class UserVacancy extends Model
 
 
     public static function changeStatusCandidate ($user_vacancy_id, $status){
-		if ($status <= 3 && UserVacancy::find($user_vacancy_id)){
-			UserVacancy::find($user_vacancy_id)->where('user_id',Auth::ID())->update(['status'=> $status]);
+		if ($status <= 3 && Proposal::find($user_vacancy_id)){
+			Proposal::find($user_vacancy_id)->where('user_id',Auth::ID())->update(['status'=> $status]);
 		}else{
 			dd('you are cheaters');
 		}
     }
 
-    public static function acceptCandidate(UserVacancy $userVacancy){
-        $userVacancy = DB::table('user_vacancy')
-        ->where('user_vacancy.id', $userVacancy->id)
+    public static function acceptCandidate(Proposal $proposal){
+        $proposal = DB::table('user_vacancy')
+        ->where('user_vacancy.id', $proposal->id)
         ->update(['status' => '2']);
     }
 
-    public static function refusCandidate(UserVacancy $userVacancy){
-        $userVacancy =  DB::table('user_vacancy')
-        ->where('user_vacancy.id', $userVacancy->id)
+    public static function refusCandidate(Proposal $proposal){
+        $proposal =  DB::table('user_vacancy')
+        ->where('user_vacancy.id', $proposal->id)
         ->update(['status' => '3']);
     }
 

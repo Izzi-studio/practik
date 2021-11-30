@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
-use App\Http\Models\Front\UserVacancy;
+use App\Http\Models\Front\Proposal;
 
 class Vacancy extends Model
 {
@@ -50,7 +50,7 @@ class Vacancy extends Model
     }
 
     public function candidates(){
-        return $this->hasMany(UserVacancy::class);
+        return $this->hasMany(Proposal::class);
     }
 
     public function users(){

@@ -5,22 +5,22 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancy;
-use App\Http\Models\Front\UserVacancy;
+use App\Http\Models\Front\Proposal;
 
-class UserVacancyController extends Controller
+class ProposalController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserVacancy $userVacancy)
+    public function index(Proposal $proposal)
     {
-        $userVacancies = auth()->user()->candidates()->candidateActive()->get();
+        $proposals =  auth()->user()->candidates()->candidateActive()->get();
         $archiveCandidates = auth()->user()->candidates()->candidateArchive()->get();
     
-        return view('front.proposals.index', compact('userVacancy'), [
-            'userVacancies' => $userVacancies,
+        return view('front.proposals.index', compact('proposal'), [
+            'proposals' => $proposals,
             'archiveCandidates' => $archiveCandidates,
         ]);
     }
@@ -53,9 +53,9 @@ class UserVacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserVacancy $userVacancy)
+    public function show(Proposal $proposal)
     {
-        return view('front.proposals.show',compact('userVacancy'));
+        return view('front.proposals.show',compact('proposal'));
     }
 
     /**
@@ -64,8 +64,8 @@ class UserVacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserVacancy $userVacancy){
-        $userVacancy = UserVacancy::acceptCandidate($userVacancy);
+    public function edit(Proposal $proposal){
+        $proposal = Proposal::acceptCandidate($proposal);
         return redirect()->route('proposals.index')
                         ->with('success','Successful applicant');
 
@@ -90,8 +90,8 @@ class UserVacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserVacancy $userVacancy){
-        $userVacancy = UserVacancy::refusCandidate($userVacancy);
+    public function destroy(Proposal $proposal){
+        $proposal = Proposal::refusCandidate($proposal);
         
         return redirect()->route('proposals.index')
                         ->with('success','Rejected applicant');
