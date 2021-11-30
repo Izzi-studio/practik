@@ -5,44 +5,26 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancy;
-use App\Http\Models\Front\CandidateToVacancy;
+use App\Http\Models\Front\UserVacancy;
 
-class CandidateToVacancyController extends Controller
+class UserVacancyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function proposals(Vacancy $vacancy)
+    public function index(UserVacancy $userVacancy)
     {
-        $candidates = auth()->user()->candidates()->candidateActive()->get();
+        $userVacancies = auth()->user()->candidates()->candidateActive()->get();
         $archiveCandidates = auth()->user()->candidates()->candidateArchive()->get();
-        return view('front.vacancies.proposals', compact('vacancy'), [
-            'candidates' => $candidates,
-            'archiveCandidates' => $archiveCandidates
+    
+        return view('front.proposals.index', compact('userVacancy'), [
+            'userVacancies' => $userVacancies,
+            'archiveCandidates' => $archiveCandidates,
         ]);
     }
 
-    public function acceptance(CandidateToVacancy $candidate){
-        $candidate = CandidateToVacancy::refusCandidate($candidate);
-        return redirect()->route('proposals')
-                        ->with('success','Vacancy delete successfully');
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CandidateToVacancy $candidate){
-        $candidate = CandidateToVacancy::deleteVacancy($candidate);
-        return redirect()->route('proposals')
-                        ->with('success','Vacancy delete successfully');
-    }
- 
 
     /**
      * Show the form for creating a new resource.
@@ -71,9 +53,9 @@ class CandidateToVacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UserVacancy $userVacancy)
     {
-        //
+        return view('front.proposals.show',compact('userVacancy'));
     }
 
     /**
@@ -82,9 +64,11 @@ class CandidateToVacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(UserVacancy $userVacancy){
+        $userVacancy = UserVacancy::acceptCandidate($userVacancy);
+        return redirect()->route('proposals.index')
+                        ->with('success','Successful applicant');
+
     }
 
     /**
@@ -97,5 +81,19 @@ class CandidateToVacancyController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(UserVacancy $userVacancy){
+        $userVacancy = UserVacancy::refusCandidate($userVacancy);
+        
+        return redirect()->route('proposals.index')
+                        ->with('success','Rejected applicant');
     }
 }

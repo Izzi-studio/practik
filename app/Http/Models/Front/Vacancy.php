@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
-use App\Http\Models\Front\CandidateToVacancy;
+use App\Http\Models\Front\UserVacancy;
 
 class Vacancy extends Model
 {
@@ -50,11 +50,11 @@ class Vacancy extends Model
     }
 
     public function candidates(){
-        return $this->hasMany(CandidateToVacancy::class);
+        return $this->hasMany(UserVacancy::class);
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, 'candidates_to_vacancy', 'vacancy_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_vacancy', 'vacancy_id', 'user_id');
     }
 
     public function user() 
@@ -96,7 +96,7 @@ class Vacancy extends Model
         return $query->where('status', '2')->orwhere('status', '3');
     }
 
-    public static function archiveVacancy(Vacacancy $vacancy){
+    public static function archiveVacancy(Vacancy $vacancy){
         $vacancy = DB::table('vacancies')
         ->where('vacancies.id', $vacancy->id)
         ->update(['status' => '2']);

@@ -27,7 +27,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{route('proposals.index')}}">
                                     <span><img src="/images/messages.svg"></span>
                                     Мои заявки
                                 </a>
