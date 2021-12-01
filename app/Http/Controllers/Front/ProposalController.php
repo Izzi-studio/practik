@@ -16,38 +16,22 @@ class ProposalController extends Controller
      */
     public function index(Proposal $proposal)
     {
+        //proposal on standby
         $proposalsAwait =  auth()->user()->candidates()->candidateAwait()->get();
+        //proposal accepted for an interview
         $proposalsApprove =  auth()->user()->candidates()->candidateApprove()->get();
+        //proposal finally accepted
+        $proposalsAccept = auth()->user()->candidates()->candidateAccept()->get();
         $proposalsArchive = auth()->user()->candidates()->candidateArchive()->get();
 
         return view('front.proposals.index', compact('proposal'), [
             'proposalsAwait' => $proposalsAwait,
             'proposalsApprove' => $proposalsApprove,
+            'proposalsAccept' => $proposalsAccept,
             'proposalsArchive' => $proposalsArchive,
         ]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -60,31 +44,25 @@ class ProposalController extends Controller
         return view('front.proposals.show',compact('proposal'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proposal $proposal){
+    public function approved(Proposal $proposal){
+        $proposal = Proposal::approvedCandidate($proposal);
+        return redirect()->route('proposals.index')
+                        ->with('success','Proposal accepted for an interview');
+    }
+
+    public function accepted(Proposal $proposal){
         $proposal = Proposal::acceptCandidate($proposal);
         return redirect()->route('proposals.index')
                         ->with('success','Successful applicant');
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
 
     /**
      * Remove the specified resource from storage.

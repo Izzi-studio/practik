@@ -30,10 +30,6 @@ class Proposal extends Model
         return $this->belongsTo(Vacancy::class);
     }
 
-    public function scopeCandidateActive()
-    {
-          return $this->where('status', '1');
-    }
     public function scopeCandidateAwait()
     {
           return $this->where('status', '1');
@@ -45,7 +41,11 @@ class Proposal extends Model
 
     public function scopeCandidateArchive()
     {
-        return $this->where('status', '2')->orwhere('status', '3');
+        return $this->where('status', '3');
+    }
+    public function scopeCandidateAccept()
+    {
+          return $this->where('status', '4');
     }
 
 
@@ -57,10 +57,16 @@ class Proposal extends Model
 		}
     }
 
-    public static function acceptCandidate(Proposal $proposal){
+    public static function approvedCandidate(Proposal $proposal){
         $proposal = DB::table('user_vacancy')
         ->where('user_vacancy.id', $proposal->id)
         ->update(['status' => '2']);
+    }
+
+    public static function acceptCandidate(Proposal $proposal){
+        $proposal = DB::table('user_vacancy')
+        ->where('user_vacancy.id', $proposal->id)
+        ->update(['status' => '4']);
     }
 
     public static function refusCandidate(Proposal $proposal){

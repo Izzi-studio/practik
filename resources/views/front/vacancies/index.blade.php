@@ -31,7 +31,7 @@
                       <a class="titre active" type="button" href="{{ route('vacancies.show',$vacancy->id) }}">{{ $vacancy->title }}</a>
                     </td>
                     <td>
-                      <button class="btn btn-light" data-toggle="collapse" data-target="#collapseSection-{{ $vacancy->id }}">{{ $vacancy->candidates->count()}} responses</button>
+                      <a class="btn btn-light" type="button" href="{{ route('proposals.index',$vacancy->id) }}">{{ $vacancy->candidates->count()}} responses</a>
                     </td>
                     <td>
                       <form action="{{ route('vacancies.destroy',$vacancy->id) }}" method="POST">
@@ -43,26 +43,6 @@
                     </td>
                   </tr>
                 </table>
-                  <div class="col">
-                    <div class="collapse multi-collapse" id="collapseSection-{{ $vacancy->id }}">
-                      <div class="card-body">
-                        @forelse ($vacancy->users as $user )
-                            <div class="list-group-item">
-                              <tr>
-                                <td class="titre">{{ $user->last_name }} {{ $user->first_name }}</td>
-
-                              </tr>
-                            </div>
-                        @empty
-                        <div class="list-group-item">
-                              <tr>
-                                <span>No candidates for this vacancy</span>
-                              </tr>
-                            </div>
-                        @endforelse
-                      </div>
-                    </div>
-                  </div>
             @endforeach
           </div>
         </div>

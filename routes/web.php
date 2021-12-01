@@ -40,8 +40,11 @@ Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancy')->name('
 //employers routes
 Route::group(['middleware' => 'EmployerMiddleware', ], function(){
     Route::resource('vacancies', '\App\Http\Controllers\Front\VacancyController');
-	Route::resource('proposals', '\App\Http\Controllers\Front\ProposalController');
-	Route::get('/proposals/acceptance', '\App\Http\Controllers\Front\ProposalController@acceptance')->name('proposals.acceptance');
+	Route::resource('proposals', '\App\Http\Controllers\Front\ProposalController', 
+	['only' => [
+		'index', 'show', 'destroy']]);
+	Route::get('/proposals/{proposal}/accepted', '\App\Http\Controllers\Front\ProposalController@accepted')->name('proposals.accepted');
+	Route::get('/proposals/{proposal}/approved', '\App\Http\Controllers\Front\ProposalController@approved')->name('proposals.approved');
 	Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy');//to do
 	Route::get('/feedback','Front\VacancyController@feedback')->name('feedback');//to do
 	Route::get('/search','Front\VacancyController@search')->name('search'); //to do
