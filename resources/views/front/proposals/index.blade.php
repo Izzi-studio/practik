@@ -16,14 +16,14 @@
                 <p>{{ $message }}</p>
               </div>
             @endif
-            @foreach ($proposals as $proposal)
+            @foreach ($proposalsApprove as $proposal)
                 <table class="table">
                   <tr>
                   <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
                     <td>
                     {{ $proposal->vacancy->title}}
                       </td>
-                      
+
                     <td>
                       <a class="titre active" type="button" href="{{ route('proposals.show',$proposal->id) }}">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a>
                     </td>
@@ -41,10 +41,33 @@
             @endforeach
           </div>
         </div>
-        
+
         <div href="#item2" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Ожидают рассмотрения</div>
         <div class="collapse" id="item2">
           <div class="card">
+              @foreach ($proposalsAwait as $proposal)
+                  <table class="table">
+                      <tr>
+                          <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
+                          <td>
+                              {{ $proposal->vacancy->title}}
+                          </td>
+
+                          <td>
+                              <a class="titre active" type="button" href="{{ route('proposals.show',$proposal->id) }}">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a>
+                          </td>
+                          <td>
+                              <form action="{{ route('proposals.destroy',$proposal->id) }}" method="POST">
+                                  @method('DELETE')
+                                  <button type="hidden" class="fa fa-times btn-orange btn-danger"></button>
+                                  @csrf
+                              </form>
+                              <a class="btn-orange btn-primary fa fa-check" href="{{ route('proposals.edit',$proposal->id) }}"></a>
+
+                          </td>
+                      </tr>
+                  </table>
+              @endforeach
           </div>
         </div>
 
@@ -52,7 +75,7 @@
         <div href="#item3" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Архив</div>
         <div class="collapse" id="item3">
           <div class="card">
-            @foreach ($archiveCandidates as $proposal)
+            @foreach ($proposalsArchive as $proposal)
               <div class="test">
                 <table class="card-body table">
                   <tr>

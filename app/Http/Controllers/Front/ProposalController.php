@@ -16,12 +16,14 @@ class ProposalController extends Controller
      */
     public function index(Proposal $proposal)
     {
-        $proposals =  auth()->user()->candidates()->candidateActive()->get();
-        $archiveCandidates = auth()->user()->candidates()->candidateArchive()->get();
-    
+        $proposalsAwait =  auth()->user()->candidates()->candidateAwait()->get();
+        $proposalsApprove =  auth()->user()->candidates()->candidateApprove()->get();
+        $proposalsArchive = auth()->user()->candidates()->candidateArchive()->get();
+
         return view('front.proposals.index', compact('proposal'), [
-            'proposals' => $proposals,
-            'archiveCandidates' => $archiveCandidates,
+            'proposalsAwait' => $proposalsAwait,
+            'proposalsApprove' => $proposalsApprove,
+            'proposalsArchive' => $proposalsArchive,
         ]);
     }
 
@@ -92,7 +94,7 @@ class ProposalController extends Controller
      */
     public function destroy(Proposal $proposal){
         $proposal = Proposal::refusCandidate($proposal);
-        
+
         return redirect()->route('proposals.index')
                         ->with('success','Rejected applicant');
     }

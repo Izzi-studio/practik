@@ -32,7 +32,15 @@ class Proposal extends Model
 
     public function scopeCandidateActive()
     {
-          return $this->where('status', '1');          
+          return $this->where('status', '1');
+    }
+    public function scopeCandidateAwait()
+    {
+          return $this->where('status', '1');
+    }
+    public function scopeCandidateApprove()
+    {
+          return $this->where('status', '2');
     }
 
     public function scopeCandidateArchive()
@@ -61,5 +69,5 @@ class Proposal extends Model
         ->update(['status' => '3']);
     }
 
-    
+
 }
