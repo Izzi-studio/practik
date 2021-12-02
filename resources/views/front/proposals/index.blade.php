@@ -4,14 +4,14 @@
   Мои заявки
   </div>
 
-  <div class="actions_vacancies">
+  <div class="profile_employer">
     <div class="shown">
       <input type="hidden" value="PUT" name="_method" />
       @if ($message = Session::get('success'))
     <div class="alert alert-success">
       <p>{{ $message }}</p>
     </div>
-  @endif
+    @endif
       <div id="accordeon">
         <div href="#item1" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Собеседования</div>
         <div class="collapse" id="item1">

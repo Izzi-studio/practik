@@ -4,7 +4,7 @@
           Позиции
   </div>
 
-  <div class="actions_vacancies">
+  <div class="profile_employer">
     <div class="shown">
       <div class="section">
         <div class="col-lg-7 offset-lg-1">

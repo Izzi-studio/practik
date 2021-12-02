@@ -5,7 +5,7 @@
     Позиции
     </div>
                 
-    <div class="actions_vacancies">
+    <div class="profile_employer">
         <div class="shown">
             <input type="hidden" value="PUT" name="_method" />
             <div class="section">

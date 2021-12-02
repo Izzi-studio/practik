@@ -35,6 +35,8 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
 Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancy')->name('my-vacancies');
+Route::get('change-password', 'Auth\UpdatePasswordController@index');
+Route::post('change-password', 'Auth\UpdatePasswordController@store')->name('update.password');
 //profile end
 
 //employers routes

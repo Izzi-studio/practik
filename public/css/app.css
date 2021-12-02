@@ -920,8 +920,37 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     padding-top: 50px;
 }
 
-.actions_vacancies{
+.profile_employer{
     padding: 30px;
+}
+
+.password_settings{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.password_settings form label{
+    font-size: 14px;
+    line-height: 28px;
+    color: #121045;
+    opacity: 0.4;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.password_settings form input{
+    margin-bottom: 10px;
+    box-shadow: none;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+}
+
+.password_settings .section_name{
+    padding: 10px 0 10px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 28px;
+    color: #121045;
 }
 
 #accordeon .card .btn-orange{

@@ -4,7 +4,7 @@
 <div class="heading">
           Позиции
   </div>
-  <div class="actions_vacancies">
+  <div class="profile_employer">
     <div class="shown">
       <div class="section">
         <div class="row">

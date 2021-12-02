@@ -15,7 +15,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{route('update.password')}}">
                                     <span><img src="/images/lock.svg"></span>
                                     Логин и пароль
                                 </a>

@@ -18,7 +18,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{route('update.password')}}">
                                     <span><img src="/images/lock.svg"></span>
                                     Логин и пароль
                                 </a>
@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{route('proposals.index')}}">
                                     <span><img src="/images/messages.svg"></span>
                                     Мои заявки
                                 </a>
@@ -105,7 +105,7 @@
                                                        class="col-form-label">{{ __('E-Mail Address') }}</label>
                                                 <input id="email_e" type="email"
                                                        class="form-control @error('email') is-invalid @enderror"
-                                                       name="email"
+                                                       name="email" disabled="disabled"
                                                        value="{{Auth::user()->email}}"
                                                        required autocomplete="email">
                                             </div>
