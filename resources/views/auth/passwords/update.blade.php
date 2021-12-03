@@ -5,24 +5,15 @@
   </div>
         <div class="password_settings">
             <div class="shown">
-
+                @if ($message = Session::get('success'))
+                    <p class="alert alert-success">{{ $message }}</p>
+                @endif
                 <form method="POST" action="{{ route('update.password') }}">
                     @csrf 
 
                     @foreach ($errors->all() as $error)
-                        <p class="text-danger">{{ $error }}</p>
+                        <p class="text-danger">{{ $error }}</p>                    
                     @endforeach 
-                    
-                    @if ($message = Session::get('success'))
-                         <p>{{ $message }}</p>
-                     @endif
-
-                    <div class="col-lg-7 offset-lg-1">
-                        <label for="company_name" class="col-form-label">{{ __('Company name') }}</label>
-                            <input id="company_name" type="text" disabled="disabled" class="form-control" name="additional_info[company]" value="{{$additional_info['company']}}">
-
-                    </div>
-
                     <div class="section_name offset-lg-1">
                         Смена пароля
                     </div>
@@ -55,4 +46,13 @@
         </div>
     </div>
 </div>
+<script>
+$("div[name=''], input").on("keyup", function(){
+    if($(this).val() != "" && $("input").val() != ""){
+        $("button[type='submit']").removeAttr("disabled");
+    } else {
+        $("button[type='submit']").attr("disabled", "disabled");
+    }
+});
+</script>
 @endsection

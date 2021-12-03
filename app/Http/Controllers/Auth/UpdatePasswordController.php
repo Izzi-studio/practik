@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UpdatePasswordController extends Controller
 {
@@ -32,7 +33,7 @@ class UpdatePasswordController extends Controller
         /* if (User::getUserRoleID() == 1){
             return view('front.profile_student')->with(['additional_info'=>User::getAdittionalInfo()]);
         } */
-            return view('auth.passwords.update')->with(['additional_info'=>User::getAdittionalInfo()]);
+            return view('auth.passwords.update');
 
     }
 
@@ -59,11 +60,12 @@ class UpdatePasswordController extends Controller
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
+        
         auth()->user()->update(['password'=> Hash::make($request->new_password)]);
         //User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-
-        return view('auth.passwords.update')->with('success','Successful applicant')
-        ->with(['additional_info'=>User::getAdittionalInfo()]);
+        
+        Session::flash('success', 'Password has been updated');
+        return view('auth.passwords.update');
 
     }
 

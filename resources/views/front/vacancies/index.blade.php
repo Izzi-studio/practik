@@ -13,16 +13,17 @@
             <a class="btn btn-orange" href="{{ route('vacancies.create') }}">{{ __('Добавить позицию') }}</a>
           </div>
         </div>
-      </div>
+      </div>            
+      @if ($message = Session::get('success'))
+              <div class="alert-success">
+                <p>{{ $message }}</p>
+              </div>
+            @endif
       <div id="accordeon">
         <div href="#item1" type="button" class="section_name" data-toggle="collapse" data-parent="#accordeon">Активные позиции</div>
         <div class="collapse show" id="item1">
           <div class="card">
-            @if ($message = Session::get('success'))
-              <div class="alert alert-success">
-                <p>{{ $message }}</p>
-              </div>
-            @endif
+
             @foreach ($vacancies as $vacancy)
                 <table class="table">
                   <tr>
