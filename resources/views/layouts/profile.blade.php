@@ -9,7 +9,7 @@
                         </div>
                         <ul>
                             <li>
-                                <a  href="{{ route('profile_update') }}">
+                                <a href="{{ route('profile_update') }}">
                                     <span><img src="/images/person.svg"></span>
                                     Личная информация
                                 </a>
@@ -21,7 +21,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="active" href="{{route('vacancies.index')}}">
+                                <a href="{{route('vacancies.index')}}">
                                     <span><img src="/images/document.svg"></span>
                                     Позиции
                                 </a>
@@ -66,4 +66,18 @@
         </div>
     </section>
 
+<!-- Script -->
+<script type='text/javascript'>
+$(document).ready(function(){
+
+ $('ul li').click(function(){
+
+  // Removing class from all list elements
+  $('ul li').removeClass('active');
+
+  // Adding class to clicked list element
+  $(this).addClass('active');
+ });
+});
+</script>
     @include('layouts.footer')
