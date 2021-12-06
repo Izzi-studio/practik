@@ -35,8 +35,16 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
 Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancy')->name('my-vacancies');
+//passwords routes 
 Route::get('change-password', 'Auth\UpdatePasswordController@index');
 Route::post('change-password', 'Auth\UpdatePasswordController@store')->name('update.password');
+Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
+Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
+Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetPasswordForm')->name('reset.password.get');
+Route::post('reset-password', 'Auth\ResetPasswordController@submitResetPasswordForm')->name('reset.password.post');
+
+
+
 //profile end
 
 //employers routes
