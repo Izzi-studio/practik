@@ -14,8 +14,8 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                    <form action="{{ route('search') }}" id="search" method="GET">
-                        <input type="text" placeholder="Поиск по ключевым словам" name="search" />
+                    <form action="{{ route('vacancies.search') }}" id="search" method="GET">
+                        <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
                         <select name="city" class="chosen">
                             @foreach($cities as $city)
                                 <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
@@ -87,7 +87,7 @@
                                 +585
                             </div>
                             <div class="sub">
-                                Вакансий на Practicum. <a href="{{ route('search') }}">Смотреть все</a>
+                                Вакансий на Practicum. <a href="{{ route('vacancies.search') }}">Смотреть все</a>
                             </div>
                         </div>
                     </div>

@@ -14,10 +14,10 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                <form action="{{ route('search') }}" role="search" method="GET" id="search">
+                <form action="{{ route('vacancies.search') }}" role="search" method="GET" id="search">
                     @csrf
-                        <input type="text" placeholder="Search vacancies" name="search" />
-                        <button class="btn btn-orange">
+                        <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}" />
+                        <button type="submit" class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
                     </form>
@@ -28,6 +28,9 @@
 <section class="vacs">
         <div class="container">
             <div class="vacancies">
+                @if (request()->input('search'))
+                <h6>{{ $allVacancies->count() }} result(s) for the search "{{ request()->search }}"</h6>
+                @endif
                 <div class="row ">
                     @if ($message = Session::get('success'))
                             <div class="alert alert-success">
@@ -66,16 +69,6 @@
                             </div>
                         </div>            
                         @endforeach
-                    @else
-                        <div class="col-lg-4 item">
-                            <div class="t_panel">
-                                <div class="nt">
-                                    <div class="title">
-                                    <span class="text-danger">Results not found</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     @endif
                 </div>
             </div>

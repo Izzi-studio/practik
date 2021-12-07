@@ -66,7 +66,7 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 Route::get('/view-vacancy/{vacancies}', [VacancyController::class, 'show'])->name('view-vacancy');
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
-Route::get('/search','Front\VacancyController@searchVacancies')->name('search');
+Route::get('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
 
 
 //students routes 

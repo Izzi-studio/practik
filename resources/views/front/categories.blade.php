@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                 <form action="{{ route('categories') }}" role="search" method="GET" id="search">
                     @csrf
-                        <input type="text" placeholder="Search vacancies" name="search" />
+                        <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}"/>
                         <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
@@ -27,7 +27,9 @@
 
     <section class="cats">
         <div class="container">
-            <h2>Все направления</h2>
+        @if (request()->input('search'))
+                <h6>{{ $allCategories->count() }} result(s) for the search "{{ request()->search }}"</h6>
+                @endif
             <div class="categories">
                 <div class="row ">
                     <div class="row ">
@@ -50,16 +52,7 @@
                                 <p>{{ $category->vacancies->count()}} Практика</p>
                             </div>            
                         @endforeach   
-                        @else
-                            <div class="col-lg-2 item">
-                                <div class="t_panel">
-                                    <div class="name">
-                                        <span clas="text-danger"> Results not found</span>    
-                                    </div>
-                                </div>
-                            </div>)
                         @endif
-
                     </div>
                 </div>
             </div>
