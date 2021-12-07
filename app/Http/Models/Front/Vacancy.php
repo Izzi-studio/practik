@@ -96,6 +96,12 @@ class Vacancy extends Model
         return $query->where('status', '2')->orwhere('status', '3');
     }
 
+    public function scopeSearch($jobs)
+    {
+        return empty(request()->search) ? $jobs : $jobs->where('title', 'like', '%'.request()->search.'%')
+                                                 ->orwhere('description', 'like', '%'.request()->search.'%');
+    }
+
     public static function archiveVacancy(Vacancy $vacancy){
         $vacancy = DB::table('vacancies')
         ->where('vacancies.id', $vacancy->id)

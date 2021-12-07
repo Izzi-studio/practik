@@ -9,11 +9,16 @@ use App\Http\Models\Front\CategoryVacancy;
 class Category extends Model
 {
     protected $table = 'categories';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = [];
 
     public function vacancies(){
         return $this->belongsToMany(Vacancy::class);
+    }
+
+    public function scopeSearch($cat)
+    {
+        return empty(request()->search) ? $cat : $cat->where('name', 'like', '%'.request()->search.'%');
     }
 
 }

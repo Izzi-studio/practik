@@ -34,8 +34,9 @@ class HomeController extends Controller
 
         $allVacancies = $vacancy->vacancyActive()->get();
         $users = User::where('type_account',1);
+        $cities = Cities::get();
 
-        return view('welcome', compact('allVacancies','users'));
+        return view('welcome', compact('allVacancies','users', 'cities'));
     }
 
     public function about()

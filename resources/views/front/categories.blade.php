@@ -13,9 +13,10 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                    <form id="search" method="POST">
-                        <input type="text" placeholder="Поиск по ключевым словам" name="phrase" />
-                        <button type="submit" class="btn btn-orange">
+                <form action="{{ route('categories') }}" role="search" method="GET" id="search">
+                    @csrf
+                        <input type="text" placeholder="Search vacancies" name="search" />
+                        <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
                     </form>
@@ -35,20 +36,30 @@
                                     <p>{{ $message }}</p>
                                 </div>
                             @endif
+                        @if ($allCategories->count())
                         @foreach ($allCategories as $category)
-                        <div class="col-lg-2 item">
-                            <div class="t_panel">
-                                <div class="image">
-                                    <img src="/images/companies/p_morris.svg">
+                            <div class="col-lg-2 item">
+                                <div class="t_panel">
+                                    <div class="image">
+                                        <img src="/images/companies/p_morris.svg">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="name">
-                            {{ $category->name}}       
-                            </div>
-                            <p>{{ $category->vacancies->count()}} Практика</p>
+                                <div class="name">
+                                {{ $category->name}}       
+                                </div>
+                                <p>{{ $category->vacancies->count()}} Практика</p>
+                            </div>            
+                        @endforeach   
+                        @else
+                            <div class="col-lg-2 item">
+                                <div class="t_panel">
+                                    <div class="name">
+                                        <span clas="text-danger"> Results not found</span>    
+                                    </div>
+                                </div>
+                            </div>)
+                        @endif
 
-                        </div>            
-                        @endforeach
                     </div>
                 </div>
             </div>

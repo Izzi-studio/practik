@@ -14,14 +14,14 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                    <form id="search" method="POST">
-                        <input type="text" placeholder="Поиск по ключевым словам" name="phrase" />
+                    <form action="{{ route('search') }}" id="search" method="GET">
+                        <input type="text" placeholder="Поиск по ключевым словам" name="search" />
                         <select name="city" class="chosen">
-                            <option selected="selected" value="Kyiv">Киев</option>
-                            <option value="Lviv">Львов</option>
-                            <option value="Odessa">Одеса</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
+                            @endforeach
                         </select>
-                        <button type="submit" class="btn btn-orange">
+                        <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
                     </form>
@@ -35,21 +35,6 @@
                             <li><a href="#">Дизайн</a></li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="companies">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="row no-gutters align-items-center justify-content-between">
-                    <div><img src="/images/companies/nestle.svg"></div>
-                    <div><img src="/images/companies/metinvest.svg"></div>
-                    <div><img src="/images/companies/ey.svg"></div>
-                    <div><img src="/images/companies/oneplusone.svg"></div>
-                    <div><img src="/images/companies/adidas.svg"></div>
-                    <div><img src="/images/companies/roshen.svg"></div>
                 </div>
             </div>
         </div>
@@ -102,10 +87,25 @@
                                 +585
                             </div>
                             <div class="sub">
-                                Вакансий на Practicum. <a href="#">Смотреть все</a>
+                                Вакансий на Practicum. <a href="{{ route('search') }}">Смотреть все</a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="companies">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="row no-gutters align-items-center justify-content-between">
+                    <div><img src="/images/companies/nestle.svg"></div>
+                    <div><img src="/images/companies/metinvest.svg"></div>
+                    <div><img src="/images/companies/ey.svg"></div>
+                    <div><img src="/images/companies/oneplusone.svg"></div>
+                    <div><img src="/images/companies/adidas.svg"></div>
+                    <div><img src="/images/companies/roshen.svg"></div>
                 </div>
             </div>
         </div>

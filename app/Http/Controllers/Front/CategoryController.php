@@ -14,10 +14,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Vacancy $vacancy)
+    public function index(Vacancy $vacancy, Request $request)
     {
-        $allCategories = Category::get();
 
+        if($request->has('search')){
+            $allCategories = Category::search($request->get('search'))->get();
+        }else{
+            $allCategories = Category::get();
+        }
         return view('front.categories', compact('allCategories'));
     }
 

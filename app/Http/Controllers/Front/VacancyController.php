@@ -8,11 +8,12 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
-use App\Http\Models\Front\Duration;
-use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Category;
+use App\Http\Models\Front\Duration;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\VacancyRequest;
+use Illuminate\Support\Facades\Input;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
@@ -174,4 +175,18 @@ class VacancyController extends Controller
         return redirect()->route('vacancies.index')
                         ->with('success','Vacancy delete successfully');
     }
+
+    public function searchVacancies(Request $request, Vacancy $vacancy)
+    {
+        $allVacancies = $vacancy->vacancyActive()->get();
+        $users = User::where('type_account',1);
+        $cities = Cities::get();
+
+        if($request->has('search')){
+            $allVacancies = Vacancy::search($request->get('search'))->get();
+        }else{
+            $allVacancies = Vacancy::get();
+        }
+        return view('front.search', compact('allVacancies','users', 'cities'));
+        }
 }

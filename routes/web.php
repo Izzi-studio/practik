@@ -34,7 +34,6 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 //profile
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
-Route::get('/profile/my-vacancies', 'Front\ProfileController@myVacancy')->name('my-vacancies');
 //passwords routes 
 Route::get('change-password', 'Auth\UpdatePasswordController@index');
 Route::post('change-password', 'Auth\UpdatePasswordController@store')->name('update.password');
@@ -67,7 +66,7 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 Route::get('/view-vacancy/{vacancies}', [VacancyController::class, 'show'])->name('view-vacancy');
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
-Route::get('/search','Front\VacancyController@search')->middleware('EmployerMiddleware');
+Route::get('/search','Front\VacancyController@searchVacancies')->name('search');
 
 
 //students routes 
