@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Http\Models\Front\CategoryVacancy;
 use DB;
 use Auth;
 use App\User;
@@ -138,7 +139,7 @@ class VacancyController extends Controller
         $form_of_cooperations = FormOfCooperation::get();
         $form_of_employments = FormOfEmployment::get();
         $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::get();    
+        $categories = Category::get();
         return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
     }
 
@@ -176,17 +177,39 @@ class VacancyController extends Controller
                         ->with('success','Vacancy delete successfully');
     }
 
-    public function searchVacancies(Request $request, Vacancy $vacancy)
+    public function searchVacancies(Request $request)
     {
-        $allVacancies = $vacancy->vacancyActive()->get();
-        $users = User::where('type_account',1);
-        $cities = Cities::get();
+        $vacancies = new Vacancy();
 
-        if($request->has('search')){
-            $allVacancies = Vacancy::search($request->get('search'))->get();
-        }else{
-            $allVacancies = Vacancy::get();
+        if($request->get('city_id',null)){
+            $vacancies = $vacancies->whereCityId($request->city_id);
         }
-        return view('front.search', compact('allVacancies','users', 'cities'));
+        if($request->get('categories',null)){
+            $vacanciesIds = CategoryVacancy::whereIn('category_id',$request->categories)->pluck('vacancy_id')->toArray();
+            $vacancies = $vacancies->whereIn('id',$vacanciesIds);
+        }
+        if($request->get('search',null)) {
+            $vacancies = $vacancies->where('title', 'like', '%' . request()->search . '%')->orwhere('description', 'like', '%' . request()->search . '%');
+        }
+
+        $allVacancies = $vacancies->vacancyActive()->get();
+
+        $cities = Cities::get();
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        $categories = Category::get();
+
+        return view('front.search', compact(
+            'allVacancies',
+            'cities',
+            'durations',
+            'form_of_cooperations',
+            'form_of_employments',
+            'type_of_employments',
+            'categories'
+            ));
+
         }
 }

@@ -16,7 +16,7 @@
                 <div class="col-lg-12">
                     <form action="{{ route('vacancies.search') }}" id="search" method="GET">
                         <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
-                        <select name="city" class="chosen">
+                        <select name="city_id" class="chosen">
                             @foreach($cities as $city)
                                 <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
                             @endforeach
@@ -79,7 +79,7 @@
                                 Менеджмент
                             </a>
                         </div>
-                    </div>            
+                    </div>
                     @endforeach
                     <div class="col-lg-9 item">
                         <div class="num_block">

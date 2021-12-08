@@ -15,7 +15,6 @@
                 </div>
                 <div class="col-lg-12">
                 <form action="{{ route('vacancies.search') }}" role="search" method="GET" id="search">
-                    @csrf
                         <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}" />
                         <button type="submit" class="btn btn-orange">
                             <img src="/images/search.svg">
@@ -67,7 +66,7 @@
                                     Менеджмент
                                 </a>
                             </div>
-                        </div>            
+                        </div>
                         @endforeach
                     @endif
                 </div>
