@@ -25,7 +25,7 @@
         </div>
     </section>
 
-    <section class="cats">
+    <section id="cats">
         <div class="container">
         @if (request()->input('search'))
                 <h6>{{ $allCategories->count() }} result(s) for the search "{{ request()->search }}"</h6>
@@ -40,17 +40,14 @@
                             @endif
                         @if ($allCategories->count())
                         @foreach ($allCategories as $category)
-                            <div class="col-lg-2 item">
-                                <div class="t_panel">
-                                    <div class="image">
-                                        <img src="/images/companies/p_morris.svg">
-                                    </div>
-                                </div>
-                                <div class="name">
-                                {{ $category->name}}       
-                                </div>
-                                <p>{{ $category->vacancies->count()}} Практика</p>
-                            </div>            
+                        <div class="tags">
+                            <div class="col-lg-4 col-md-2">
+                                <ul>
+                             <li><a href="#">{{$category->name}}</a></li>       
+                            </ul> 
+                            
+                            </div>  
+                        </div>          
                         @endforeach   
                         @endif
                     </div>

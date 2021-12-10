@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Vacancy;
+use App\Http\Models\Front\Category;
+use App\Http\Models\Front\CategoryVacancy;
+use App\Http\Models\Front\Duration;
+use App\Http\Controllers\Controller;
+use App\Http\Models\Front\FormOfEmployment;
+use App\Http\Models\Front\TypeOfEmployment;
+use App\Http\Models\Front\FormOfCooperation;
 
 class HomeController extends Controller
 {
@@ -30,13 +38,26 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function welcome(Vacancy $vacancy){
+    public function welcome(Vacancy $vacancy, Request $request){
+
 
         $allVacancies = $vacancy->vacancyActive()->get();
         $users = User::where('type_account',1);
         $cities = Cities::get();
-
-        return view('welcome', compact('allVacancies','users', 'cities'));
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        $categories = Category::get();
+        $mostPopularCategories = DB::table('categories')
+            ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
+            ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count'))
+            ->groupBy('category_vacancy.category_id')
+            ->orderBy('name_count', 'desc')
+            ->take(5)
+            ->get();
+        
+        return view('welcome', compact('allVacancies','users', 'cities', 'categories','type_of_employments','form_of_employments','durations','form_of_cooperations','mostPopularCategories'));
     }
 
     public function about()

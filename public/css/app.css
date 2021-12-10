@@ -161,8 +161,7 @@ header .text-right a.workgiver:first-child:before{
     margin-bottom: 30px;
 }
 #intro .tags{
-    display: flex;
-    align-items: center;
+    display: contents;
 }
 #intro .tags span{
     font-size: 13px;
@@ -172,14 +171,17 @@ header .text-right a.workgiver:first-child:before{
 }
 #intro .tags ul{
     display: flex;
-    padding: 0;
-    margin: 0;
     align-items: center;
+    padding: 10px;
 }
-#intro .tags ul li{
+
+#intro .tags ul li {
     display: block;
+    padding-top: 15px;
+
 }
-#intro .tags ul li a{
+
+#intro .tags ul li a {
     display: block;
     margin-left: 16px;
     padding: 5px 20px;
@@ -190,6 +192,37 @@ header .text-right a.workgiver:first-child:before{
     border: 1px solid #B5B4DA;
     border-radius: 5px;
 }
+
+
+#cats .tags ul li a{
+    display: block;
+    margin-left: 16px;
+    padding: 5px 20px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #121045;
+    text-decoration: none;
+    border: 1px solid #B5B4DA;
+    border-radius: 5px;
+}
+
+#cats .tags{
+    display: contents;
+
+}
+#cats .tags ul{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+#cats .tags ul li{
+    display: block;
+}
+.filters{
+    padding: 20px 5px 20px;
+    align-items: center;
+}
+
 #companies{
     background: #EFF1FF;
     padding: 42px 0;

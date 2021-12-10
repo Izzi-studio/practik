@@ -57,7 +57,7 @@ class Vacancy extends Model
         return $this->belongsToMany(User::class, 'user_vacancy', 'vacancy_id', 'user_id');
     }
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -94,12 +94,6 @@ class Vacancy extends Model
     public function scopeVacancyArchive($query)
     {
         return $query->where('status', '2')->orwhere('status', '3');
-    }
-
-    public function scopeSearch($jobs)
-    {
-        return empty(request()->search) ? $jobs : $jobs->where('title', 'like', '%'.request()->search.'%')
-                                                 ->orwhere('description', 'like', '%'.request()->search.'%');
     }
 
     public static function archiveVacancy(Vacancy $vacancy){
