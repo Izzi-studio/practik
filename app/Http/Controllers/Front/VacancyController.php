@@ -184,9 +184,21 @@ class VacancyController extends Controller
         if($request->get('city_id',null)){
             $vacancies = $vacancies->whereCityId($request->city_id);
         }
+        if($request->get('duration_id',null)){
+            $vacancies = $vacancies->whereDurationId($request->duration_id);
+        }
+        if($request->get('form_of_employment_id', null)){
+            $vacancies = $vacancies->whereFormOfEmploymentId($request->form_of_employment_id);
+        }
+        if($request->get('form_of_cooperation_id', null)){
+            $vacancies = $vacancies->whereFormOfCooperationId($request->form_of_cooperation_id);
+        }
+        if($request->get('type_of_employment_id', null)){
+            $vacancies = $vacancies->whereTypeOfEmploymentId($request->type_of_employment_id);
+        }
         if($request->get('categories',null)){
-            $vacanciesIds = CategoryVacancy::whereIn('category_id',$request->categories)->pluck('vacancy_id')->toArray();
-            $vacancies = $vacancies->whereIn('id',$vacanciesIds);
+            $vacanciesIds = CategoryVacancy::whereIn('category_id',[$request->categories])->pluck('vacancy_id')->toArray();
+            $vacancies = $vacancies->whereIn('id', [$vacanciesIds]);
         }
         if($request->get('search',null)) {
             $vacancies = $vacancies->where('title', 'like', '%' . request()->search . '%')->orwhere('description', 'like', '%' . request()->search . '%');
@@ -200,6 +212,13 @@ class VacancyController extends Controller
         $form_of_employments = FormOfEmployment::get();
         $type_of_employments = TypeOfEmployment::get();
         $categories = Category::get();
+        $mostPopularCategories = DB::table('categories')
+        ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
+        ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count'))
+        ->groupBy('category_vacancy.category_id')
+        ->orderBy('name_count', 'desc')
+        ->take(5)
+        ->get();
 
         return view('front.search', compact(
             'allVacancies',
@@ -208,7 +227,8 @@ class VacancyController extends Controller
             'form_of_cooperations',
             'form_of_employments',
             'type_of_employments',
-            'categories'
+            'categories',
+            'mostPopularCategories'
             ));
 
         }

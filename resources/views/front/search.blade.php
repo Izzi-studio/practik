@@ -19,6 +19,15 @@
                         <button type="submit" class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
+                        <div class="tags">
+                        <ul name="categories">                        
+                            @if ($mostPopularCategories->count())
+                        @foreach ($mostPopularCategories as $category)
+                             <li><a name="categories" value="{{ request()->categories ?? '' }}" href="{{ route('vacancies.search') }}">{{$category->name}}</a></li>                   
+                             @endforeach   
+                        @endif       
+                        </ul>
+                    </div>
                     </form>
                 </div>
             </div>
