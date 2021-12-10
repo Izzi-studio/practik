@@ -30,29 +30,31 @@
         @if (request()->input('search'))
                 <h6>{{ $allCategories->count() }} result(s) for the search "{{ request()->search }}"</h6>
                 @endif
-            <div class="categories">
-                <div class="row ">
+                <form action="{{ route('vacancies.search') }}" id="search" method="GET">
+                <div class="categories">
                     <div class="row ">
-                        @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
-                                </div>
+                        <div class="row ">
+                            @if ($message = Session::get('success'))
+                                    <div class="alert alert-success">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
+                            @if ($allCategories->count())
+                            @foreach ($allCategories as $category)
+                            <div class="tags">
+                                <div class="col-lg-4 col-md-2">
+                                    <ul>
+                                <li><a href="{{ route('vacancies.search') }}" value="{{ request()->categories ?? '' }}">{{$category->name}}</a></li>       
+                                </ul> 
+                                
+                                </div>  
+                            </div>          
+                            @endforeach   
                             @endif
-                        @if ($allCategories->count())
-                        @foreach ($allCategories as $category)
-                        <div class="tags">
-                            <div class="col-lg-4 col-md-2">
-                                <ul>
-                             <li><a href="#">{{$category->name}}</a></li>       
-                            </ul> 
-                            
-                            </div>  
-                        </div>          
-                        @endforeach   
-                        @endif
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
