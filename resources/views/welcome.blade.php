@@ -14,6 +14,7 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
+<<<<<<< Updated upstream
                     <form action="{{ route('vacancies.search') }}" id="search" method="GET">
                         <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
                         <select name="city_id" class="chosen">
@@ -22,6 +23,26 @@
                                 <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
                             @endforeach
                         </select>
+=======
+<<<<<<< Updated upstream
+                    <form id="search" method="POST">
+                        <input type="text" placeholder="Поиск по ключевым словам" name="phrase" />
+                        <select name="city" class="chosen">
+                            <option selected="selected" value="Kyiv">Киев</option>
+                            <option value="Lviv">Львов</option>
+                            <option value="Odessa">Одеса</option>
+                        </select>
+                        <button type="submit" class="btn btn-orange">
+=======
+                    <form action="{{ route('vacancies.search') }}" id="search" method="GET">
+                        <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
+                        <select name="city_id" class="chosen">
+                                <option value="">City</option>
+                            @foreach($cities as $city)  
+                                <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
+                            @endforeach
+                        </select>
+>>>>>>> Stashed changes
                         <select name="duration_id" class="chosen">
                                 <option value="">Duration</option>
                             @foreach($durations as $duration)
@@ -47,11 +68,16 @@
                             @endforeach
                         </select>
                         <button class="btn btn-orange">
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                             <img src="/images/search.svg">
                         </button>
                 <div class="form-group">
                             <div class="tags">
                                 <span class="grey">Популярное:</span>
+<<<<<<< Updated upstream
                                 <ul>
                                 @foreach($mostPopularCategories as $category)
                             <button name="categories" >{{ $category->name}}
@@ -59,6 +85,31 @@
                             @endforeach</ul>
                                 </div>                                    
                         </div> 
+=======
+                                <ul name="categories">
+                                @foreach($mostPopularCategories as $category)
+                                <li><a  href="" value="{{ request()->categories ?? '' }}"  >{{ $category->name}}</a></li>  
+                            @endforeach</ul>
+                                </div>                                    
+                        </div> 
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    <section id="companies">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="row no-gutters align-items-center justify-content-between">
+                    <div><img src="/images/companies/nestle.svg"></div>
+                    <div><img src="/images/companies/metinvest.svg"></div>
+                    <div><img src="/images/companies/ey.svg"></div>
+                    <div><img src="/images/companies/oneplusone.svg"></div>
+                    <div><img src="/images/companies/adidas.svg"></div>
+                    <div><img src="/images/companies/roshen.svg"></div>
+>>>>>>> Stashed changes
                 </div>
                 </form>
 

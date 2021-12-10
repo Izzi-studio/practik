@@ -132,6 +132,7 @@ header .text-right a.workgiver:first-child:before{
 #intro .chosen-container{
     margin-right: 15px;
     width: 240px;
+    padding-bottom: 20px;
 }
 #intro .chosen-container-single .chosen-single{
     height: 60px;
