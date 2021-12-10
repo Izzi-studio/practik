@@ -52,10 +52,9 @@
                 <div class="form-group">
                             <div class="tags">
                                 <span class="grey">Популярное:</span>
-                                <ul>
+                                <ul name="categories" >
                                 @foreach($mostPopularCategories as $category)
-                            <button name="categories" >{{ $category->name}}
-                            </button>
+                            <li><a href="" value="{{ request()->categories ?? '' }}">{{ $category->name}} </a></li>
                             @endforeach</ul>
                                 </div>                                    
                         </div> 

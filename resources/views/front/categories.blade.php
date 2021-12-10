@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                 <form action="{{ route('categories') }}" role="search" method="GET" id="search">
                     @csrf
-                        <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}"/>
+                        <input type="text" placeholder="Search categories" name="search" value="{{ request()->search ?? '' }}"/>
                         <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
