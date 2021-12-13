@@ -132,6 +132,7 @@ header .text-right a.workgiver:first-child:before{
 #intro .chosen-container{
     margin-right: 15px;
     width: 240px;
+    padding-bottom: 20px;
 }
 #intro .chosen-container-single .chosen-single{
     height: 60px;
@@ -163,6 +164,7 @@ header .text-right a.workgiver:first-child:before{
 #intro .tags{
     display: flex;
     align-items: center;
+    display: contents;
 }
 #intro .tags span{
     font-size: 13px;
@@ -172,12 +174,12 @@ header .text-right a.workgiver:first-child:before{
 }
 #intro .tags ul{
     display: flex;
-    padding: 0;
-    margin: 0;
+    padding: 10px;
     align-items: center;
 }
 #intro .tags ul li{
     display: block;
+    padding-top: 15px;
 }
 #intro .tags ul li a{
     display: block;
@@ -189,6 +191,33 @@ header .text-right a.workgiver:first-child:before{
     text-decoration: none;
     border: 1px solid #B5B4DA;
     border-radius: 5px;
+}
+#cats .tags ul li a{
+    display: block;
+    margin-left: 16px;
+    padding: 5px 20px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #121045;
+    text-decoration: none;
+    border: 1px solid #B5B4DA;
+    border-radius: 5px;
+}
+#cats .tags{
+    display: contents;
+
+}
+#cats .tags ul{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+#cats .tags ul li{
+    display: block;
+}
+.filters{
+    padding: 20px 5px 20px;
+    align-items: center;
 }
 #companies{
     background: #EFF1FF;

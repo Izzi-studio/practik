@@ -14,28 +14,54 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
+
                     <form action="{{ route('vacancies.search') }}" id="search" method="GET">
                         <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
                         <select name="city_id" class="chosen">
-                            @foreach($cities as $city)
+                                <option value="">City</option>
+                            @foreach($cities as $city)  
                                 <option value="{{ $city->id, old('cities') ? 'selected' : ''}}">{{ $city->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="duration_id" class="chosen">
+                                <option value="">Duration</option>
+                            @foreach($durations as $duration)
+                                <option value="{{ $duration->id, old('durations') ? 'selected' : ''}}">{{ $duration->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="form_of_employment_id" class="chosen">
+                                <option value="">Form of employment</option>
+                            @foreach($form_of_employments as $form_of_employment)
+                                <option value="{{ $form_of_employment->id, old('form_of_employments') ? 'selected' : ''}}">{{ $form_of_employment->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="type_of_employment_id" class="chosen">
+                                <option value="">Type of employment</option>
+                            @foreach($type_of_employments as $type_of_employment)
+                                <option value="{{ $type_of_employment->id, old('type_of_employments') ? 'selected' : ''}}">{{ $type_of_employment->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="form_of_cooperation_id" class="chosen">
+                                <option value="">Form of cooperation</option>
+                            @foreach($form_of_cooperations as $form_of_cooperation)
+                                <option value="{{ $form_of_cooperation->id, old('form_of_cooperations') ? 'selected' : ''}}">{{ $form_of_cooperation->name}}</option>
                             @endforeach
                         </select>
                         <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
-                    </form>
-                    <div class="tags">
-                        <span class="grey">Популярное:</span>
-                        <ul>
-                            <li><a href="#">Маркетинг</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Банки</a></li>
-                            <li><a href="#">Бухгалтерия</a></li>
-                            <li><a href="#">Дизайн</a></li>
-                        </ul>
-                    </div>
+                <div class="form-group">
+                            <div class="tags">
+                                <span class="grey">Популярное:</span>
+                                <ul name="categories">
+                                @foreach($mostPopularCategories as $category)
+                                <li><a  href="" value="{{ request()->categories ?? '' }}"  >{{ $category->name}}</a></li>  
+                            @endforeach</ul>
+                                </div>                                    
+                        </div> 
                 </div>
+                </form>
+
             </div>
         </div>
     </section>
