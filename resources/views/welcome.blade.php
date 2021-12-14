@@ -47,21 +47,29 @@
                                 <option value="{{ $form_of_cooperation->id, old('form_of_cooperations') ? 'selected' : ''}}">{{ $form_of_cooperation->name}}</option>
                             @endforeach
                         </select>
+                        <select name="categories" class="chosen">
+                                <option value="">Categories</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{ $category->name}}</option>                        
+
+                            @endforeach
+                        </select>
+
                         <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
-                <div class="form-group">
+                        <div class="form-group">
                             <div class="tags">
                                 <span class="grey">Популярное:</span>
                                 <ul name="categories">
-                                @foreach($mostPopularCategories as $category)
-                                <li><a  href="" value="{{ request()->categories ?? '' }}"  >{{ $category->name}}</a></li>  
-                            @endforeach</ul>
-                                </div>                                    
-                        </div> 
+                                    @foreach($mostPopularCategories as $category)
+                                        <li><a name="categories"  href="" value="{{ request()->categories ?? '' }}"  >{{ $category->name}}</a></li>  
+                                    @endforeach
+                                </ul>
+                            </div>                                    
+                         </div> 
                 </div>
                 </form>
-
             </div>
         </div>
     </section>
