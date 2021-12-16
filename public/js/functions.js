@@ -59,4 +59,10 @@ $(document).ready(function () {
     $('input[name="photo"]').change(function () {
         readURL(this);
     });
+
+    $('[name="categories[]"]').change(function(){
+        $('#search').submit()
+    })
+
+
 })

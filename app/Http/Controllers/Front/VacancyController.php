@@ -198,7 +198,7 @@ class VacancyController extends Controller
         }
         if($request->get('categories',null)){
             $vacanciesIds = CategoryVacancy::whereIn('category_id',[$request->categories])->pluck('vacancy_id')->toArray();
-            $vacancies = $vacancies->whereIn('id', [$vacanciesIds]);
+            $vacancies = $vacancies->whereIn('id', $vacanciesIds);
         }
         if($request->get('search',null)) {
             $vacancies = $vacancies->where('title', 'like', '%' . request()->search . '%')->orwhere('description', 'like', '%' . request()->search . '%');
@@ -214,11 +214,12 @@ class VacancyController extends Controller
         $categories = Category::get();
         $mostPopularCategories = DB::table('categories')
         ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
-        ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count'))
+        ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
         ->groupBy('category_vacancy.category_id')
         ->orderBy('name_count', 'desc')
         ->take(5)
         ->get();
+        $requestData = $request->all();
 
         return view('front.search', compact(
             'allVacancies',
@@ -228,7 +229,8 @@ class VacancyController extends Controller
             'form_of_employments',
             'type_of_employments',
             'categories',
-            'mostPopularCategories'
+            'mostPopularCategories',
+            'requestData'
             ));
 
         }

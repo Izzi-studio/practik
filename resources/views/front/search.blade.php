@@ -14,19 +14,22 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                <form action="{{ route('vacancies.search') }}" role="search" method="GET" id="search">
+                <form action="{{ route('vacancies.search') }}" role="search" method="POST" id="search">
+                    @csrf
                         <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}" />
                         <button type="submit" class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
                         <div class="tags">
-                        <ul name="categories">                        
+                            <!-- see the code -->
+                        <ul name="categories">
                             @if ($mostPopularCategories->count())
-                        @foreach ($mostPopularCategories as $category)
-                             <li><a name="categories" value="{{ request()->categories ?? '' }}" href="{{ route('vacancies.search') }}">{{$category->name}}</a></li>                   
-                             @endforeach   
-                        @endif       
+                                @foreach ($mostPopularCategories as $category)
+                                    <li><input @if(isset($requestData['categories'])  && in_array($category->category_id,$requestData['categories'])) checked @endif style="display: none" type="checkbox" id = "category-{{$category->category_id}}" name="categories[]" value="{{$category->category_id}}"/><label for="category-{{$category->category_id}}">{{$category->name}}</label></li>
+                                @endforeach
+                            @endif
                         </ul>
+                            <!-- see the code -->
                     </div>
                     </form>
                 </div>

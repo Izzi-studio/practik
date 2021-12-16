@@ -183,7 +183,7 @@ header .text-right a.workgiver:first-child:before{
     display: block;
     padding-top: 15px;
 }
-#intro .tags ul li a{
+#intro .tags ul li a, li > label{
     display: block;
     margin-left: 16px;
     padding: 5px 20px;
@@ -194,6 +194,14 @@ header .text-right a.workgiver:first-child:before{
     border: 1px solid #B5B4DA;
     border-radius: 5px;
 }
+
+input[type="checkbox"]:checked+label{
+    background: #FF5656;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    color: #fff!important;
+    cursor: pointer;}
+
 #cats .tags ul li a{
     display: block;
     margin-left: 16px;
@@ -999,7 +1007,7 @@ select#activities_main+.chosen-container-multi .chosen-choices{
 }
 
 #accordeon .card th, tr{
-    word-break: normal; 
+    word-break: normal;
 }
 
 #accordeon .card-body{

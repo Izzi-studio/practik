@@ -34,11 +34,11 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 //profile
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
 Route::put('/profile','Front\ProfileController@update')->name('profile_update');
-//passwords routes 
+//passwords routes
 Route::get('change-password', 'Auth\UpdatePasswordController@index');
 Route::post('change-password', 'Auth\UpdatePasswordController@store')->name('update.password');
 Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
-Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
+Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post');
 Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetPasswordForm')->name('reset.password.get');
 Route::post('reset-password', 'Auth\ResetPasswordController@submitResetPasswordForm')->name('reset.password.post');
 
@@ -49,7 +49,7 @@ Route::post('reset-password', 'Auth\ResetPasswordController@submitResetPasswordF
 //employers routes
 Route::group(['middleware' => 'EmployerMiddleware', ], function(){
     Route::resource('vacancies', '\App\Http\Controllers\Front\VacancyController');
-	Route::resource('proposals', '\App\Http\Controllers\Front\ProposalController', 
+	Route::resource('proposals', '\App\Http\Controllers\Front\ProposalController',
 	['only' => [
 		'index', 'show', 'destroy']]);
 	Route::get('/proposals/{proposal}/accepted', '\App\Http\Controllers\Front\ProposalController@accepted')->name('proposals.accepted');
@@ -67,8 +67,9 @@ Route::get('/view-vacancy/{vacancies}', [VacancyController::class, 'show'])->nam
 Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
+Route::post('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
 
 
-//students routes 
+//students routes
 Route::get('/categories', 'Front\CategoryController@index')->name('categories');
 //students routes end
