@@ -14,22 +14,19 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                <form action="{{ route('vacancies.search') }}" role="search" method="POST" id="search" name="search_vacancy">
-                    @csrf
+                <form action="{{ route('vacancies.search') }}" role="search" method="GET" id="search">
                         <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}" />
                         <button type="submit" class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>
                         <div class="tags">
-                            <!-- see the code -->
-                        <ul name="categories">
+                        <ul name="categories">                        
                             @if ($mostPopularCategories->count())
-                                @foreach ($mostPopularCategories as $category)
-                                    <li><input @if(isset($requestData['categories'])  && in_array($category->category_id,$requestData['categories'])) checked @endif style="display: none" type="checkbox" id = "category-{{$category->category_id}}" name="categories[]" value="{{$category->category_id}}"/><label for="category-{{$category->category_id}}">{{$category->name}}</label></li>
-                                @endforeach
-                            @endif
+                        @foreach ($mostPopularCategories as $category)
+                             <li><a name="categories" value="{{ request()->categories ?? '' }}" href="{{ route('vacancies.search') }}">{{$category->name}}</a></li>                   
+                             @endforeach   
+                        @endif       
                         </ul>
-                            <!-- see the code -->
                     </div>
                     </form>
                 </div>
@@ -57,15 +54,15 @@
                                 </div>
                                 <div class="nt">
                                     <div class="title">
-                                    {{ $vacancy->user->name }}
+                                    {{$additional_info['company']}}
                                     </div>
                                     <div class="time">
                                     {{ date("d-m-Y", strtotime($vacancy->created_at)) }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="name">
-                            {{ $vacancy->title }}
+                            <div class="name" >
+                            <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
                             </div>
                             <div class="tags">
                                 <span>Практика</span>

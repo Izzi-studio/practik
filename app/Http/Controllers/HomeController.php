@@ -56,7 +56,16 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
-        return view('welcome', compact('allVacancies','users', 'cities', 'categories','type_of_employments','form_of_employments','durations','form_of_cooperations','mostPopularCategories'));
+        return view('welcome', compact(
+            'allVacancies',
+            'users',
+            'cities', 
+            'categories',
+            'type_of_employments',
+            'form_of_employments',
+            'durations',
+            'form_of_cooperations',
+            'mostPopularCategories'))->with(['additional_info'=>User::getAdittionalInfo()]);;
     }
 
     public function about()

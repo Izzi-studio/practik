@@ -63,8 +63,8 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 //Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
 //Route::post('/get-cities','Front\LocationController@getCitiesByStateId')->name('get-cities');
 
-Route::get('/view-vacancy/{vacancies}', [VacancyController::class, 'show'])->name('view-vacancy');
-Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');;
+Route::get('/view-vacancy/{vacancy}', 'Front\VacancyController@viewVacancy')->name('viewVacancy');
+Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy')->middleware('EmployerMiddleware');
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
 Route::post('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
