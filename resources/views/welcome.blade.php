@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-lg-12">
 
-                    <form action="{{ route('vacancies.search') }}" id="main_search" method="POST">
+                    <form action="{{ route('vacancies.search') }}" id="search" method="POST">
                         @csrf
                         <input type="text" placeholder="Поиск по ключевым словам" name="search" value="{{ request()->search ?? '' }}" />
                         <select name="city_id" class="chosen">

@@ -61,7 +61,7 @@ $(document).ready(function () {
     });
 
     $('[name="categories[]"]').change(function(){
-        $('#search').submit()
+        $('[name="search_vacancy"]').submit()
     })
 
 

@@ -14,7 +14,7 @@
                     <img title="intro" alt="intro" src="/images/intro.png">
                 </div>
                 <div class="col-lg-12">
-                <form action="{{ route('vacancies.search') }}" role="search" method="POST" id="search">
+                <form action="{{ route('vacancies.search') }}" role="search" method="POST" id="search" name="search_vacancy">
                     @csrf
                         <input type="text" placeholder="Search vacancies" name="search" value="{{ request()->search ?? '' }}" />
                         <button type="submit" class="btn btn-orange">
