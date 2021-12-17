@@ -231,7 +231,26 @@ class VacancyController extends Controller
             'categories',
             'mostPopularCategories',
             'requestData'
-            ));
+            ))->with(['additional_info'=>User::getAdittionalInfo()]);
 
+        }
+
+        public function viewVacancy(Vacancy $vacancy)
+        {
+        $cities = Cities::get();
+        $durations = Duration::get();
+        $form_of_cooperations = FormOfCooperation::get();
+        $form_of_employments = FormOfEmployment::get();
+        $type_of_employments = TypeOfEmployment::get();
+        $categories = Category::get();
+
+        return view('front.viewVacancy',compact(
+            'vacancy',
+            'cities',
+            'durations',
+            'form_of_employments',
+            'form_of_cooperations', 
+            'type_of_employments',
+            'categories'))->with(['additional_info'=>User::getAdittionalInfo()]);
         }
 }

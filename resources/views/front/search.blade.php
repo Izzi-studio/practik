@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="nt">
                                     <div class="title">
-                                    {{ $vacancy->user->name }}
+                                    {{$additional_info['company']}}
                                     </div>
                                     <div class="time">
                                     {{ date("d-m-Y", strtotime($vacancy->created_at)) }}
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="name">
-                            {{ $vacancy->title }}
+                            <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
                             </div>
                             <div class="tags">
                                 <span>Практика</span>
