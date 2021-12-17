@@ -48,14 +48,6 @@
                                 <option value="{{ $form_of_cooperation->id, old('form_of_cooperations') ? 'selected' : ''}}">{{ $form_of_cooperation->name}}</option>
                             @endforeach
                         </select>
-                        <select name="categories" class="chosen">
-                                <option value="">Categories</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id, old('categories') ? 'selected' : ''}}">{{ $category->name}}</option>
-
-                            @endforeach
-                        </select>
-                        
                         <button class="btn btn-orange">
                             <img src="/images/search.svg">
                         </button>

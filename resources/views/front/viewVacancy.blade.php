@@ -74,11 +74,14 @@
                 <p>До приглашения не собеседование вы не можете видеть контакты даной компании.</p>
             </div>
         </div>
-        <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-8">
-            <a class="btn btn-orange" href="#">{{ __('Apply') }}</a>
-          </div>
-        </div>
+        <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
+        @csrf
+            <div class="form-group row mb-0">
+                <div class="col-md-8 offset-md-8">
+                    <button type="submit" class="btn btn-orange">Submit</button>
+                </div>
+            </div>
+        </form>
     </div>
-    </section>
+</section>
 @stop
