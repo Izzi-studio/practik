@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="nt">
                                     <div class="title">
-                                    {{$additional_info['company']}}
+                                    Company name
                                     </div>
                                     <div class="time">
                                     {{ date("d-m-Y", strtotime($vacancy->created_at)) }}

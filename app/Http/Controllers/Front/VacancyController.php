@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
+use Illuminate\Support\Facades\Session;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Category;
 use App\Http\Models\Front\Duration;
@@ -231,12 +232,11 @@ class VacancyController extends Controller
             'categories',
             'mostPopularCategories',
             'requestData'
-            ))->with(['additional_info'=>User::getAdittionalInfo()]);
+        ));
+    }
 
-        }
-
-        public function viewVacancy(Vacancy $vacancy)
-        {
+    public function viewVacancy(Vacancy $vacancy)
+    {
         $cities = Cities::get();
         $durations = Duration::get();
         $form_of_cooperations = FormOfCooperation::get();
@@ -251,6 +251,25 @@ class VacancyController extends Controller
             'form_of_employments',
             'form_of_cooperations', 
             'type_of_employments',
-            'categories'))->with(['additional_info'=>User::getAdittionalInfo()]);
+            'categories'
+        ));
+    }
+
+    public function applyVacancy(Vacancy $vacancy)
+    {
+        if (auth()->guest()) {
+            Session::flash('error', 'You must be connected to apply');
+            return redirect('login');
         }
+        if (User::getUserRoleID() == 1){
+            $userId = Auth::id();
+            $vacancy->users()->attach($userId);
+            Session::flash('success', 'Application registered');
+            return view('front.viewVacancy',compact('vacancy'));   
+        }
+        if (User::getUserRoleID() == 2){
+            Session::flash('error', 'You must be a student to apply');
+            return view('front.viewVacancy',compact('vacancy'));  
+        }
+    }
 }

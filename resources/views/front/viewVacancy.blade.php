@@ -19,6 +19,12 @@
     </section> -->
 <section class="viewVac">
     <div class="container">
+        @if ($message = Session::get('error'))
+            <p class="alert alert-warning">{{ $message }}</p>
+        @endif
+        @if ($message = Session::get('success'))
+            <p class="alert alert-success">{{ $message }}</p>
+        @endif
         <h2>{{ $vacancy->title }}</h2>
         <div class="vacancy">
             <div class="col-lg-12 item">
@@ -28,7 +34,7 @@
                     </div>
                     <div class="nt">
                         <div class="title">
-                            {{$additional_info['company']}}
+                        Company name
                         </div>                                   
                         <div class="time">
                             {{ date("d-m-Y", strtotime($vacancy->created_at)) }}

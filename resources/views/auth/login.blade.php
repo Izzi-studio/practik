@@ -6,6 +6,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 offset-lg-4">
+                @if ($message = Session::get('error'))
+                    <p class="alert alert-warning">{{ $message }}</p>
+                @endif
                     <ul class="toplinks">
                         <li><a class="active" href="{{route('login')}}">Вход</a></li>
                         <li><a href="{{route('register')}}">Регистрация</a></li>
