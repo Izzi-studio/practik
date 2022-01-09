@@ -39,24 +39,25 @@ class HomeController extends Controller
     }
 
     public function welcome(Vacancy $vacancy){
+            $data=[
+                'users' => User::where('type_account',1),
+                'allVacancies' => $vacancy->vacancyActive()->get(),
+                'cities' => Cities::get(),
+                'durations' => Duration::get(),
+                'form_of_employments' => FormOfCooperation::get(),
+                'form_of_cooperations' => FormOfEmployment::get(),
+                'type_of_employments' => TypeOfEmployment::get(),
+                'categories' => Category::get(),
+                'mostPopularCategories' => DB::table('categories')
+                ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
+                ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
+                ->groupBy('category_vacancy.category_id')
+                ->orderBy('name_count', 'desc')
+                ->take(5)
+                ->get()
+            ];
 
-        $allVacancies = $vacancy->vacancyActive()->get();
-        $users = User::where('type_account',1);
-        $cities = Cities::get();
-        $durations = Duration::get();
-        $form_of_cooperations = FormOfCooperation::get();
-        $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::get();
-        $mostPopularCategories = DB::table('categories')
-            ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
-            ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
-            ->groupBy('category_vacancy.category_id')
-            ->orderBy('name_count', 'desc')
-            ->take(5)
-            ->get();
-
-        return view('welcome', compact('allVacancies','users', 'cities', 'categories','type_of_employments','form_of_employments','durations','form_of_cooperations','mostPopularCategories'));
+        return view('welcome', compact('vacancy'))->with($data);
     }
 
     public function about()

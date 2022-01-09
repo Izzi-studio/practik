@@ -45,13 +45,16 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        $cities = Cities::get();
-        $durations = Duration::get();
-        $form_of_cooperations = FormOfCooperation::get();
-        $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::all();
-        return view('front.employer.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'))->withCategories($categories);
+        $data=[
+            'cities' => Cities::get(),
+            'durations' => Duration::get(),
+            'form_of_employments' => FormOfCooperation::get(),
+            'form_of_cooperations' => FormOfEmployment::get(),
+            'type_of_employments' => TypeOfEmployment::get(),
+            'categories' => Category::all()
+        ];
+        
+        return view('front.employer.vacancies.create')->with($data);
     }
 
 	/**
@@ -96,7 +99,7 @@ class VacancyController extends Controller
     {
 
 		dd(Vacancy::getVacanciesByUserToResponded());
-        return redirect(route('employer.vacancies.index'));
+        return redirect(route('vacancies.index'));
     }
 
     /**
@@ -111,7 +114,7 @@ class VacancyController extends Controller
         $vacancy = Vacancy::create($request->all());
         $vacancy->categories()->sync($request->categories, false);
 
-        return redirect()->route('employer.vacancies.index', $vacancy->id)
+        return redirect()->route('vacancies.index', $vacancy->id)
         ->with('success','Vacancy created successfully.');
 
     }
@@ -135,13 +138,15 @@ class VacancyController extends Controller
      */
     public function edit(Vacancy $vacancy)
     {
-        $cities = Cities::get();
-        $durations = Duration::get();
-        $form_of_cooperations = FormOfCooperation::get();
-        $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::get();
-        return view('front.employer.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
+        $data=[
+            'cities' => Cities::get(),
+            'durations' => Duration::get(),
+            'form_of_employments' => FormOfCooperation::get(),
+            'form_of_cooperations' => FormOfEmployment::get(),
+            'type_of_employments' => TypeOfEmployment::get(),
+            'categories' => Category::get()
+        ];
+        return view('front.employer.vacancies.edit', compact('vacancy'))->with($data);
     }
 
     /**
@@ -160,7 +165,7 @@ class VacancyController extends Controller
         } else {
             $vacancy->categories()->sync(array());
         }
-        return redirect()->route('employer.vacancies.index')
+        return redirect()->route('vacancies.index')
                         ->with('success','Vacancy updated successfully');
     }
 
@@ -174,7 +179,7 @@ class VacancyController extends Controller
     {
         $vacancy = Vacancy::deleteVacancy($vacancy);
 
-        return redirect()->route('employer.vacancies.index')
+        return redirect()->route('vacancies.index')
                         ->with('success','Vacancy delete successfully');
     }
 
@@ -205,54 +210,39 @@ class VacancyController extends Controller
             $vacancies = $vacancies->where('title', 'like', '%' . request()->search . '%')->orwhere('description', 'like', '%' . request()->search . '%');
         }
 
-        $allVacancies = $vacancies->vacancyActive()->get();
+        $data=[
+            'cities' => Cities::get(),
+            'durations' => Duration::get(),
+            'form_of_employments' => FormOfCooperation::get(),
+            'form_of_cooperations' => FormOfEmployment::get(),
+            'type_of_employments' => TypeOfEmployment::get(),
+            'categories' => Category::get(),
+            'allVacancies' => $vacancies->vacancyActive()->get(),
+            'mostPopularCategories' => DB::table('categories')
+            ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
+            ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
+            ->groupBy('category_vacancy.category_id')
+            ->orderBy('name_count', 'desc')
+            ->take(5)
+            ->get(),
+            'requestData' => $request->all()
+        ];
 
-        $cities = Cities::get();
-        $durations = Duration::get();
-        $form_of_cooperations = FormOfCooperation::get();
-        $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::get();
-        $mostPopularCategories = DB::table('categories')
-        ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
-        ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
-        ->groupBy('category_vacancy.category_id')
-        ->orderBy('name_count', 'desc')
-        ->take(5)
-        ->get();
-        $requestData = $request->all();
-
-        return view('front.search', compact(
-            'allVacancies',
-            'cities',
-            'durations',
-            'form_of_cooperations',
-            'form_of_employments',
-            'type_of_employments',
-            'categories',
-            'mostPopularCategories',
-            'requestData'
-        ));
+        return view('front.search')->with($data);
     }
 
     public function viewVacancy(Vacancy $vacancy)
     {
-        $cities = Cities::get();
-        $durations = Duration::get();
-        $form_of_cooperations = FormOfCooperation::get();
-        $form_of_employments = FormOfEmployment::get();
-        $type_of_employments = TypeOfEmployment::get();
-        $categories = Category::get();
+        $data=[
+            'cities' => Cities::get(),
+            'durations' => Duration::get(),
+            'form_of_employments' => FormOfCooperation::get(),
+            'form_of_cooperations' => FormOfEmployment::get(),
+            'type_of_employments' => TypeOfEmployment::get(),
+            'categories' => Category::get(),
+        ];
 
-        return view('front.viewVacancy',compact(
-            'vacancy',
-            'cities',
-            'durations',
-            'form_of_employments',
-            'form_of_cooperations', 
-            'type_of_employments',
-            'categories'
-        ));
+        return view('front.viewVacancy', compact('vacancy'))->with($data);
     }
 
     public function applyVacancy(Vacancy $vacancy)
