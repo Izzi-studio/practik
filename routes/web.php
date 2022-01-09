@@ -73,4 +73,7 @@ Route::post('/search','Front\VacancyController@searchVacancies')->name('vacancie
 
 //students routes
 Route::get('/categories', 'Front\CategoryController@index')->name('categories');
+Route::resource('student-proposals', '\App\Http\Controllers\Front\ProposalController',
+	['only' => [
+		'index', 'destroy']]);
 //students routes end

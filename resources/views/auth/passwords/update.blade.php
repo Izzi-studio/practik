@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.app')
 @section('content')
 <div class="heading">
 Логин и пароль
@@ -41,6 +41,9 @@
                         <button type="submit" class="btn btn-orange">
                             Update Password
                         </button>
+                        <div class="pull-right btn">
+                    <a class="btn btn-orange" href="{{ route('profile_update') }}">Back</a>
+                </div>
                     </div>
             </form>
         </div>

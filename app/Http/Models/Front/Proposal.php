@@ -34,6 +34,7 @@ class Proposal extends Model
     {
           return $this->where('status', '1');
     }
+
     public function scopeCandidateApprove()
     {
           return $this->where('status', '2');

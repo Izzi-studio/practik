@@ -32,7 +32,7 @@ class VacancyController extends Controller
         $vacancies = auth()->user()->vacancies()->vacancyActive()->get();
         $archiveVacancies = auth()->user()->vacancies()->vacancyArchive()->get();
 
-        return view('front.vacancies.index', [
+        return view('front.employer.vacancies.index', [
             'vacancies' => $vacancies,
             'archiveVacancies' => $archiveVacancies
         ]);
@@ -51,7 +51,7 @@ class VacancyController extends Controller
         $form_of_employments = FormOfEmployment::get();
         $type_of_employments = TypeOfEmployment::get();
         $categories = Category::all();
-        return view('front.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'))->withCategories($categories);
+        return view('front.employer.vacancies.create',compact('cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments'))->withCategories($categories);
     }
 
 	/**
@@ -96,7 +96,7 @@ class VacancyController extends Controller
     {
 
 		dd(Vacancy::getVacanciesByUserToResponded());
-        return redirect(route('vacancies.index'));
+        return redirect(route('employer.vacancies.index'));
     }
 
     /**
@@ -111,7 +111,7 @@ class VacancyController extends Controller
         $vacancy = Vacancy::create($request->all());
         $vacancy->categories()->sync($request->categories, false);
 
-        return redirect()->route('vacancies.index', $vacancy->id)
+        return redirect()->route('employer.vacancies.index', $vacancy->id)
         ->with('success','Vacancy created successfully.');
 
     }
@@ -124,7 +124,7 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
-        return view('front.vacancies.show',compact('vacancy'));
+        return view('front.employer.vacancies.show',compact('vacancy'));
     }
 
     /**
@@ -141,7 +141,7 @@ class VacancyController extends Controller
         $form_of_employments = FormOfEmployment::get();
         $type_of_employments = TypeOfEmployment::get();
         $categories = Category::get();
-        return view('front.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
+        return view('front.employer.vacancies.edit',compact('vacancy', 'cities','durations', 'form_of_employments', 'form_of_cooperations', 'type_of_employments', 'categories'));
     }
 
     /**
@@ -160,7 +160,7 @@ class VacancyController extends Controller
         } else {
             $vacancy->categories()->sync(array());
         }
-        return redirect()->route('vacancies.index')
+        return redirect()->route('employer.vacancies.index')
                         ->with('success','Vacancy updated successfully');
     }
 
@@ -174,7 +174,7 @@ class VacancyController extends Controller
     {
         $vacancy = Vacancy::deleteVacancy($vacancy);
 
-        return redirect()->route('vacancies.index')
+        return redirect()->route('employer.vacancies.index')
                         ->with('success','Vacancy delete successfully');
     }
 

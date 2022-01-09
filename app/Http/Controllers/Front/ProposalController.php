@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Proposal;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProposalController extends Controller
 {
@@ -14,8 +16,20 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Proposal $proposal)
+    public function index(Proposal $proposal, Vacancy $vacancy)
     {
+        $userId = Auth::id();
+        if (User::getUserRoleID() == 1){
+            //proposal on standby
+            $proposalsAwait = auth()->user()->candidates()->CandidateAwait()->where('user_id', $userId)->get();
+            //proposal accepted for an interview
+            $proposalsApprove =  auth()->user()->candidates()->candidateApprove()->where('user_id', $userId)->get();
+            return view('front.student.proposals.index',compact('proposal', 'vacancy'), [
+                'proposalsAwait' => $proposalsAwait,
+                'proposalsApprove' => $proposalsApprove,
+            ]);
+        }
+        if (User::getUserRoleID() == 2){
         //proposal on standby
         $proposalsAwait =  auth()->user()->candidates()->candidateAwait()->get();
         //proposal accepted for an interview
@@ -24,12 +38,13 @@ class ProposalController extends Controller
         $proposalsAccept = auth()->user()->candidates()->candidateAccept()->get();
         $proposalsArchive = auth()->user()->candidates()->candidateArchive()->get();
 
-        return view('front.proposals.index', compact('proposal'), [
+        return view('front.employer.proposals.index', compact('proposal', 'vacancy'), [
             'proposalsAwait' => $proposalsAwait,
             'proposalsApprove' => $proposalsApprove,
             'proposalsAccept' => $proposalsAccept,
             'proposalsArchive' => $proposalsArchive,
         ]);
+        }
     }
 
 
@@ -41,7 +56,7 @@ class ProposalController extends Controller
      */
     public function show(Proposal $proposal)
     {
-        return view('front.proposals.show',compact('proposal'));
+        return view('front.employer.proposals.show',compact('proposal'));
     }
 
 

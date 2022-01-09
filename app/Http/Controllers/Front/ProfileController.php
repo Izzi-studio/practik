@@ -17,10 +17,10 @@ class ProfileController extends Controller
     public function index()
     {
         if (User::getUserRoleID() == 1){
-            return view('front.profile_student')->with(['additional_info'=>User::getAdittionalInfo()]);
+            return view('front.student.profile_student')->with(['additional_info'=>User::getAdittionalInfo()]);
         }
         if (User::getUserRoleID() == 2){
-            return view('front.profile_employer')->with(['additional_info'=>User::getAdittionalInfo()]);
+            return view('front.employer.profile_employer')->with(['additional_info'=>User::getAdittionalInfo()]);
         }
     }
 
