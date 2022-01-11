@@ -78,11 +78,6 @@
             <div class="sub">Начни карьеру в компании твоей мечты. <a href="{{ route('categories') }}">Подобрать вакансии по категориям.</a></div>
             <div class="vacancies">
                 <div class="row ">
-                    @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
                     @foreach ($allVacancies as $vacancy)
                     <div class="col-lg-4 item">
                         <div class="t_panel">
@@ -99,7 +94,7 @@
                             </div>
                         </div>
                         <div class="name">
-                        <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
+                            <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
                         </div>
                         <div class="tags">
                             <span>Практика</span>
@@ -108,10 +103,16 @@
                             </span>
                         </div>
                         <div class="cat">
-                            <a href="#">
+                            <a>
                                 Менеджмент
                             </a>
                         </div>
+                        <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
+                            @csrf
+                            <div class="apply">
+                                <button class="btn" type="submit">Apply</button>
+                            </div>
+                        </form>
                     </div>
                     @endforeach
                     <div class="col-lg-9 item">

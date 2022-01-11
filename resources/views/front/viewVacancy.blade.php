@@ -84,8 +84,10 @@
         @csrf
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-8">
-                    <button type="submit" class="btn btn-orange">Submit</button>
+                    <button type="submit" class="btn btn-orange">Apply</button>
+                    <a class="btn btn-orange" href="{{ route('welcome') }}">Back</a>
                 </div>
+
             </div>
         </form>
     </div>

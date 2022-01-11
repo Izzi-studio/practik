@@ -40,8 +40,6 @@
                                   <button type="hidden" class="fa fa-times btn-orange btn-danger"></button>
                                   @csrf
                               </form>
-                              <a class="btn-orange btn-primary fa fa-check" href=""></a>
-
                           </td>
                       </tr>
                   </table>
@@ -72,8 +70,6 @@
                                   <button type="hidden" class="fa fa-times btn-orange btn-danger"></button>
                                   @csrf
                               </form>
-                              <a class="btn-orange btn-primary fa fa-check" href=""></a>
-
                           </td>
                       </tr>
                   </table>

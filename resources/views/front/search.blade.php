@@ -78,6 +78,12 @@
                                     Менеджмент
                                 </a>
                             </div>
+                            <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
+                            @csrf
+                            <div class="apply">
+                                <button class="btn" type="submit">Apply</button>
+                            </div>
+                        </form>
                         </div>
                         @endforeach
                     @endif
