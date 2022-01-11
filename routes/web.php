@@ -30,6 +30,7 @@ Route::get('/howto', 'HomeController@howto')->name('howto');
 Route::get('/services', 'HomeController@services')->name('services');
 Route::get('/employer', 'HomeController@employer')->name('employer');
 //static page end
+Route::get('/companies', 'HomeController@companies')->name('companies');
 
 //profile
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');
@@ -41,9 +42,6 @@ Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordF
 Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post');
 Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetPasswordForm')->name('reset.password.get');
 Route::post('reset-password', 'Auth\ResetPasswordController@submitResetPasswordForm')->name('reset.password.post');
-
-
-
 //profile end
 
 //employers routes
@@ -69,6 +67,7 @@ Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyControll
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
 Route::post('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
+
 
 
 //students routes

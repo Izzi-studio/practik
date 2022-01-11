@@ -89,4 +89,14 @@ class HomeController extends Controller
     {
         return view('front.employer');
     }
+
+    public function companies()
+    {
+        //$proUsers = auth()->user()->userPro()->get();
+        //$proUsers = auth()->user()->where('type_account',2)->get();
+        $data = [
+            'usersPros' => User::where('type_account',2)->get(),
+        ];
+        return view('front.companies')->with($data);
+    }
 }
