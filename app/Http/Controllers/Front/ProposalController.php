@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\User;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Proposal;
@@ -90,5 +91,19 @@ class ProposalController extends Controller
 
         return redirect()->route('proposals.index')
                         ->with('success','Rejected applicant');
+    }
+
+    public function resume(Proposal $proposal)
+    {
+        $user = auth()->user();
+        return view('front.employer.proposals.resume', compact('user', 'proposal'));
+
+    }
+
+    public function download(Proposal $proposal)
+    {
+        $user = auth()->user();
+        $pdf = \PDF::loadView('front.employer.proposals.resume', compact('user', 'proposal'));
+        return $pdf->download('resume.pdf');
     }
 }

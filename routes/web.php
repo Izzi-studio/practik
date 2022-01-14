@@ -52,6 +52,8 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 		'index', 'show', 'destroy']]);
 	Route::get('/proposals/{proposal}/accepted', '\App\Http\Controllers\Front\ProposalController@accepted')->name('proposals.accepted');
 	Route::get('/proposals/{proposal}/approved', '\App\Http\Controllers\Front\ProposalController@approved')->name('proposals.approved');
+	Route::get('/resume/download/{proposal}','Front\ProposalController@download')->name('resume.download');
+	Route::get('/resume/{proposal}', 'Front\ProposalController@resume')->name('proposal.resume');
 	Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy');//to do
 	Route::get('/feedback','Front\VacancyController@feedback')->name('feedback');//to do
 	Route::get('/search','Front\VacancyController@search')->name('search'); //to do

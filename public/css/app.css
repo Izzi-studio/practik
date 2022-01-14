@@ -1170,5 +1170,41 @@ select#activities_main+.chosen-container-multi .chosen-choices{
     border-top: none;
 }
 
+.resume_student{
+    padding: 30px;
+}
+
+.resume_student .btn{
+    margin: 20px 0px 20px 0px;
+}
+
+.resume_student .sectionCv{
+	margin-top: 40px;
+    text-align: justify;
+}
+
+.resume_student .infophoto{
+    height: 250px;
+}
+
+.resume_student .info{
+    float: left;
+}
+
+.resume_student .photo{
+    float: right;
+    height: 150px;
+}
+
+.resume_student img{
+	width:200px;
+	height: 200px;
+}
+
+.resume_student h3{
+    border-bottom: 2px solid;
+    font-family: 'Open Sans', sans-serif;
+
+}
 
 /* End css Eva */
