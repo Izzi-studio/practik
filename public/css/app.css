@@ -233,6 +233,9 @@ input[type="checkbox"]:checked+label{
     background: #EFF1FF;
     padding: 42px 0;
 }
+.company{
+    text-align: center;
+}
 .vacs{
     border-bottom: 1px solid rgba(18, 16, 69, 0.14);
 }

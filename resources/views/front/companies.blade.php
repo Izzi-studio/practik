@@ -8,13 +8,12 @@
       <div class="">
         <input class="form-control" id="myInput" type="text" placeholder="Search..">
         <br>
-        <table class="table table-bordered">
+        <table class="company table table-bordered">
           <thead>
-            <tr>
+            <tr class="">
               <th>Company name</th>
               <th>Email</th>
-              <th>Number of applications</th>
-              
+              <th>Vacancies</th> 
             </tr>
           </thead>
           <tbody id="myTable">
@@ -22,7 +21,7 @@
             @csrf
             @foreach ($usersPros as $userPro)
               <tr>
-                <td>Nom de la compagnie</td>
+                <td>Cesi</td>
                 <td>{{ $userPro->email }}</td>
                 <td><button class="btn btn-light" type="submit"> {{ $userPro->vacancies->count() }}</button></td>
               </tr>
