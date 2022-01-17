@@ -3,11 +3,12 @@
 namespace App\Http\Models\Front;
 
 use App\User;
+use App\Http\Models\Front\Cv;
 use App\Http\Models\Front\Vacancy;
 use Illuminate\Support\Facades\DB;
+use App\Http\Models\Front\Proposal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Models\Front\Proposal;
 
 class Proposal extends Model
 {
@@ -28,6 +29,10 @@ class Proposal extends Model
 
     public function vacancy(){
         return $this->belongsTo(Vacancy::class);
+    }
+
+    public function cv(){
+        return $this->belongsTo(Cv::class);
     }
 
     public function scopeCandidateAwait()

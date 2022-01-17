@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\User;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use App\Http\Models\Front\Cv;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Proposal;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,8 @@ class ProposalController extends Controller
      */
     public function show(Proposal $proposal)
     {
-        return view('front.employer.proposals.show',compact('proposal'));
+        $cv=Cv::all();
+        return view('front.employer.proposals.show',compact('proposal','cv'));
     }
 
 
@@ -95,8 +97,9 @@ class ProposalController extends Controller
 
     public function resume(Proposal $proposal)
     {
+        $cv=Cv::all();
         $user = auth()->user();
-        return view('front.employer.proposals.resume', compact('user', 'proposal'));
+        return view('front.employer.proposals.resume', compact('user', 'proposal','cv'));
 
     }
 

@@ -77,4 +77,6 @@ Route::get('/categories', 'Front\CategoryController@index')->name('categories');
 Route::resource('student-proposals', '\App\Http\Controllers\Front\ProposalController',
 	['only' => [
 		'index', 'destroy']]);
+Route::get('cvStudent','Front\CvController@index')->name('cv');
+Route::post('cvStudent','Front\CvController@store')->name('file.store');
 //students routes end
