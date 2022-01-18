@@ -26,7 +26,7 @@
                       <tr>
                         <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
                         <td>{{ $proposal->vacancy->title}}</td>
-                        <td><a class="titre active" type="button" href="{{ route('proposals.show',$proposal->id) }}">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a></td>
+                        <td><a type="button" class="titre active" data-toggle="modal" data-target="#modelId">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a></td>
                         <td>
                           <form action="{{ route('proposals.destroy',$proposal->id) }}" method="POST">
                             @method('DELETE')
@@ -52,7 +52,7 @@
                       <tr>
                         <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
                         <td>{{ $proposal->vacancy->title}}</td>
-                        <td><a class="titre active" type="button" href="{{ route('proposals.show',$proposal->id) }}">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a></td>
+                        <td><a type="button" class="titre active" data-toggle="modal" data-target="#modelId">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</a></td>
                         <td>
                           <form action="{{ route('proposals.destroy',$proposal->id) }}" method="POST">
                             @method('DELETE')
@@ -108,6 +108,36 @@
             </div>
           </div>
         </section>
+      </div>
+    </div>
+  </div>
+  <div class="resume_student">
+    <div class="shown">
+      <div class="modal fade " id="modelId" tabindex="-1" role="dialog"
+        aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Preview Resume</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                  <iframe width='100%' height='900'  src="{{route('proposal.resume') }}"></iframe>
+              </div>
+            </div>
+              <div class="modal-footer">
+                <div class="pull-right btn">
+                  <a class="btn btn-orange" href="{{route('resume.download')}}" role="button">Download</a>
+                </div>
+                  <button type="button" class="btn btn-orange" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

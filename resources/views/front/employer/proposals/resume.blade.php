@@ -1,8 +1,8 @@
 
 <div class="resume_student">
   <div class="shown">
-     @foreach ($cv as $item )
-          <iframe src="{{asset('upload/' .$item->cv) }}"></iframe>
+     @foreach ($data as $item )
+          <embed src="{{ asset('upload/' .$item->cv) }}" width="700" height="850" alt="pdf" />
         @endforeach
   </div>
 </div>
