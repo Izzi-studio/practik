@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="name">
-                            <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
+                            {{ $vacancy->title }}
                         </div>
                         <div class="tags">
                             <span>Практика</span>
@@ -107,12 +107,9 @@
                                 Менеджмент
                             </a>
                         </div>
-                        <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
-                            @csrf
                             <div class="apply">
-                                <button class="btn" type="submit">Apply</button>
+                                <a href="{{ route('viewVacancy',$vacancy->id) }}" class="btn btn-orange" type="button">Apply</a>
                             </div>
-                        </form>
                     </div>
                     @endforeach
                     <div class="col-lg-9 item">

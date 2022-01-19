@@ -79,15 +79,18 @@
             <div class="" >
                 <p>До приглашения не собеседование вы не можете видеть контакты даной компании.</p>
             </div>
+        </div>   
+        <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+            <div class="name">Choose File</div>
+            <input type="file" name="cv" class="form-control">
         </div>
-        <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
-        @csrf
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-8">
                     <button type="submit" class="btn btn-orange">Apply</button>
                     <a class="btn btn-orange" href="{{ route('welcome') }}">Back</a>
                 </div>
-
             </div>
         </form>
     </div>

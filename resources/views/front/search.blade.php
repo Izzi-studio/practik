@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="name">
-                            <a type="button" href="{{ route('viewVacancy',$vacancy->id) }}">{{ $vacancy->title }}</a>
+                           {{ $vacancy->title }}
                             </div>
                             <div class="tags">
                                 <span>Практика</span>
@@ -81,7 +81,7 @@
                             <form action="{{ route('applyVacancy', $vacancy->id) }}" method="POST">
                             @csrf
                             <div class="apply">
-                                <button class="btn" type="submit">Apply</button>
+                                <a class="btn btn-orange" href="{{ route('viewVacancy',$vacancy->id) }}" type="button">Apply</a>
                             </div>
                         </form>
                         </div>

@@ -125,7 +125,7 @@
             </div>
             <div class="modal-body">
               <div class="container-fluid">
-                  <iframe width='100%' height='900'  src="{{route('proposal.resume') }}"></iframe>
+                  <iframe width='100%' height='900'  src="{{route('proposal.resume', $proposal->id) }}"></iframe>
               </div>
             </div>
               <div class="modal-footer">

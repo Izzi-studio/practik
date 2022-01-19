@@ -53,7 +53,7 @@
                             <a href="{{route('companies')}}">Компании</a>
                         </li>
                         <li>
-                            <a href="{{route('cv')}}">Разместить резюме</a>
+                            <a href="">Разместить резюме</a>
                         </li>
                     </ul>
                 </div>

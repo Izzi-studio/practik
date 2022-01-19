@@ -31,10 +31,6 @@ class Proposal extends Model
         return $this->belongsTo(Vacancy::class);
     }
 
-    public function cv(){
-        return $this->belongsTo(Cv::class);
-    }
-
     public function scopeCandidateAwait()
     {
           return $this->where('status', '1');

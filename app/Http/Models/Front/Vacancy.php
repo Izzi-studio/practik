@@ -54,7 +54,7 @@ class Vacancy extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, 'user_vacancy', 'vacancy_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_vacancy', 'vacancy_id', 'user_id', 'cv');
     }
 
     public function user()

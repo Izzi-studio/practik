@@ -58,8 +58,8 @@ class ProposalController extends Controller
      */
     public function show(Proposal $proposal)
     {
-        $cv=Cv::all();
-        return view('front.employer.proposals.show',compact('proposal','cv'));
+        $cv = Proposal::get();
+        return view('front.employer.proposals.show',compact('cv','proposal'));
     }
 
 
@@ -95,18 +95,10 @@ class ProposalController extends Controller
                         ->with('success','Rejected applicant');
     }
 
-    public function resume(Proposal $proposal)
-    {
-        $cv=Cv::all();
-        $user = auth()->user();
-        return view('front.employer.proposals.resume', compact('user', 'proposal','cv'));
-
-    }
-
     public function download(Proposal $proposal)
     {
         $user = auth()->user();
-        $pdf = \PDF::loadView('front.employer.proposals.resume', compact('user', 'proposal'));
+        $pdf = \PDF::loadView('front.employer.proposals.show', compact('user', 'proposal'));
         return $pdf->download('resume.pdf');
     }
 }

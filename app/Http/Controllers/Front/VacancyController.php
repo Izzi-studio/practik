@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Models\Front\CategoryVacancy;
 use DB;
 use Auth;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
-use Illuminate\Support\Facades\Session;
 use App\Http\Models\Front\Vacancy;
 use App\Http\Models\Front\Category;
 use App\Http\Models\Front\Duration;
+use App\Http\Models\Front\Proposal;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VacancyRequest;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use App\Http\Models\Front\CategoryVacancy;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
@@ -245,17 +246,25 @@ class VacancyController extends Controller
         return view('front.viewVacancy', compact('vacancy'))->with($data);
     }
 
-    public function applyVacancy(Vacancy $vacancy)
+    public function applyVacancy(Vacancy $vacancy, Request $request)
     {
+
         if (auth()->guest()) {
             Session::flash('error', 'You must be connected to apply');
             return redirect('login');
         }
         if (User::getUserRoleID() == 1){
-            $userId = Auth::id();
-            $vacancy->users()->attach($userId);
-            Session::flash('success', 'Application registered');
-            return view('front.viewVacancy',compact('vacancy'));   
+
+            $data = new Proposal();
+            $data->user_id = Auth::id();
+            $data->vacancy_id = $vacancy->id;
+            $cv=$request->cv;
+            $filename=time().'.'.$cv->getClientOriginalName();
+            $request->cv->move('upload', $filename);
+            $data->cv=$filename;
+            $data->save();
+
+            return redirect()->back()->with('success', 'Application registered');
         }
         if (User::getUserRoleID() == 2){
             Session::flash('error', 'You must be a student to apply');

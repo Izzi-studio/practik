@@ -17,6 +17,7 @@ class CreateUserVacancyTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vacancy_id');
+            $table->string('cv');
             $table->enum('status', ['1', '2', '3', '4'])->default('1');
             $table->timestamps();
         });

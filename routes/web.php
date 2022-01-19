@@ -52,8 +52,8 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 		'index', 'destroy']]);
 	Route::get('/proposals/{proposal}/accepted', '\App\Http\Controllers\Front\ProposalController@accepted')->name('proposals.accepted');
 	Route::get('/proposals/{proposal}/approved', '\App\Http\Controllers\Front\ProposalController@approved')->name('proposals.approved');
-	Route::get('/resume/download','Front\CvController@download')->name('resume.download');
-	Route::get('/resume', 'Front\CvController@resume')->name('proposal.resume');
+	Route::get('/resume/download','Front\ProposalController@download')->name('resume.download');
+	Route::get('/resume/{proposal}', 'Front\ProposalController@show')->name('proposal.resume');
 	Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy');//to do
 	Route::get('/feedback','Front\VacancyController@feedback')->name('feedback');//to do
 	Route::get('/search','Front\VacancyController@search')->name('search'); //to do
@@ -77,6 +77,4 @@ Route::get('/categories', 'Front\CategoryController@index')->name('categories');
 Route::resource('student-proposals', '\App\Http\Controllers\Front\ProposalController',
 	['only' => [
 		'index', 'destroy']]);
-Route::get('cvStudent','Front\CvController@index')->name('cv');
-Route::post('cvStudent','Front\CvController@store')->name('file.store');
 //students routes end
