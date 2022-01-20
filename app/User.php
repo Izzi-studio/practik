@@ -81,4 +81,8 @@ class User extends Authenticatable implements MustVerifyEmail
      public function candidates(){
         return $this->belongsToMany(Proposal::class, 'user_vacancy', 'user_id', 'vacancy_id');
     }
+
+    public function scopeCompanies(){
+        return $this->where('type_account',2);
+    }
 }

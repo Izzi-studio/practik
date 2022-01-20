@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use DB;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Vacancy;
+use Illuminate\Support\Facades\DB;
 use App\Http\Models\Front\Category;
-use App\Http\Models\Front\CategoryVacancy;
 use App\Http\Models\Front\Duration;
 use App\Http\Controllers\Controller;
+use App\Http\Models\Front\CategoryVacancy;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
@@ -90,11 +90,13 @@ class HomeController extends Controller
         return view('front.employer');
     }
 
-    public function companies()
+    public function companies(Request $request)
     {
+        $vacancies = new Vacancy();
+        $companies = User::companies()->get();
         $data = [
             'usersPros' => User::where('type_account',2)->get(),
         ];
-        return view('front.companies')->with($data);
+        return view('front.companies',compact('companies'))->with($data);
     }
 }

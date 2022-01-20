@@ -13,19 +13,17 @@
             <tr class="">
               <th>Company name</th>
               <th>Email</th>
-              <th>Vacancies</th> 
             </tr>
           </thead>
           <tbody id="myTable">
-          <form action="{{ route('vacancies.search') }}" id="search" method="POST">
+          <form class="form-control" action="{{ route('vacancies.search') }}" id="search" method="POST">
             @csrf
-            @foreach ($usersPros as $userPro)
+            @foreach ($companies as $company)
               <tr>
-                <td>Cesi</td>
-                <td>{{ $userPro->email }}</td>
-                <td><button class="btn btn-light" type="submit"> {{ $userPro->vacancies->count() }}</button></td>
+                <td><button class="btn btn-light" type="submit">{{ $company->additional_info}}</button></td>
+                <td>{{ $company->email }}</td>
               </tr>
-            @endforeach 
+            @endforeach              
           </form>
           </tbody>
         </table>
