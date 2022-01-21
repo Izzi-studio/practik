@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use DB;
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Cities;
 use App\Http\Models\Front\Vacancy;
+use Illuminate\Support\Facades\DB;
 use App\Http\Models\Front\Category;
-use App\Http\Models\Front\CategoryVacancy;
 use App\Http\Models\Front\Duration;
 use App\Http\Controllers\Controller;
+use App\Http\Models\Front\CategoryVacancy;
 use App\Http\Models\Front\FormOfEmployment;
 use App\Http\Models\Front\TypeOfEmployment;
 use App\Http\Models\Front\FormOfCooperation;
@@ -92,9 +92,7 @@ class HomeController extends Controller
 
     public function companies()
     {
-        $data = [
-            'usersPros' => User::where('type_account',2)->get(),
-        ];
-        return view('front.companies')->with($data);
+        $companies = User::companies()->get();
+        return view('front.companies',compact('companies'));
     }
 }
