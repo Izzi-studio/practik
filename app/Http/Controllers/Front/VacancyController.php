@@ -188,6 +188,9 @@ class VacancyController extends Controller
     {
         $vacancies = new Vacancy();
 
+        if($request->get('user_id',null)){
+            $vacancies = $vacancies->whereUserId($request->user_id);
+        }
         if($request->get('city_id',null)){
             $vacancies = $vacancies->whereCityId($request->city_id);
         }

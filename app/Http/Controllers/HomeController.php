@@ -40,7 +40,6 @@ class HomeController extends Controller
 
     public function welcome(Vacancy $vacancy){
             $data=[
-                'users' => User::where('type_account',1),
                 'allVacancies' => $vacancy->vacancyActive()->get(),
                 'cities' => Cities::get(),
                 'durations' => Duration::get(),
