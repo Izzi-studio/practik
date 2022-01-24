@@ -1,7 +1,14 @@
-
-<div class="resume_student">
-  <div class="shown">
-          {{$proposal->user_id}}
-          <embed src="{{ asset('upload/' .$proposal->cv ) }}" width="700" height="850" alt="pdf" />
+@extends('layouts.profileEmployer')
+@section('content')
+  <div class="heading">
+  резюме студента
   </div>
-</div>
+  <div class="resume_student">
+    <div class="shown">
+      <embed src="{{ asset('upload/' .$proposal->cv ) }}" width="700" height="850" alt="pdf" />
+      <div class="pull-right btn">
+        <a href="{{ route('export-pdf') }}" class="btn btn-orange">Download</a>
+      </div>
+    </div>
+  </div>
+@stop

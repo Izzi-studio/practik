@@ -18,7 +18,7 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Proposal $proposal, Vacancy $vacancy)
+    public function index(Proposal $proposal, Vacancy $vacancy, User $user)
     {
         $userId = Auth::id();
         if (User::getUserRoleID() == 1){
@@ -40,7 +40,7 @@ class ProposalController extends Controller
         $proposalsAccept = auth()->user()->candidates()->candidateAccept()->get();
         $proposalsArchive = auth()->user()->candidates()->candidateArchive()->get();
 
-        return view('front.employer.proposals.index', compact('proposal', 'vacancy'), [
+        return view('front.employer.proposals.index', compact('proposal', 'vacancy','user'), [
             'proposalsAwait' => $proposalsAwait,
             'proposalsApprove' => $proposalsApprove,
             'proposalsAccept' => $proposalsAccept,
@@ -56,10 +56,9 @@ class ProposalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Proposal $proposal)
+    public function show(Proposal $proposal, User $user)
     {
-        $cv = Proposal::get();
-        return view('front.employer.proposals.show',compact('cv','proposal'));
+        return view('front.employer.proposals.show',compact('proposal', 'user'));
     }
 
 
@@ -95,10 +94,11 @@ class ProposalController extends Controller
                         ->with('success','Rejected applicant');
     }
 
-    public function download(Proposal $proposal)
+    public function downloadPdf(Proposal $proposal)
     {
-        $user = auth()->user();
-        $pdf = \PDF::loadView('front.employer.proposals.show', compact('user', 'proposal'));
+        // share data to view
+        view()->share('front.employer.proposals.resume-pdf',$proposal);
+        $pdf = \PDF::loadView('front.employer.proposals.resume-pdf', ['proposal' => $proposal]);
         return $pdf->download('resume.pdf');
     }
 }

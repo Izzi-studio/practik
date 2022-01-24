@@ -1,0 +1,1 @@
+<img src="{{ asset('upload/' .$proposal->cv ) }}" width="700" height="850" alt="pdf" ></img>
