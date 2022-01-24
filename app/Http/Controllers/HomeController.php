@@ -89,7 +89,7 @@ class HomeController extends Controller
         return view('front.employer');
     }
 
-    public function companies()
+    public function companies(Request $request)
     {
         $companies = User::companies()->get();
         return view('front.companies',compact('companies'));
