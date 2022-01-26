@@ -11,8 +11,16 @@
                     <div class="sub">
                         Заполните форму ниже и мы обязательно свяжемся с вами в ближайшее время.
                     </div>
-                    <form name="not_found" action="javascript:void(0)" method="post">
-                        <input type="email" name="email" required="required" placeholder="E-mail" />
+                    @if (Session::has('message_sent'))
+                        <div class="alert alert-success" >
+                            {{Session::get('message_sent')}}
+                        </div>
+                    @endif
+                    <form action="{{ route('contact.send') }}" enctype="multipart/form-data" method="post">
+                        @csrf
+                        <input type="text" name="name" placeholder="Name" />
+                        <input type="text" name="phone" placeholder="Phone" />
+                        <input type="email" name="email" placeholder="E-mail" />
                         <textarea name="message" placeholder="Ваше сообщение"></textarea>
                         <button class="btn btn-orange" type="submit">Отправить</button>
                     </form>

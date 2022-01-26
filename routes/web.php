@@ -24,13 +24,14 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 //static page
 Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/callback', 'HomeController@callback')->name('callback');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/howto', 'HomeController@howto')->name('howto');
 Route::get('/services', 'HomeController@services')->name('services');
 Route::get('/employer', 'HomeController@employer')->name('employer');
 //static page end
 Route::get('/companies', 'HomeController@companies')->name('companies');
+Route::get('/callback', 'Front\ContactController@callback')->name('callback');
+Route::post('/send-message','Front\ContactController@sendEmail')->name('contact.send');
 
 //profile
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');

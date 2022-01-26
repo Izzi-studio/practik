@@ -69,11 +69,6 @@ class HomeController extends Controller
         return view('front.howto');
     }
 
-    public function callback()
-    {
-        return view('front.callback');
-    }
-
     public function faq()
     {
         return view('front.faq');
