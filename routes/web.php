@@ -41,8 +41,8 @@ Route::get('change-password', 'Auth\UpdatePasswordController@index');
 Route::post('change-password', 'Auth\UpdatePasswordController@store')->name('update.password');
 Route::get('forget-password', 'Auth\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
 Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post');
-Route::get('reset-password/{token}', 'Auth\ResetPasswordController@showResetPasswordForm')->name('reset.password.get');
-Route::post('reset-password', 'Auth\ResetPasswordController@submitResetPasswordForm')->name('reset.password.post');
+Route::get('reset-password/{token}', 'Auth\ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
+Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
 //profile end
 
 //employers routes
