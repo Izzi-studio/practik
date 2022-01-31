@@ -47,7 +47,7 @@
                 <div class="topmenu">
                     <ul>
                         <li>
-                            <a href="#">Вакансии</a>
+                            <a href="{{route('welcome')}}">Вакансии</a>
                         </li>
                         <li>
                             <a href="{{route('companies')}}">Компании</a>

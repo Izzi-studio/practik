@@ -20,9 +20,21 @@
                 <span>Активные позиции</span>
               </div>
               <div class="answer">
-                <div class="card">
-
-                </div>
+                @foreach ($proposalsAccept as $proposal)
+                  <div class="card">
+                    <table class="table">
+                      <tr>
+                        <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
+                        <td>{{ $proposal->vacancy->title}}</td>
+                        <td>{{ $proposal->vacancy->description }}</td>
+                        <td>
+                          <div class="fa-2x fas fa-check check"></div>
+                          <div class="archiveName">Current Job</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                @endforeach
               </div>
             </div>
             <div class="item">
@@ -80,9 +92,21 @@
                 <span>Архив</span>
               </div>
               <div class="answer">
-                <div class="card">
-                  
-                </div>
+                @foreach ($proposalsArchive as $proposal)
+                  <div class="card">
+                    <table class="table">
+                      <tr>
+                        <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
+                        <td>{{ $proposal->vacancy->title}}</td>
+                        <td>{{ $proposal->vacancy->description }}</td>
+                        <td>
+                          <div class="fa-2x fas fa-times cross"></div>
+                          <div class="deleteName" >Rejected Job</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                @endforeach
               </div>
             </div>
           </div>

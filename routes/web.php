@@ -57,12 +57,8 @@ Route::group(['middleware' => 'EmployerMiddleware', ], function(){
 	Route::get('/resume/{proposal}', 'Front\ProposalController@show')->name('proposal.show');
 	Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyController@changeStatusVacancy')->name('change-status-vacancy');//to do
 	Route::get('/feedback','Front\VacancyController@feedback')->name('feedback');//to do
-	Route::get('/search','Front\VacancyController@search')->name('search'); //to do
 });
 //employers routes end
-
-//Route::post('/get-states','Front\LocationController@getStatesByCountryId')->name('get-states');
-//Route::post('/get-cities','Front\LocationController@getCitiesByStateId')->name('get-cities');
 
 Route::get('/view-vacancy/{vacancy}', 'Front\VacancyController@viewVacancy')->name('viewVacancy');
 Route::post('/view-vacancy/{vacancy}', 'Front\VacancyController@applyVacancy')->name('applyVacancy');
@@ -70,8 +66,6 @@ Route::get('/change-status-vacancy/{vacancy_id}/{status}','Front\VacancyControll
 Route::get('/feedback','Front\VacancyController@feedback')->name('feedback')->middleware('EmployerMiddleware');
 Route::get('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
 Route::post('/search','Front\VacancyController@searchVacancies')->name('vacancies.search');
-
-
 
 //students routes
 Route::get('/categories', 'Front\CategoryController@index')->name('categories');

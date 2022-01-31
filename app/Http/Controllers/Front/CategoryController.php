@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Models\Front\Vacancy;
+use Illuminate\Support\Facades\DB;
 use App\Http\Models\Front\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Models\Front\CategoryVacancy;
 
 class CategoryController extends Controller
 {
@@ -16,78 +18,18 @@ class CategoryController extends Controller
      */
     public function index(Vacancy $vacancy, Request $request)
     {
+        $data=[
+            'allVacancies' => $vacancy->vacancyActive()->get(),
+            'categories' => Category::get(),
+            'mostPopularCategories' => DB::table('categories')
+            ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
+            ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
+            ->groupBy('category_vacancy.category_id')
+            ->orderBy('name_count', 'desc')
+            ->take(6)
+            ->get()
+        ];
 
-        if($request->has('search')){
-            $allCategories = Category::search($request->get('search'))->get();
-        }else{
-            $allCategories = Category::get();
-        }
-        return view('front.categories', compact('allCategories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('front.categories')->with($data);
     }
 }

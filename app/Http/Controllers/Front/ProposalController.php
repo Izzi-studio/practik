@@ -25,10 +25,15 @@ class ProposalController extends Controller
             //proposal on standby
             $proposalsAwait = auth()->user()->candidates()->CandidateAwait()->where('user_id', $userId)->get();
             //proposal accepted for an interview
-            $proposalsApprove =  auth()->user()->candidates()->candidateApprove()->where('user_id', $userId)->get();
+            $proposalsApprove =  auth()->user()->candidates()->candidateApprove()->where('user_id', $userId)->get();//proposal finally accepted
+            $proposalsAccept = auth()->user()->candidates()->candidateAccept()->where('user_id', $userId)->get();
+            $proposalsArchive = auth()->user()->candidates()->candidateArchive()->where('user_id', $userId)->get();
+            
             return view('front.student.proposals.index',compact('proposal', 'vacancy'), [
                 'proposalsAwait' => $proposalsAwait,
                 'proposalsApprove' => $proposalsApprove,
+                'proposalsAccept' => $proposalsAccept,
+                'proposalsArchive' => $proposalsArchive,
             ]);
         }
         if (User::getUserRoleID() == 2){

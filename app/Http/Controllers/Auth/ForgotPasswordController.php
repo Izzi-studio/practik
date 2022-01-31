@@ -28,24 +28,17 @@ class ForgotPasswordController extends Controller
     use SendsPasswordResetEmails;
 
     /**
-     * Show the reset email form
+     * Show the forget password form
      *
      * @return void
      */
-    public function showLinkRequestForm(){
-        return view('auth.passwords.email',[
-            'title' => 'Reset Password',
-            'passwordEmailRoute' => 'password.email'
-         ]);
-    }
-
     public function showForgetPasswordForm()
     {
        return view('auth.passwords.forget');
     }
 
     /**
-     * Write code on Method
+     * 
      *
      * @return response()
      */
@@ -71,17 +64,17 @@ class ForgotPasswordController extends Controller
         return back()->with('message', 'We have e-mailed your password reset link!');
     }
 
-          /**
-       * Write code on Method
-       *
-       * @return response()
-       */
+    /**
+     * Show the reset email form
+     *
+     * @return response()
+     */
       public function showResetPasswordForm($token) { 
         return view('auth.passwords.reset', ['token' => $token]);
      }
  
      /**
-      * Write code on Method
+      * 
       *
       * @return response()
       */

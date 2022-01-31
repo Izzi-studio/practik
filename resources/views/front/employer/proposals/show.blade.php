@@ -9,6 +9,9 @@
       <div class="pull-right btn">
         <a href="{{ route('export-pdf') }}" class="btn btn-orange">Download</a>
       </div>
+      <div class="pull-right btn">
+        <a class="btn btn-orange" href="{{ route('proposals.index') }}">Back</a>
+      </div>
     </div>
   </div>
 @stop
