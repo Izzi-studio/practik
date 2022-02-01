@@ -38,15 +38,21 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function welcome(Vacancy $vacancy){
+    public function welcome(Vacancy $vacancy, Category $category, Request $request){
+
+        if($request->get('categories',null)){
+            $vacanciesIds = CategoryVacancy::whereIn('category_id',[$request->categories])->pluck('vacancy_id')->toArray();
+            $vacancies = $vacancies->whereIn('id', $vacanciesIds);
+        }
             $data=[
-                'allVacancies' => $vacancy->vacancyActive()->get(),
+                'allVacancies' => $vacancy->vacancyActive()->take(5)->get(),
                 'cities' => Cities::get(),
                 'durations' => Duration::get(),
                 'form_of_employments' => FormOfCooperation::get(),
                 'form_of_cooperations' => FormOfEmployment::get(),
                 'type_of_employments' => TypeOfEmployment::get(),
                 'categories' => Category::get(),
+                'countCategories' => Category::take(5)->get(),
                 'mostPopularCategories' => DB::table('categories')
                 ->leftJoin('category_vacancy', 'categories.id', '=', 'category_vacancy.category_id')
                 ->select(DB::raw('categories.name,count(category_vacancy.category_id) as name_count,categories.id as category_id'))
@@ -56,7 +62,7 @@ class HomeController extends Controller
                 ->get()
             ];
 
-        return view('welcome', compact('vacancy'))->with($data);
+        return view('welcome', compact('vacancy', 'category'))->with($data);
     }
 
     public function about()

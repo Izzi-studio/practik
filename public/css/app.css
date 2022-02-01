@@ -416,6 +416,23 @@ a{
     font-family: 'Nunito', sans-serif;
 }
 
+.cats .sub{
+    margin-bottom: 20px;
+}
+.cats .image{
+    margin-bottom: 15px;
+}
+.cats .item{
+    margin-bottom: 50px;
+}
+.cats .title{
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 5px;
+}
+
 .tn{
     padding: 7px 0 20px;
     border-bottom: 1px solid rgba(18, 16, 69, 0.14);
@@ -424,7 +441,7 @@ a{
     margin-bottom: 30px;
 }
 .destination{
-    padding: 150px 0 215px;
+    padding: 100px 0 100px;
     border-bottom: 1px solid rgba(18, 16, 69, 0.14);
 }
 .destination .sub{

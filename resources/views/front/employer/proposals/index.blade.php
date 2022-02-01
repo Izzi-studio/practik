@@ -52,7 +52,6 @@
                       <tr>
                         <td>{{ date("d-m-Y", strtotime($proposal->created_at)) }}</td>
                         <td>{{ $proposal->vacancy->title}}</td>
-                        <td>{{ $proposal->user->id}}</td>
                         <td>
                             <a class="titre active" type="button" href="{{ route('proposal.show',$proposal->id) }}">{{  $proposal->user->last_name }}{{  $proposal->user->first_name }}</a>
                           </td>
@@ -96,8 +95,8 @@
                       <table class="card-body table">
                         <tr>
                           <td>{{ date("d-m-Y", strtotime($proposal->updated_at)) }}</td>
-                          <td class="titre">{{ $proposal->vacancy->title }}</td>
-                          <td>{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</td>
+                          <td>{{ $proposal->vacancy->title }}</td>
+                          <td class="titre">{{ $proposal->user->last_name }} {{ $proposal->user->first_name }}</td>
                           <td>
                               <div class="fa-2x fas fa-check check"></div>
                               <div class="archiveName">Принято</div>

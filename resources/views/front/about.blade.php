@@ -16,21 +16,6 @@
             </div>
         </div>
     </section>
-    <section id="companies">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="row no-gutters align-items-center justify-content-between">
-                        <div><img src="/images/companies/nestle.svg"></div>
-                        <div><img src="/images/companies/metinvest.svg"></div>
-                        <div><img src="/images/companies/ey.svg"></div>
-                        <div><img src="/images/companies/oneplusone.svg"></div>
-                        <div><img src="/images/companies/adidas.svg"></div>
-                        <div><img src="/images/companies/roshen.svg"></div>
-                    </div>
-                </div>
-            </div>
-    </section>
     <section id="content">
         <div class="container">
             <div class="row">

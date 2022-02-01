@@ -21,42 +21,32 @@
                         </button>
                 </div>
             </div>
-
-    <div id="cats">
-            @if (request()->input('search'))
-                <h6>{{ $categories->count() }} result(s) for the search "{{ request()->search }}"</h6>
-            @endif
-                <div class="categories">
-                    <div class="row ">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
-                        <div class="form-group">
-                            <div class="tags">
-                                <span class="grey">Популярное:</span>
-                                <ul name="categories">
-                                    @foreach ($mostPopularCategories as $category)
-                                        <li><input @if(isset($requestData['categories'])  && in_array($category->category_id,$requestData['categories'])) checked @endif style="display: none" type="checkbox" id = "category-{{$category->category_id}}" name="categories[]" value="{{$category->category_id}}"/><label for="category-{{$category->category_id}}">{{$category->name}}</label></li>
-                                    @endforeach
-                                </ul>
-                            </div>
+            <section class="cats">
+                <div class="container">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
                         </div>
-                        @if ($categories->count())
-                            @foreach ($categories as $category)
-                            <div class="tags">
-                                <div class="col-lg-4 col-md-2">
-                                    <ul>
-                                    <li><a href="{{ route('vacancies.search') }}" value="{{ request()->categories ?? '' }}">{{$category->name}}</a></li>       
-                                </ul> 
-                                
-                                </div>  
-                            </div>          
-                            @endforeach   
-                        @endif
-                    </div>
+                    @endif
+                            <div class="row items">
+                            @if ($categories->count())
+                        @foreach ($categories as $category)
+                                <div class="col-lg-4 item">
+                                    <div class="image">
+                                        <img src="/images/inter5.svg">
+                                    </div>
+                                    <div class="title">
+                                    <a href="{{ route('vacancies.search') }}" value="{{ request()->categories ?? '' }}">{{$category->name}}</a>
+                                    </div>
+                                    <div class="num">
+                                        <a href="#">890 вакансий</a>
+                                    </div>
+                                </div>
+                                @endforeach   
+                                    @endif
+                            </div>
                 </div>
+            </section>
             </form>
         </div>
     </div>

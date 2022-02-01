@@ -112,13 +112,14 @@
                             </div>
                     </div>
                     @endforeach
-                    <div class="col-lg-9 item">
+                    <div class="col-lg-4 item">
                         <div class="num_block">
                             <div class="num">
-                                +585
+                            +{{ $vacancy->count()}}
                             </div>
-                            <div class="sub">
-                                Вакансий на Practicum. <a href="{{ route('vacancies.search') }}">Смотреть все</a>
+                            <div class="sub"crypto
+                            >
+                                Вакансий на Practicum. <a class="subtext" href="{{ route('vacancies.search') }}">Смотреть все</a>
                             </div>
                         </div>
                     </div>
@@ -164,68 +165,27 @@
             <h2>Выбери свое направление</h2>
             <div class="sub">Найди второй дом. <a href="#">Подобрать вакансии по интересам.</a></div>
             <div class="row items">
-                <div class="col-lg-4 item">
-                    <div class="image">
-                        <img src="/images/inter1.svg">
-                    </div>
-                    <div class="title">
-                        Маркетинг, реклама, PR
-                    </div>
-                    <div class="num">
-                        <a href="#">890 вакансий</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 item">
-                    <div class="image">
-                        <img src="/images/inter2.svg">
-                    </div>
-                    <div class="title">
-                        IT, компьютеры, интернет
-                    </div>
-                    <div class="num">
-                        <a href="#">700 вакансий</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 item">
-                    <div class="image">
-                        <img src="/images/inter3.svg">
-                    </div>
-                    <div class="title">
-                        Медицина, фармацевтика
-                    </div>
-                    <div class="num">
-                        <a href="#">700 вакансий</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 item">
-                    <div class="image">
-                        <img src="/images/inter4.svg">
-                    </div>
-                    <div class="title">
-                        Юриспруденция
-                    </div>
-                    <div class="num">
-                        <a href="#">890 вакансий</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 item">
-                    <div class="image">
-                        <img src="/images/inter5.svg">
-                    </div>
-                    <div class="title">
-                        Бухгалтерия, аудит
-                    </div>
-                    <div class="num">
-                        <a href="#">890 вакансий</a>
-                    </div>
-                </div>
+                        @foreach ($countCategories as $category)
+                                <div class="col-lg-4 item">
+                                    <div class="image">
+                                        <img src="/images/inter5.svg">
+                                    </div>
+                                    <div class="title">
+                                    {{$category->name}}
+                                    </div>
+                                    <div class="num">
+                                        <a href="#">890 вакансий</a>
+                                    </div>
+                                </div>
+
+                                @endforeach   
                 <div class="col-lg-4 item">
                     <div class="num_block">
                         <div class="num">
-                            +22
+                            +{{$category->count()}}
                         </div>
                         <div class="sub">
-                            Направлений на Practicum. <a href="#">Смотреть все</a>
+                            Направлений на Practicum. <a href="{{route('categories')}}">Смотреть все</a>
                         </div>
                     </div>
                 </div>
