@@ -32,6 +32,7 @@ Route::get('/employer', 'HomeController@employer')->name('employer');
 Route::get('/companies', 'HomeController@companies')->name('companies');
 Route::get('/callback', 'Front\ContactController@callback')->name('callback');
 Route::post('/send-message','Front\ContactController@sendEmail')->name('contact.send');
+Route::get('/help', 'Front\ProfileController@help')->name('help');
 
 //profile
 Route::get('/profile','Front\ProfileController@index')->name('profile_view');

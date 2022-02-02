@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{route('help')}}">
                                     <span><img src="/images/question.svg"></span>
                                     Помощь
                                 </a>

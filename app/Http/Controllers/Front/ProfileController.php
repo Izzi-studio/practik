@@ -100,8 +100,8 @@ class ProfileController extends Controller
     }
 
 
-    public function myVacancies()
+    public function help()
     {
-        return view('front.my-vacancies');
+        return view('front.help');
     }
 }
